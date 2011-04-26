@@ -52,7 +52,7 @@
       <feGaussianBlur id="feGaussianBlur7319" inkscape:collect="always" stdDeviation="2.8805897"/>
     </filter>
     <clipPath clipPathUnits="userSpaceOnUse" id="clipPath5163">
-      <circle cx="343.99899" cy="92" id="circle5165" r="36" rx="8.0010004" ry="8.0010004" sodipodi:cx="343.99899" sodipodi:cy="92" sodipodi:rx="36" sodipodi:ry="36" style="fill:url(#linearGradient5167);fill-opacity:1"/>
+      <circle cx="343.99899" cy="92" id="circle5165" r="36" rx="8.0010004" ry="8.0010004" sodipodi:cx="343.99899" sodipodi:cy="92" sodipodi:rx="36" sodipodi:ry="36" style="fill-opacity:1"/>
     </clipPath>
     <linearGradient id="linearGradient4296">
       <stop id="stop4298" offset="0" style="stop-color:#00ff00;stop-opacity:1"/>

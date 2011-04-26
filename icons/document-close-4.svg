@@ -62,7 +62,7 @@
       <stop id="stop4300-4" offset="1" style="stop-color:#650000;stop-opacity:1"/>
     </linearGradient>
     <clipPath id="clipPath5163-7">
-      <circle cx="343.99899" cy="92" id="circle5165-2" r="36" style="fill:url(#linearGradient5167);fill-opacity:1"/>
+      <circle cx="343.99899" cy="92" id="circle5165-2" r="36" style="fill-opacity:1"/>
     </clipPath>
     <filter id="filter7317-4">
       <feGaussianBlur id="feGaussianBlur7319-0" inkscape:collect="always" stdDeviation="2.8805897"/>
