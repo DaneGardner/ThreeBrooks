@@ -166,14 +166,25 @@ double Recipe::bitterness() const
                 qobject_cast<HopsIngredient *>(ingredient->ingredient());
         if(hopsIngredient) {
 
-            /*! \note Please note that we are taking the boil gravity for the duration that
-                the hops item was actually in the boil.  Not just the pre-boil gravity, as
-                most other calculators are using.  This gives a closer approximation
-                (though not as accurate as an integral would) of what we're really using. */
-            double utilization = 1.65 * pow(0.000125, boilGravity(ingredient->minutes()) - 1.0) * ((1.0 - exp( -0.04 * ingredient->minutes() )) / 4.15);
+            /*! \note Please note that we are taking the average boil gravity for the duration
+                that the hops item was actually in the boil.  Not just the pre-boil gravity, as
+                most other calculators are using.  This gives a closer approximation of what
+                we're really using. */
 
-            double alphaAcids = (hopsIngredient->alphaAcid() * ingredient->quantity().valueToOunce() * 7490.0) / volumeGallon;
+            double averageGravity = (boilGravity(ingredient->minutes()) + finalGravity()) / 2;
+
+            double utilization = 1.65
+                                 * pow(0.000125, averageGravity - 1.0)
+                                 * (1.0 - exp( -0.04 * ingredient->minutes() ))
+                                 * (1 / 4.15);
+
+            double alphaAcids = hopsIngredient->alphaAcid()
+                                * ingredient->quantity().valueToOunce()
+                                * 7490.0
+                                * (1 / volumeGallon);
+
             internationalBitternessUnits += utilization * alphaAcids;
+
             continue;
         }
     }

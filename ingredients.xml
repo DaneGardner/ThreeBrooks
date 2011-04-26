@@ -1,8 +1,8 @@
 <!DOCTYPE Ingredients>
 <Ingredients>
  <Ingredient extract="false" type="Grain" id="{033a2a42-1ec1-4241-8082-d85bb29b7443}" specificGravity="1.036" name="Pilsner" color="1"/>
- <Ingredient extract="false" type="Grain" id="{2490c4dc-21ce-44c7-8b44-9615db8be97f}" specificGravity="1.037" name="2-Row Brewer's Malt" color="2"/>
- <Ingredient extract="false" type="Grain" id="{bcbe54fb-6dd4-4892-96db-74fd270eae6d}" specificGravity="1.035" name="6-Row Malt" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{2490c4dc-21ce-44c7-8b44-9615db8be97f}" specificGravity="1.037" name="2-Row" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{bcbe54fb-6dd4-4892-96db-74fd270eae6d}" specificGravity="1.035" name="6-Row" color="2"/>
  <Ingredient extract="false" type="Grain" id="{48d889b1-e111-4b89-a031-b1d3c13f5d24}" specificGravity="1.036" name="Belgian Pale Ale" color="2"/>
  <Ingredient extract="false" type="Grain" id="{889a4a2a-ec5d-47fe-9e26-fbd522a13130}" specificGravity="1.036" name="Belgian Pilsner" color="2"/>
  <Ingredient extract="false" type="Grain" id="{da136d37-df23-411c-8c3d-eba02193827c}" specificGravity="1.037" name="Pilsner" color="2"/>
@@ -11,59 +11,52 @@
  <Ingredient extract="false" type="Grain" id="{cef8790d-03ab-4386-9054-a75e072e68de}" specificGravity="1.038" name="Maris Otter" color="4"/>
  <Ingredient extract="false" type="Grain" id="{eb77fe18-c6ca-4621-8e2c-2d3daba2c1ed}" specificGravity="1.038" name="Pale Ale" color="4"/>
  <Ingredient extract="false" type="Grain" id="{3bb85ce4-7da6-4c67-9334-cb90e67a77fa}" specificGravity="1.037" name="Pale Ale Malt" color="4"/>
- <Ingredient extract="false" type="Grain" id="{9f3139e4-3c77-4da3-8f12-2e9534040b6c}" specificGravity="1.034" name="2-Row Carapils" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{9f3139e4-3c77-4da3-8f12-2e9534040b6c}" specificGravity="1.034" name="Carapils" color="2"/>
  <Ingredient extract="false" type="Grain" id="{d4a86f4e-370c-46e1-aef6-9c28bb3e40e8}" specificGravity="1.037" name="Cara Foam" color="2"/>
  <Ingredient extract="false" type="Grain" id="{f059a299-712b-42ce-8536-2ba2686fce8d}" specificGravity="1.03" name="Caramel Pils" color="8"/>
- <Ingredient extract="false" type="Grain" id="{0abd2057-1b63-4ce3-85ae-ef465febce59}" specificGravity="1.035" name="2-Row Caramel 10" color="10"/>
+ <Ingredient extract="false" type="Grain" id="{0abd2057-1b63-4ce3-85ae-ef465febce59}" specificGravity="1.035" name="Caramel 10" color="10"/>
  <Ingredient extract="false" type="Grain" id="{09768939-37d0-4749-8dbc-77baeb25fa7e}" specificGravity="1.035" name="Cara Hell" color="13"/>
- <Ingredient extract="false" type="Grain" id="{bc00871c-0024-49b9-b24d-d57cc4c57e9e}" specificGravity="1.034" name="2-Row Caramel 20" color="20"/>
+ <Ingredient extract="false" type="Grain" id="{bc00871c-0024-49b9-b24d-d57cc4c57e9e}" specificGravity="1.034" name="Caramel 20" color="20"/>
  <Ingredient extract="false" type="Grain" id="{59557fbb-8ff3-4b0b-a376-770ca7eaad85}" specificGravity="1.034" name="Caramel Vienne" color="22"/>
  <Ingredient extract="false" type="Grain" id="{0f14e9d6-bd80-4027-8134-da20710df04e}" specificGravity="1.036" name="Cara Red" color="24"/>
  <Ingredient extract="false" type="Grain" id="{423b9b7a-f8d6-48a7-879a-465e737a4f16}" specificGravity="1.037" name="Honey Malt" color="25"/>
  <Ingredient extract="false" type="Grain" id="{c6669dce-2ade-4917-942b-7904bf405952}" specificGravity="1.034" name="CaraMalt" color="34"/>
  <Ingredient extract="false" type="Grain" id="{2ca5dc86-2424-464c-8442-f01e74d143cc}" specificGravity="1.037" name="Cara Amber" color="36"/>
- <Ingredient extract="false" type="Grain" id="{6e28bd6a-8849-43e1-ac15-9dcbe5d2f02f}" specificGravity="1.034" name="2-Row Caramel 40" color="40"/>
+ <Ingredient extract="false" type="Grain" id="{6e28bd6a-8849-43e1-ac15-9dcbe5d2f02f}" specificGravity="1.034" name="Caramel 40" color="40"/>
  <Ingredient extract="false" type="Grain" id="{484f77e6-6b06-473d-81d4-6e3eeea80c52}" specificGravity="1.038" name="Cara Munich I" color="43"/>
  <Ingredient extract="false" type="Grain" id="{cfa2ba9a-e41b-4425-9add-c341623da069}" specificGravity="1.038" name="Cara Munich II" color="46"/>
  <Ingredient extract="false" type="Grain" id="{b11b9244-e672-4f1b-8866-bdbf40e565bf}" specificGravity="1.035" name="Medium Crystal" color="55"/>
  <Ingredient extract="false" type="Grain" id="{1a793f19-6b78-43dd-9357-547b7de8ca94}" specificGravity="1.033" name="Caramel Munich" color="56"/>
  <Ingredient extract="false" type="Grain" id="{20a38b97-265b-44fb-8fe7-e3967a791b77}" specificGravity="1.038" name="Cara Munich III" color="57"/>
- <Ingredient extract="false" type="Grain" id="{8eedd372-59ef-42e6-a9f1-15170aed4482}" specificGravity="1.034" name="2-Row Caramel 60" color="60"/>
+ <Ingredient extract="false" type="Grain" id="{8eedd372-59ef-42e6-a9f1-15170aed4482}" specificGravity="1.034" name="Caramel 60" color="60"/>
  <Ingredient extract="false" type="Grain" id="{85eb1ce3-0419-4f01-89d9-540e4f6b19cc}" specificGravity="1.035" name="Dark Crystal" color="75"/>
- <Ingredient extract="false" type="Grain" id="{586f6365-718c-4990-8e6b-91f3977b1563}" specificGravity="1.033" name="2-Row Caramel 80" color="80"/>
- <Ingredient extract="false" type="Grain" id="{45a0e004-05ed-4974-bab8-564375136674}" specificGravity="1.032" name="2-Row Caramel 120" color="120"/>
+ <Ingredient extract="false" type="Grain" id="{586f6365-718c-4990-8e6b-91f3977b1563}" specificGravity="1.033" name="Caramel 80" color="80"/>
+ <Ingredient extract="false" type="Grain" id="{45a0e004-05ed-4974-bab8-564375136674}" specificGravity="1.032" name="Caramel 120" color="120"/>
  <Ingredient extract="false" type="Grain" id="{052ed885-7da7-48e8-8ea8-c942cd743211}" specificGravity="1.034" name="Cara Aroma" color="130"/>
  <Ingredient extract="false" type="Grain" id="{1f4b8551-b91f-4d46-a82c-a0d77dbd5600}" specificGravity="1.03" name="Special B" color="148"/>
  <Ingredient extract="false" type="Grain" id="{35271c59-f58f-4e31-ae27-a49d1c6253a6}" specificGravity="1.035" name="Extra Dark Crystal" color="160"/>
- <Ingredient extract="false" type="Grain" id="{2a12eeed-2bb5-42f6-a1ff-edb7e3e7f3ea}" specificGravity="1.06" name="Pilsen (Extra) Light Dry Extract" color="2"/>
- <Ingredient extract="false" type="Grain" id="{e88aa8c9-a043-486f-b30d-270732f6db2d}" specificGravity="1.06" name="Bavarian Wheat Dry Extract" color="3"/>
- <Ingredient extract="false" type="Grain" id="{7618bd43-04f7-4b9d-9e15-7632b84e9f3b}" specificGravity="1.06" name="Golden Light Dry Extract" color="4"/>
- <Ingredient extract="false" type="Grain" id="{335edeb8-19bf-4dcc-b47d-3badce410dc3}" specificGravity="1.06" name="Sparkling Amber Dry Extract" color="10"/>
- <Ingredient extract="false" type="Grain" id="{a2507faf-f0fb-4f7f-a32b-5dfa97767fe4}" specificGravity="1.06" name="Traditional Dark Dry Extract" color="30"/>
+ <Ingredient extract="true" type="Grain" id="{2a12eeed-2bb5-42f6-a1ff-edb7e3e7f3ea}" specificGravity="1.06" name="DME - Pilsen Extra Light" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{e88aa8c9-a043-486f-b30d-270732f6db2d}" specificGravity="1.06" name="DME - Bavarian Wheat" color="3"/>
+ <Ingredient extract="true" type="Grain" id="{7618bd43-04f7-4b9d-9e15-7632b84e9f3b}" specificGravity="1.06" name="DME - Golden" color="4"/>
+ <Ingredient extract="true" type="Grain" id="{335edeb8-19bf-4dcc-b47d-3badce410dc3}" specificGravity="1.06" name="DME - Sparkling Amber" color="10"/>
+ <Ingredient extract="true" type="Grain" id="{a2507faf-f0fb-4f7f-a32b-5dfa97767fe4}" specificGravity="1.06" name="DME - Traditional Dark" color="30"/>
  <Ingredient extract="false" type="Grain" id="{23555308-ff1f-4e30-a400-7bfdc14031c4}" specificGravity="1.038" name="Vienna" color="3"/>
  <Ingredient extract="false" type="Grain" id="{b4a7521d-e23b-4a80-9369-fbefff6cc5b1}" specificGravity="1.035" name="Munich Type II" color="9"/>
  <Ingredient extract="false" type="Grain" id="{05f51017-c1f7-4fcb-9278-3a37fdddafa5}" specificGravity="1.037" name="Aromatic" color="19"/>
  <Ingredient extract="false" type="Grain" id="{0b4624c9-c566-4571-88e2-1e1795cbf35e}" specificGravity="1.034" name="Victory" color="28"/>
  <Ingredient extract="false" type="Grain" id="{2ee4b583-36b5-414d-b60b-a37ca86a402e}" specificGravity="1.035" name="Dark Munich" color="30"/>
  <Ingredient extract="false" type="Grain" id="{39623dd0-0e04-480b-bf4b-f0284a06c8d3}" specificGravity="1.033" name="Special Roast Malt" color="50"/>
- <Ingredient extract="false" type="Grain" id="{76ddbea7-5ee2-4966-a263-01f244f98394}" specificGravity="1.05" name="Pilsen Extra Light Liquid Extract" color="2"/>
- <Ingredient extract="false" type="Grain" id="{e3b00a83-9b83-4b10-a229-382c2c40f839}" specificGravity="1.037" name="White Sorghum Syrup" color="2"/>
- <Ingredient extract="false" type="Grain" id="{e0a0d200-6cb8-480a-8a59-edf2cd613d1c}" specificGravity="1.05" name="Bavarian Wheat Liquid Extract" color="3"/>
- <Ingredient extract="false" type="Grain" id="{f06a720a-3974-4680-8fc0-875863bd9588}" specificGravity="1.055" name="Wheat LME unhopped" color="3"/>
- <Ingredient extract="false" type="Grain" id="{426e41bd-b0fb-443c-aa6f-f5f865be8ace}" specificGravity="1.05" name="Golden Light Liquid Extract" color="4"/>
- <Ingredient extract="false" type="Grain" id="{709c8e8b-a8c0-4c48-98cc-2e20afd2eafb}" specificGravity="1.055" name="Light LME unhopped" color="5"/>
- <Ingredient extract="false" type="Grain" id="{30e72d78-1db0-465e-a0bf-6e83b384776f}" specificGravity="1.048" name="Munich Liquid Extract" color="8"/>
- <Ingredient extract="false" type="Grain" id="{c5a0102f-16da-4ba0-b197-2ab5683013bd}" specificGravity="1.055" name="Amber LME unhopped" color="9"/>
- <Ingredient extract="false" type="Grain" id="{97c417a9-3789-4cba-9be0-ae23129b83e4}" specificGravity="1.05" name="Sparkling Amber Liquid Extract" color="10"/>
- <Ingredient extract="false" type="Grain" id="{008468a0-ec28-4d88-a446-fbf5b349a87d}" specificGravity="1.055" name="Dark Liquid LME unhopped" color="27"/>
- <Ingredient extract="false" type="Grain" id="{39216831-32ed-45d1-b29a-0b56d2173c26}" specificGravity="1.05" name="Traditional Dark Liquid Extract" color="30"/>
- <Ingredient extract="false" type="Grain" id="{5eda2ba6-d35c-45a9-92cc-293527356d5d}" specificGravity="1.037" name="2-Row, Organic" color="2"/>
- <Ingredient extract="false" type="Grain" id="{1fa9c9ec-0a57-4406-aec0-61d93827dc58}" specificGravity="1.034" name="Cara-Pils, Organic" color="2"/>
- <Ingredient extract="false" type="Grain" id="{2e15e0b3-a241-4420-9065-26cadb40ef4e}" specificGravity="1.036" name="Munich 10, Organic" color="10"/>
- <Ingredient extract="false" type="Grain" id="{5bc6afd3-8721-4106-87f8-02dce2c57154}" specificGravity="1.034" name="Caramel 20, Organic" color="20"/>
- <Ingredient extract="false" type="Grain" id="{9cea40ed-3606-4cc6-8bea-bf80e159ee17}" specificGravity="1.034" name="Caramel 60, Organic" color="60"/>
- <Ingredient extract="false" type="Grain" id="{337bb0b4-7508-472b-a2eb-ce4740d5240e}" specificGravity="1.032" name="Caramel 120, Organic" color="120"/>
- <Ingredient extract="false" type="Grain" id="{57e418be-819a-4eb1-90ba-17cff6ace691}" specificGravity="1.035" name="Chocolate, Organic" color="350"/>
+ <Ingredient extract="true" type="Grain" id="{76ddbea7-5ee2-4966-a263-01f244f98394}" specificGravity="1.05" name="LME - Pilsen Extra Light" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{e3b00a83-9b83-4b10-a229-382c2c40f839}" specificGravity="1.037" name="White Sorghum Syrup" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{e0a0d200-6cb8-480a-8a59-edf2cd613d1c}" specificGravity="1.05" name="LME - Bavarian Wheat" color="3"/>
+ <Ingredient extract="true" type="Grain" id="{f06a720a-3974-4680-8fc0-875863bd9588}" specificGravity="1.055" name="LME - Wheat" color="3"/>
+ <Ingredient extract="true" type="Grain" id="{426e41bd-b0fb-443c-aa6f-f5f865be8ace}" specificGravity="1.05" name="LME - Golden" color="4"/>
+ <Ingredient extract="true" type="Grain" id="{709c8e8b-a8c0-4c48-98cc-2e20afd2eafb}" specificGravity="1.055" name="LME - Light" color="5"/>
+ <Ingredient extract="true" type="Grain" id="{30e72d78-1db0-465e-a0bf-6e83b384776f}" specificGravity="1.048" name="LME - Munich" color="8"/>
+ <Ingredient extract="true" type="Grain" id="{c5a0102f-16da-4ba0-b197-2ab5683013bd}" specificGravity="1.055" name="LME - Amber" color="9"/>
+ <Ingredient extract="true" type="Grain" id="{97c417a9-3789-4cba-9be0-ae23129b83e4}" specificGravity="1.05" name="LME - Sparkling Amber" color="10"/>
+ <Ingredient extract="true" type="Grain" id="{008468a0-ec28-4d88-a446-fbf5b349a87d}" specificGravity="1.055" name="LME - Dark Liquid" color="27"/>
+ <Ingredient extract="true" type="Grain" id="{39216831-32ed-45d1-b29a-0b56d2173c26}" specificGravity="1.05" name="LME - Traditional Dark" color="30"/>
  <Ingredient extract="false" type="Grain" id="{af927386-08b1-4b99-999d-a3d46f502ab6}" specificGravity="1.032" name="Biscuit" color="23"/>
  <Ingredient extract="false" type="Grain" id="{3355020f-5bf8-4716-bb49-8eb8c30664aa}" specificGravity="1.037" name="Amber" color="28"/>
  <Ingredient extract="false" type="Grain" id="{97d1d579-d205-48b0-a0a2-9c5133fbd862}" specificGravity="1.035" name="Brown" color="65"/>
@@ -93,6 +86,21 @@
  <Ingredient extract="false" type="Grain" id="{87801328-59d7-4308-9583-355e00fd6aa0}" specificGravity="1.038" name="Dark Wheat" color="7"/>
  <Ingredient extract="false" type="Grain" id="{1de71803-1f20-4ef6-9679-bb325a6c56b9}" specificGravity="1.037" name="Caramel Wheat" color="50"/>
  <Ingredient extract="false" type="Grain" id="{6d299c9f-3472-4b71-adfc-9958068a6e8d}" specificGravity="1.035" name="Chocolate Wheat" color="415"/>
+ <Ingredient extract="true" type="Grain" id="{c52d57f0-b207-4d4e-bb90-af37eae1c095}" specificGravity="1.036" name="Sugars - Amber Candi Sugar" color="75"/>
+ <Ingredient extract="true" type="Grain" id="{34cca085-5e8d-4728-83ac-bc744cc94680}" specificGravity="1.036" name="Sugars - Clear Candi Sugar" color="1"/>
+ <Ingredient extract="true" type="Grain" id="{b7505d71-a01c-4d3f-9665-42724f2902bc}" specificGravity="1.046" name="Sugars - Corn Sugar" color="1"/>
+ <Ingredient extract="true" type="Grain" id="{6107f6bf-2468-4355-bbac-db7b506b610c}" specificGravity="1.035" name="Sugars - Lactose" color="1"/>
+ <Ingredient extract="true" type="Grain" id="{fb46fbce-76b2-440c-9f56-d0e05702d8eb}" specificGravity="1.046" name="Sugars - Orange Blossom Honey." color="1"/>
+ <Ingredient extract="true" type="Grain" id="{8d2454cd-9602-405e-b532-d69b24b68382}" specificGravity="1.046" name="Sugars - Tupelo Honey" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{7449369c-2b80-4bdf-a193-fcedb5917996}" specificGravity="1.044" name="Sugars - Turbinado Sugar" color="10"/>
+ <Ingredient extract="true" type="Grain" id="{d5c00c50-f755-4d49-a125-d85581570e74}" specificGravity="1.032" name="Adjuncts - Flaked Barley" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{55966dde-8e40-463d-9dc4-45f589864d7e}" specificGravity="1.034" name="Adjuncts - Flaked Corn" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{190b2f09-5889-447b-8a4f-13963a078539}" specificGravity="1.037" name="Adjuncts - Flaked Oats" color="1"/>
+ <Ingredient extract="true" type="Grain" id="{07a11ce7-9463-4165-9e37-255e2739a258}" specificGravity="1.032" name="Adjuncts - Flaked Rice" color="1"/>
+ <Ingredient extract="true" type="Grain" id="{9f605d3c-b494-4f83-bdf9-6dd60a825431}" specificGravity="1.036" name="Adjuncts - Flaked Rye" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{7d66a922-93c2-43e3-b8e4-182028a2b2ec}" specificGravity="1.035" name="Adjuncts - Flaked Wheat" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{bf89fb2d-7d48-41ae-a602-92de343da88a}" specificGravity="1.036" name="Adjuncts - Torrified Wheat" color="2"/>
+ <Ingredient extract="true" type="Grain" id="{8d4c6c07-0732-485c-ad99-3cd4e8226e3e}" specificGravity="1.043" name="Adjuncts - Rice Syrup Solids" color="7"/>
  <Ingredient alphaAcid="0.052" type="Hops" id="{23afcc0b-8fdd-4958-af08-fc7664088c9b}" name="Ahtanum Pellets"/>
  <Ingredient alphaAcid="0.103" type="Hops" id="{be9acd38-505f-4024-9453-6be86aa89aad}" name="Amarillo Pellets"/>
  <Ingredient alphaAcid="0.113" type="Hops" id="{d18e7a6d-42f2-413a-967f-8e36d0ce0809}" name="Bravo Pellets"/>
@@ -265,15 +273,7 @@
  <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{95567864-b55d-4148-9017-ec914dc8ee52}" name="SAFBREW WB-06 Wheat Beer"/>
  <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{a4fe0bc1-7ba2-4aa1-97cc-8f6f80594bd4}" name="SAFLAGER S-23 - Lager"/>
  <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{48671992-70c2-49c7-8879-22523a48c621}" name="Saflager W-34/70"/>
- <Ingredient type="Ingredient" id="{d5c00c50-f755-4d49-a125-d85581570e74}" name="Adjuncts - Briess Flaked Barley"/>
- <Ingredient type="Ingredient" id="{55966dde-8e40-463d-9dc4-45f589864d7e}" name="Adjuncts - Briess Flaked Corn"/>
- <Ingredient type="Ingredient" id="{190b2f09-5889-447b-8a4f-13963a078539}" name="Adjuncts - Briess Flaked Oats"/>
- <Ingredient type="Ingredient" id="{07a11ce7-9463-4165-9e37-255e2739a258}" name="Adjuncts - Briess Flaked Rice"/>
- <Ingredient type="Ingredient" id="{9f605d3c-b494-4f83-bdf9-6dd60a825431}" name="Adjuncts - Briess Flaked Rye"/>
- <Ingredient type="Ingredient" id="{7d66a922-93c2-43e3-b8e4-182028a2b2ec}" name="Adjuncts - Briess Flaked Wheat"/>
- <Ingredient type="Ingredient" id="{bf89fb2d-7d48-41ae-a602-92de343da88a}" name="Adjuncts - Munton's Torrified Wheat"/>
  <Ingredient type="Ingredient" id="{6eae4e61-39ec-4888-8f73-e329c46e3e58}" name="Adjuncts - Rice Hulls"/>
- <Ingredient type="Ingredient" id="{8d4c6c07-0732-485c-ad99-3cd4e8226e3e}" name="Adjuncts - Rice Syrup Solids"/>
  <Ingredient type="Ingredient" id="{4b5b2276-1c19-424f-a23b-fb356bdb3d1a}" name="Enhancers - American Oak Infusion Spiral"/>
  <Ingredient type="Ingredient" id="{ed035b2d-73f1-4752-a2f2-a43f63e95bb3}" name="Enhancers - Amylase Enzyme"/>
  <Ingredient type="Ingredient" id="{f501ea1a-9957-46d5-bcbb-50a0b616cc94}" name="Enhancers - Ascorbic Acid"/>
@@ -330,16 +330,9 @@
  <Ingredient type="Ingredient" id="{e14a4a10-a309-4aae-9acc-7425e6df273e}" name="Spices and Herbs - Licorice Root"/>
  <Ingredient type="Ingredient" id="{d230b558-eca6-4dc0-8628-5a63c2d7f4c8}" name="Spices and Herbs - Organic Cacao Nibs"/>
  <Ingredient type="Ingredient" id="{9a32ff2f-03be-43e7-9055-cfca2405b0b7}" name="Spices and Herbs - Spruce Essence"/>
- <Ingredient type="Ingredient" id="{c52d57f0-b207-4d4e-bb90-af37eae1c095}" name="Sugars - Amber Candi Sugar"/>
- <Ingredient type="Ingredient" id="{34cca085-5e8d-4728-83ac-bc744cc94680}" name="Sugars - Clear Candi Sugar"/>
  <Ingredient type="Ingredient" id="{a752b42c-2546-48be-9531-3ef49bfabf0a}" name="Sugars - Cooper's Carbonation drops"/>
- <Ingredient type="Ingredient" id="{b7505d71-a01c-4d3f-9665-42724f2902bc}" name="Sugars - Corn Sugar"/>
- <Ingredient type="Ingredient" id="{6107f6bf-2468-4355-bbac-db7b506b610c}" name="Sugars - Lactose"/>
  <Ingredient type="Ingredient" id="{4ab4f511-6c55-436a-bb83-f8f66ec1dc97}" name="Sugars - Malto Dextrin"/>
- <Ingredient type="Ingredient" id="{fb46fbce-76b2-440c-9f56-d0e05702d8eb}" name="Sugars - Orange Blossom Honey."/>
  <Ingredient type="Ingredient" id="{0d5446a3-ea6e-44c0-a0c4-50db303149db}" name="Sugars - Priming Sugar"/>
- <Ingredient type="Ingredient" id="{8d2454cd-9602-405e-b532-d69b24b68382}" name="Sugars - Tupelo Honey"/>
- <Ingredient type="Ingredient" id="{7449369c-2b80-4bdf-a193-fcedb5917996}" name="Sugars - Turbinado Sugar"/>
  <Ingredient type="Ingredient" id="{dd02594c-1453-4fe7-88ab-e064219b4081}" name="Water Treatment - Burton Water Salts"/>
  <Ingredient type="Ingredient" id="{fd7a036b-ad38-4157-9d1d-a5bdb4c19c9a}" name="Water Treatment - Calcium Carbonate"/>
  <Ingredient type="Ingredient" id="{7dd2fb43-dae4-410b-9034-57c2e069908f}" name="Water Treatment - Calcium Chloride"/>

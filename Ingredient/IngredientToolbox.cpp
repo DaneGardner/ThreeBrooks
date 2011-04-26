@@ -225,13 +225,20 @@ void IngredientToolbox::on_btnRemove_clicked()
         QSortFilterProxyModel *model = qobject_cast<QSortFilterProxyModel *>(listView->model());
         IngredientModel *ingredientModel = qobject_cast<IngredientModel *>(model->sourceModel());
         QModelIndexList indices = listView->selectionModel()->selectedIndexes();
-        for(int i=0; i < indices.count(); i++) {
-            Ingredient *ingredient =
-                    indices.at(i).model()->data(indices.at(i), Qt::UserRole).value<Ingredient *>();
 
-            ingredientModel->remove(ingredient);
-            _ingredients.removeOne(ingredient);
+        // The indices list changes as items are removed, so we have to cache the pointers locally first
+        QList<Ingredient *> ingredients;
+        foreach(QModelIndex modelIndex, indices) {
+            ingredients.append(modelIndex.model()->data(modelIndex, Qt::UserRole).value<Ingredient *>());
+        }
+
+        // Now we can remove them
+        for(int i=0; i < ingredients.count(); i++) {
+            ingredientModel->remove(ingredients.at(i));
+            _ingredients.removeOne(ingredients.at(i));
             ingredientChanged();
+
+            //TODO: We can't delete the ingredient because it might be used elsewhere. Gotta solve this
         }
     }
 }

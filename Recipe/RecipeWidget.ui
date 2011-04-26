@@ -66,7 +66,11 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="txtName"/>
+         <widget class="QLineEdit" name="txtName">
+          <property name="toolTip">
+           <string>The name of this recipe</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="lblStyle">
@@ -83,6 +87,9 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="toolTip">
+           <string>The style to compare this recipe with</string>
+          </property>
          </widget>
         </item>
         <item row="2" column="0">
@@ -94,6 +101,9 @@
         </item>
         <item row="2" column="1">
          <widget class="QDoubleSpinBox" name="spnVolume">
+          <property name="toolTip">
+           <string>The volume of wort going left after the boil</string>
+          </property>
           <property name="suffix">
            <string> gallons</string>
           </property>
@@ -120,6 +130,9 @@
         </item>
         <item row="3" column="1">
          <widget class="QDoubleSpinBox" name="spnBoilTime">
+          <property name="toolTip">
+           <string>The longest boil time for hops</string>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
@@ -149,6 +162,9 @@
         </item>
         <item row="4" column="1">
          <widget class="QDoubleSpinBox" name="spnEfficiency">
+          <property name="toolTip">
+           <string>Your mash extraction efficiency</string>
+          </property>
           <property name="suffix">
            <string>%</string>
           </property>
