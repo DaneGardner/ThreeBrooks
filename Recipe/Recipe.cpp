@@ -40,6 +40,60 @@ Recipe::Recipe(QDomElement element, QObject *parent) :
     fromXml(element);
 }
 
+QList<RecipeIngredient *> Recipe::ingredients() const
+{
+    return _ingredients;
+}
+
+QString Recipe::name() const
+{
+    return _name;
+}
+
+void Recipe::setName(QString name)
+{
+    _name = name;
+    emit dataChanged();
+}
+
+QString Recipe::style() const
+{
+    return _style;
+}
+
+void Recipe::setStyle(QString style)
+{
+    _style = style; emit dataChanged();
+}
+
+Quantity Recipe::volume() const
+{
+    return _volume;
+}
+
+void Recipe::setVolume(Quantity volume)
+{
+    _volume = volume; emit dataChanged();
+}
+
+void Recipe::setVolume(double volume)
+{
+    _volume = Quantity(volume, Quantity::QuantityType_gallon, this);
+    emit dataChanged();
+}
+
+
+double Recipe::efficiency() const
+{
+    return _efficiency;
+}
+
+void Recipe::setEfficiency(double efficiency)
+{
+    _efficiency = efficiency;
+    emit dataChanged();
+}
+
 double Recipe::originalGravity() const
 {
     double originalGravity = 0;
@@ -173,31 +227,6 @@ double Recipe::boilGravity(double minutes) const
     return ((originalGravity() - 1) * (boilVolume(minutes).valueToGallon() / volume().valueToGallon())) + 1;
 }
 
-
-void Recipe::addIngredient(Ingredient *ingredient)
-{
-    addIngredient(new RecipeIngredient(ingredient, this));
-}
-
-void Recipe::addIngredient(RecipeIngredient *ingredient)
-{
-    emit addingIngredient();
-    connect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
-    _ingredients.append(ingredient);
-    emit addedIngredient();
-    emit dataChanged();
-}
-
-void Recipe::removeIngredient(RecipeIngredient *ingredient)
-{
-    int index = _ingredients.indexOf(ingredient);
-    emit removingIngredient(index);
-    disconnect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
-    _ingredients.removeOne(ingredient);
-    emit removedIngredient(index);
-    emit dataChanged();
-}
-
 void Recipe::ingredientChanged()
 {
     emit dataChanged();
@@ -230,15 +259,54 @@ void Recipe::fromXml(QDomElement element)
     for(int i=0; i < nodes.count(); i++) {
         QDomElement element = nodes.at(i).toElement();
         if(!element.isNull()) {
-            addIngredient(new RecipeIngredient(element));
+            insert(count(), new RecipeIngredient(element, this));
         }
     }
 
     QDomElement elementVolume = element.elementsByTagName("Volume").at(0).toElement();
     setVolume(Quantity(elementVolume.firstChildElement()));
-
 }
 
 
+/* QList operations */
+int Recipe::indexOf(RecipeIngredient *ingredient) const
+{
+    return _ingredients.indexOf(ingredient);
+}
 
+RecipeIngredient *Recipe::at(int row) const
+{
+    return _ingredients.at(row);
+}
+
+int Recipe::count() const
+{
+    return _ingredients.count();
+}
+
+void Recipe::insert(int row, RecipeIngredient *ingredient)
+{
+    connect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    _ingredients.insert(row, ingredient);
+    emit dataChanged();
+}
+
+bool Recipe::contains(RecipeIngredient *ingredient)
+{
+    return _ingredients.contains(ingredient);
+}
+
+void Recipe::removeAt(int row)
+{
+    disconnect(at(row), SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    _ingredients.removeAt(row);
+    emit dataChanged();
+}
+
+void Recipe::move(int row, int destination)
+{
+    _ingredients.move(row, destination);
+    emit dataChanged();
+}
+/* END QList operations */
 

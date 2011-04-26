@@ -35,6 +35,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QAbstractProxyModel>
+#include <QMessageBox>
 
 #include "Recipe.h"
 #include "RecipeModel.h"
@@ -71,6 +72,9 @@ protected slots:
     void on_cmbStyle_currentIndexChanged(QString style);
     void on_spnVolume_editingFinished();
     void on_spnEfficiency_editingFinished();
+    void on_btnRaise_clicked();
+    void on_btnLower_clicked();
+    void on_btnRemove_clicked();
 
 protected:
     void setRecipe(Recipe *recipe);

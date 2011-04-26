@@ -45,24 +45,21 @@ public:
     explicit Recipe(QObject *parent = 0);
     explicit Recipe(QDomElement element, QObject *parent = 0);
 
-    void addIngredient(RecipeIngredient *ingredient);
-    void addIngredient(Ingredient *ingredient);
-    void removeIngredient(RecipeIngredient *ingredient);
-    QList<RecipeIngredient *> ingredients() const { return _ingredients; }
+    QList<RecipeIngredient *> ingredients() const;
 
-    QString name() const { return _name; }
-    void setName(QString name) { _name = name; emit dataChanged(); }
+    QString name() const;
+    void setName(QString name);
 
-    QString style() const { return _style; }
-    void setStyle(QString style) { _style = style; emit dataChanged(); }
+    QString style() const;
+    void setStyle(QString style);
 
-    Quantity volume() const { return _volume; }
-    void setVolume(Quantity volume) { _volume = volume; emit dataChanged(); }
-    void setVolume(double volume) { _volume = Quantity(volume, Quantity::QuantityType_gallon, this); emit dataChanged(); }
+    Quantity volume() const;
+    void setVolume(Quantity volume);
+    void setVolume(double volume);
 
 
-    double efficiency() const { return _efficiency; }
-    void setEfficiency(double efficiency) { _efficiency = efficiency; emit dataChanged(); }
+    double efficiency() const;
+    void setEfficiency(double efficiency);
 
     double originalGravity() const;
     double finalGravity() const;
@@ -80,6 +77,16 @@ public:
 
     QDomElement toXml(QDomDocument document);
     void fromXml(QDomElement element);
+
+    /* QList operations */
+    int indexOf(RecipeIngredient *ingredient) const;
+    RecipeIngredient *at(int row) const;
+    int count() const;
+    void insert(int row, RecipeIngredient *ingredient);
+    bool contains(RecipeIngredient *ingredient);
+    void removeAt(int row);
+    void move(int row, int destination);
+
 
 signals:
     void dataChanged();

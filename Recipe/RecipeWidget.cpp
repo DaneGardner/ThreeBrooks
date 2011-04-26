@@ -133,11 +133,14 @@ void RecipeWidget::dropEvent(QDropEvent *event)
                 QMap<int,  QVariant> roleDataMap;
                 stream >> row >> col >> roleDataMap;
 
+
                 QModelIndex index = model->sourceModel()->index(row, 0);
                 QObject *object = static_cast<QObject *>(index.internalPointer());
                 Ingredient *ingredient = qobject_cast<Ingredient *>(object);
                 if(ingredient) {
-                    recipe()->addIngredient(ingredient);
+                    RecipeIngredientModel *ingredientModel =
+                            qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
+                    ingredientModel->append(ingredient);
                     event->acceptProposedAction();
                 }
             }
@@ -258,6 +261,66 @@ void RecipeWidget::on_spnEfficiency_editingFinished()
         refreshText();
     }
 }
+
+
+void RecipeWidget::on_btnRaise_clicked()
+{
+    if(!ui->trvIngredients->hasFocus())
+        return;
+
+    QModelIndex modelIndex = ui->trvIngredients->selectionModel()->currentIndex();
+    if(!modelIndex.isValid())
+        return;
+
+    RecipeIngredientModel *ingredientModel =
+            qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
+
+    int index = modelIndex.row();
+    if(index > 0) {
+        ingredientModel->move(index, index-1);
+    }
+}
+
+void RecipeWidget::on_btnLower_clicked()
+{
+    if(!ui->trvIngredients->hasFocus())
+        return;
+
+    QModelIndex modelIndex = ui->trvIngredients->selectionModel()->currentIndex();
+    if(!modelIndex.isValid())
+        return;
+
+    RecipeIngredientModel *ingredientModel =
+            qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
+
+    int index = modelIndex.row();
+    if(index+1 < ingredientModel->rowCount()) {
+        ingredientModel->move(index, index+1);
+    }
+}
+
+void RecipeWidget::on_btnRemove_clicked()
+{
+    if(!ui->trvIngredients->hasFocus())
+        return;
+
+    QModelIndex modelIndex = ui->trvIngredients->selectionModel()->currentIndex();
+    if(!modelIndex.isValid())
+        return;
+
+    QMessageBox dlg( QMessageBox::Warning,
+                     tr("Remove Ingredient"),
+                     tr("Are you sure that you want to remove the selected ingredient from the recipe?"),
+                     QMessageBox::Yes|QMessageBox::No,
+                     this);
+
+    if(dlg.exec() == QMessageBox::Yes) {
+        RecipeIngredientModel *ingredientModel =
+                qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
+        ingredientModel->remove(modelIndex.row());
+    }
+}
+
 
 
 

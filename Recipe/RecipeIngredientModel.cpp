@@ -32,7 +32,45 @@ RecipeIngredientModel::RecipeIngredientModel(QObject *parent) :
     _recipe = NULL;
 }
 
+void RecipeIngredientModel::setRecipe(Recipe *recipe)
+{
+    if(_recipe) {
+        disconnect(_recipe, SIGNAL(addingIngredient()), this, SLOT(addingIngredient()));
+        disconnect(_recipe, SIGNAL(addedIngredient()), this, SLOT(addedIngredient()));
+        disconnect(_recipe, SIGNAL(removingIngredient(int)), this, SLOT(removingIngredient(int)));
+        disconnect(_recipe, SIGNAL(removedIngredient(int)), this, SLOT(removedIngredient(int)));
+    }
 
+    _recipe = recipe;
+
+    connect(_recipe, SIGNAL(addingIngredient()), this, SLOT(addingIngredient()));
+    connect(_recipe, SIGNAL(addedIngredient()), this, SLOT(addedIngredient()));
+    connect(_recipe, SIGNAL(removingIngredient(int)), this, SLOT(removingIngredient(int)));
+    connect(_recipe, SIGNAL(removedIngredient(int)), this, SLOT(removedIngredient(int)));
+}
+
+void RecipeIngredientModel::addingIngredient()
+{
+    emit beginInsertRows(QModelIndex(), rowCount(), rowCount());
+}
+
+void RecipeIngredientModel::addedIngredient()
+{
+    emit endInsertRows();
+}
+
+void RecipeIngredientModel::removingIngredient(int row)
+{
+    emit beginRemoveRows(QModelIndex(), row, row+1);
+}
+
+void RecipeIngredientModel::removedIngredient(int row)
+{
+    emit endRemoveRows();
+}
+
+
+/* END QAbstractItemModel operators */
 QModelIndex RecipeIngredientModel::index(int row, int column, const QModelIndex &parent) const
 {
     if(!hasIndex(row, column, parent))
@@ -164,59 +202,103 @@ Qt::ItemFlags RecipeIngredientModel::flags(const QModelIndex &index) const
     return flags;
 }
 
-
-void RecipeIngredientModel::setRecipe(Recipe *recipe)
+Qt::DropActions RecipeIngredientModel::supportedDropActions() const
 {
-    if(_recipe) {
-        disconnect(_recipe, SIGNAL(addingIngredient()), this, SLOT(addingIngredient()));
-        disconnect(_recipe, SIGNAL(addedIngredient()), this, SLOT(addedIngredient()));
-        disconnect(_recipe, SIGNAL(removingIngredient(int)), this, SLOT(removingIngredient(int)));
-        disconnect(_recipe, SIGNAL(removedIngredient(int)), this, SLOT(removedIngredient(int)));
-    }
-
-    _recipe = recipe;
-
-    connect(_recipe, SIGNAL(addingIngredient()), this, SLOT(addingIngredient()));
-    connect(_recipe, SIGNAL(addedIngredient()), this, SLOT(addedIngredient()));
-    connect(_recipe, SIGNAL(removingIngredient(int)), this, SLOT(removingIngredient(int)));
-    connect(_recipe, SIGNAL(removedIngredient(int)), this, SLOT(removedIngredient(int)));
+    return Qt::MoveAction | Qt::CopyAction;
 }
 
-void RecipeIngredientModel::addingIngredient()
-{
-    emit beginInsertRows(QModelIndex(), rowCount(), rowCount());
-}
-void RecipeIngredientModel::addedIngredient()
-{
-    emit endInsertRows();
-}
-void RecipeIngredientModel::removingIngredient(int row)
-{
-    emit beginRemoveRows(QModelIndex(), row, row+1);
-}
-void RecipeIngredientModel::removedIngredient(int row)
-{
-    emit endRemoveRows();
-}
-
-void RecipeIngredientModel::addIngredient(RecipeIngredient *ingredient)
-{
-    _recipe->addIngredient(ingredient);
-}
-bool RecipeIngredientModel::removeRow(int row, const QModelIndex &parent)
-{
-    return removeRows(row, 1, parent);
-}
 bool RecipeIngredientModel::removeRows(int row, int count, const QModelIndex &parent)
 {
-    for(int i=0; i<count; i++) {
-        RecipeIngredient *ingredient = _recipe->ingredients().at(row);
-        _recipe->removeIngredient(ingredient);
+    for(int i=0; i < count; i++) {
+        remove(row);
     }
 
     return true;
 }
+/* END QAbstractItemModel operators */
 
 
+/* QList operators */
+int RecipeIngredientModel::row(RecipeIngredient *ingredient) const
+{
+    return _recipe->indexOf(ingredient);
+}
 
+RecipeIngredient *RecipeIngredientModel::ingredient(int row) const
+{
+    return _recipe->at(row);
+}
+
+void RecipeIngredientModel::prepend(Ingredient *ingredient)
+{
+    insert(0, ingredient);
+}
+
+void RecipeIngredientModel::append(Ingredient *ingredient)
+{
+    insert(_recipe->count(), ingredient);
+}
+
+void RecipeIngredientModel::insert(int row, Ingredient *ingredient)
+{
+    insert(row, new RecipeIngredient(ingredient, _recipe));
+}
+
+void RecipeIngredientModel::prepend(RecipeIngredient *ingredient)
+{
+    insert(0, ingredient);
+}
+
+void RecipeIngredientModel::append(RecipeIngredient *ingredient)
+{
+    insert(_recipe->count(), ingredient);
+}
+
+void RecipeIngredientModel::insert(int row, RecipeIngredient *ingredient)
+{
+    beginInsertRows(QModelIndex(), row, row+1);
+    connect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    _recipe->insert(row, ingredient);
+    endInsertRows();
+}
+
+void RecipeIngredientModel::remove(RecipeIngredient *ingredient)
+{
+    if(_recipe->contains(ingredient));
+        remove(row(ingredient));
+}
+
+void RecipeIngredientModel::remove(int row)
+{
+    beginRemoveRows(QModelIndex(), row, row);
+    disconnect(ingredient(row), SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    _recipe->removeAt(row);
+    endRemoveRows();
+}
+
+void RecipeIngredientModel::move(RecipeIngredient *ingredient, int destination)
+{
+    move(row(ingredient), destination);
+}
+
+void RecipeIngredientModel::move(int row, int destination)
+{
+    /* QList::move and QAbstractItemModel::beginMoveRows differ in how they describe the
+       destination. We have to do a little translation if it's going up or down. */
+    if(row < destination) {
+        beginMoveRows(QModelIndex(), row, row, QModelIndex(), destination+1);
+    } else {
+        beginMoveRows(QModelIndex(), row, row, QModelIndex(), destination);
+    }
+
+    _recipe->move(row, destination);
+    endMoveRows();
+}
+/* END QList operators */
+
+void RecipeIngredientModel::ingredientChanged()
+{
+    int row = this->row(qobject_cast<RecipeIngredient *>(QObject::sender()));
+    dataChanged(index(row, 0), index(row, columnCount()));
+}
 

@@ -40,26 +40,40 @@ public:
     Recipe *recipe() { return _recipe; }
     void setRecipe(Recipe *recipe);
 
+    /* QAbstractItemModel operations */
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
     QModelIndex parent(const QModelIndex &child) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-
     bool setData(const QModelIndex &index, const QVariant &value, int role);
     Qt::ItemFlags flags(const QModelIndex &index) const;
+    Qt::DropActions supportedDropActions() const;
+    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
 
     void addIngredient(RecipeIngredient *ingredient);
-    bool removeRow(int row, const QModelIndex &parent = QModelIndex());
-    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
+
+    /* QList operations */
+    int row(RecipeIngredient *ingredient) const;
+    RecipeIngredient *ingredient(int row) const;
+    void prepend(Ingredient *ingredient);
+    void append(Ingredient *ingredient);
+    void insert(int row, Ingredient *ingredient);
+    void prepend(RecipeIngredient *ingredient);
+    void append(RecipeIngredient *ingredient);
+    void insert(int row, RecipeIngredient *ingredient);
+    void remove(RecipeIngredient *ingredient);
+    void remove(int row);
+    void move(RecipeIngredient *ingredient, int destination);
+    void move(int row, int destination);
 
 protected slots:
     void addingIngredient();
     void addedIngredient();
     void removingIngredient(int);
     void removedIngredient(int);
+    void ingredientChanged();
 
 protected:
     Recipe *_recipe;
