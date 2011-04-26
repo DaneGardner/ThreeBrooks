@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setOrganizationName("Three Brooks");
     QCoreApplication::setOrganizationDomain("threebrooks.com");
-    QCoreApplication::setApplicationName("Recipe Calculator");
+    QCoreApplication::setApplicationName("Three Brooks");
 
     MainWindow w;
     w.show();

@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle(QCoreApplication::applicationName());
     on_actionReloadStyleSheet_triggered();
 
     IngredientToolbox *ingredientToolbox = new IngredientToolbox("ingredients.xml", this);
@@ -235,13 +236,13 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         ui->actionCloseRecipe->setEnabled(true);
 
         QString title = ui->tabWidget->currentWidget()->windowTitle().replace(" [*]", "*");
-        this->setWindowTitle(tr("Recipe Creator - %1").arg(title));
+        this->setWindowTitle(QCoreApplication::applicationName().append(" - %1").arg(title));
 
     } else {
         ui->actionSaveRecipe->setEnabled(false);
         ui->actionSaveAsRecipe->setEnabled(false);
         ui->actionCloseRecipe->setEnabled(false);
-        this->setWindowTitle(tr("Recipe Creator"));
+        this->setWindowTitle(QCoreApplication::applicationName());
     }
 
 }
@@ -256,7 +257,7 @@ void MainWindow::recipeChanged(QWidget *sender)
         int index = ui->tabWidget->indexOf(sender);
         QString title = sender->windowTitle().replace(" [*]", "*");
         ui->tabWidget->setTabText(index, title);
-        this->setWindowTitle(tr("Recipe Creator - %1").arg(title));
+        this->setWindowTitle(QCoreApplication::applicationName().append(" - %1").arg(title));
         ui->tabWidget->setTabToolTip(index, sender->windowFilePath());
     }
 }
