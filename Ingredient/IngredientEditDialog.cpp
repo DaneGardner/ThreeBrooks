@@ -1,0 +1,134 @@
+#include "IngredientEditDialog.h"
+#include "ui_IngredientEditDialog.h"
+
+IngredientEditDialog::IngredientEditDialog(Ingredient *ingredient, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::IngredientEditDialog)
+{
+    ui->setupUi(this);
+
+    ui->cmbType->addItem("Grain");
+    ui->cmbType->addItem("Hops");
+    ui->cmbType->addItem("Yeast");
+    ui->cmbType->addItem("Other");
+
+    ui->grpGrain->hide();
+    ui->grpHops->hide();
+    ui->grpYeast->hide();
+
+    if(!(_ingredient = ingredient)) {
+        ui->cmbType->setEnabled(true);
+        ui->cmbType->setCurrentIndex(3);
+    } else {
+        initialize();
+    }
+
+    QSettings settings;
+    restoreGeometry(settings.value("IngredientEditDialog/geometry", saveGeometry()).toByteArray());
+}
+
+IngredientEditDialog::~IngredientEditDialog()
+{
+    QSettings settings;
+    settings.setValue("IngredientEditDialog/geometry", saveGeometry());
+
+    delete ui;
+}
+
+void IngredientEditDialog::initialize()
+{
+    ui->txtName->setText(_ingredient->name());
+    ui->cmbType->setCurrentIndex(ui->cmbType->findText(_ingredient->type()));
+    ui->txtId->setText(_ingredient->id().toString());
+
+    GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(_ingredient);
+    if(grainIngredient) {
+        ui->grpGrain->show();
+        ui->spnColor->setValue(grainIngredient->color());
+        ui->spnSpecificGravity->setValue(grainIngredient->specificGravity());
+        ui->chkExtract->setChecked(grainIngredient->extract());
+        return;
+    }
+
+    HopsIngredient *hopsIngredient = qobject_cast<HopsIngredient *>(_ingredient);
+    if(hopsIngredient) {
+        ui->grpHops->show();
+        ui->spnAlphaAcid->setValue(hopsIngredient->alphaAcid() * 100);
+        return;
+    }
+
+    YeastIngredient *yeastIngredient = qobject_cast<YeastIngredient *>(_ingredient);
+    if(yeastIngredient) {
+        ui->grpYeast->show();
+        ui->spnAttenuation->setValue(yeastIngredient->attenuation() * 100);
+        return;
+    }
+}
+
+void IngredientEditDialog::finalize()
+{
+    if(!_ingredient) {
+        if(ui->cmbType->currentText() == tr("Grain")) {
+            _ingredient = new GrainIngredient();
+        } else if(ui->cmbType->currentText() == tr("Hops")) {
+            _ingredient = new HopsIngredient();
+        } else if(ui->cmbType->currentText() == tr("Yeast")) {
+            _ingredient = new YeastIngredient();
+        } else {
+            _ingredient = new Ingredient();
+        }
+    }
+
+    _ingredient->setName(ui->txtName->text());
+
+    bool okay;
+
+    GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(_ingredient);
+    if(grainIngredient) {
+        grainIngredient->setColor(ui->spnColor->value());
+        grainIngredient->setSpecificGravity(ui->spnSpecificGravity->value());
+        grainIngredient->setExtract(ui->chkExtract->isChecked());
+        return;
+    }
+
+    HopsIngredient *hopsIngredient = qobject_cast<HopsIngredient *>(_ingredient);
+    if(hopsIngredient) {
+        hopsIngredient->setAlphaAcid(ui->spnAlphaAcid->value() / 100);
+        return;
+    }
+
+    YeastIngredient *yeastIngredient = qobject_cast<YeastIngredient *>(_ingredient);
+    if(yeastIngredient) {
+        yeastIngredient->setAttenuation(ui->spnAttenuation->value() / 100);
+        return;
+    }
+
+}
+
+Ingredient *IngredientEditDialog::ingredient()
+{
+    return _ingredient;
+}
+
+void IngredientEditDialog::accept()
+{
+    finalize();
+    QDialog::accept();
+}
+
+void IngredientEditDialog::on_cmbType_currentIndexChanged(const QString &text)
+{
+    ui->grpGrain->hide();
+    ui->grpHops->hide();
+    ui->grpYeast->hide();
+
+    if(text == tr("Grain")) {
+        ui->grpGrain->show();
+    } else if(text == tr("Hops")) {
+        ui->grpHops->show();
+    } else if(text == tr("Yeast")) {
+        ui->grpYeast->show();
+    }
+}
+
+

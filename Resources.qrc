@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/ThreeBrooks">
+        <file alias="scrollDown.svg">icons/arrow-down-3.svg</file>
+        <file alias="scrollUp.svg">icons/arrow-up-3.svg</file>
+        <file alias="appExit.svg">icons/application-exit-3.svg</file>
+    </qresource>
+    <qresource prefix="/ThreeBrooks/Recipe">
+        <file alias="remove.svg">icons/edit-delete-2.svg</file>
+        <file alias="down.svg">icons/go-down-5.svg</file>
+        <file alias="up.svg">icons/go-up-5.svg</file>
+        <file alias="close.svg">icons/document-close-4.svg</file>
+        <file alias="create.svg">icons/document-new-4.svg</file>
+        <file alias="open.svg">icons/document-open-4.svg</file>
+        <file alias="save.svg">icons/document-save-4.svg</file>
+        <file alias="saveAs.svg">icons/document-save-as-4.svg</file>
+        <file alias="print.svg">icons/document-print-4.svg</file>
+    </qresource>
+    <qresource prefix="/ThreeBrooks/Ingredients">
+        <file alias="remove.svg">icons/edit-delete-2.svg</file>
+        <file alias="create.svg">icons/document-new-6.svg</file>
+    </qresource>
+</RCC>

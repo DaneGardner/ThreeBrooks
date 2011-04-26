@@ -1,0 +1,218 @@
+#include "Recipe.h"
+
+Recipe::Recipe(QObject *parent) :
+    QObject(parent)
+{
+    _name = tr("New Recipe");
+    _volume = Quantity(5.5, Quantity::QuantityType_gallon);
+    _efficiency = 0.75;
+}
+
+Recipe::Recipe(QDomElement element, QObject *parent) :
+    QObject(parent)
+{
+    fromXml(element);
+}
+
+double Recipe::originalGravity() const
+{
+    double originalGravity = 0;
+
+    foreach(RecipeIngredient* ingredient, ingredients()) {
+        GrainIngredient *grainIngredient =
+                qobject_cast<GrainIngredient *>(ingredient->ingredient());
+        if(grainIngredient) {
+            double specificGravity = (grainIngredient->specificGravity() - 1);
+            specificGravity *= ingredient->quantity().valueToPound();
+
+            if(grainIngredient->extract()) {
+                originalGravity += specificGravity;
+            } else {
+                originalGravity += specificGravity * efficiency();
+            }
+
+            continue;
+        }
+    }
+
+    originalGravity = (originalGravity / volume().valueToGallon()) + 1;
+    return originalGravity;
+}
+
+double Recipe::finalGravity() const
+{
+    double maximumAttenuation = 0;
+    foreach(RecipeIngredient* ingredient, ingredients()) {
+        YeastIngredient *yeastIngredient =
+                qobject_cast<YeastIngredient *>(ingredient->ingredient());
+        if(yeastIngredient && yeastIngredient->attenuation() > maximumAttenuation) {
+            maximumAttenuation = yeastIngredient->attenuation();
+            continue;
+        }
+    }
+
+    double finalGravity = ((originalGravity() - 1) * (1 - maximumAttenuation)) + 1;
+    return finalGravity;
+}
+
+double Recipe::color() const
+{
+    double maltColorUnits = 0;
+    double volumeGallon = this->volume().valueToGallon();
+
+    foreach(RecipeIngredient* ingredient, ingredients()) {
+        GrainIngredient *grainIngredient =
+                qobject_cast<GrainIngredient *>(ingredient->ingredient());
+        if(grainIngredient) {
+            maltColorUnits += (ingredient->quantity().valueToPound() * grainIngredient->color()) / volumeGallon;
+            continue;
+        }
+    }
+
+    double standardReferenceMethod = 1.4922 * pow(maltColorUnits, 0.6859);
+    return standardReferenceMethod;
+}
+
+/*! \fn Recipe::bitterness()
+    \brief Returns the bitterness in IBU using Tinseth's formula
+ */
+double Recipe::bitterness() const
+{
+    double internationalBitternessUnits = 0;
+    double volumeGallon = this->volume().valueToGallon();
+
+    foreach(RecipeIngredient* ingredient, ingredients()) {
+        HopsIngredient *hopsIngredient =
+                qobject_cast<HopsIngredient *>(ingredient->ingredient());
+        if(hopsIngredient) {
+
+            /*! \note Please note that we are taking the boil gravity for the duration that
+                the hops item was actually in the boil.  Not just the pre-boil gravity, as
+                most other calculators are using.  This gives a closer approximation
+                (though not as accurate as an integral would) of what we're really using. */
+            double utilization = 1.65 * pow(0.000125, boilGravity(ingredient->minutes()) - 1.0) * ((1.0 - exp( -0.04 * ingredient->minutes() )) / 4.15);
+
+            double alphaAcids = (hopsIngredient->alphaAcid() * ingredient->quantity().valueToOunce() * 7490.0) / volumeGallon;
+            internationalBitternessUnits += utilization * alphaAcids;
+            continue;
+        }
+    }
+
+    return internationalBitternessUnits;
+}
+
+double Recipe::alcoholByWeight() const
+{
+    double alcoholByWeight = 76.08 * (originalGravity() - finalGravity());
+    alcoholByWeight /= 1.775 - originalGravity();
+    alcoholByWeight /= 100;
+
+    return alcoholByWeight;
+}
+
+double Recipe::alcoholByVolume() const
+{
+    double alcoholByVolume = alcoholByWeight() * (originalGravity() / .794);
+    return alcoholByVolume;
+}
+
+double Recipe::calories() const
+{
+    return 851 * (originalGravity() - 1) * (originalGravity() + 3);
+}
+
+double Recipe::boilTime() const
+{
+    double maximumBoilTime = 0;
+    foreach(RecipeIngredient* ingredient, ingredients()) {
+        if(ingredient->minutes() > maximumBoilTime)
+            maximumBoilTime = ingredient->minutes();
+    }
+    return maximumBoilTime;
+}
+Quantity Recipe::preBoilVolume() const
+{
+    return boilVolume(boilTime());
+}
+double Recipe::preBoilGravity() const
+{
+    return boilGravity(boilTime());
+}
+Quantity Recipe::boilVolume(double minutes) const
+{
+    return Quantity(volume().valueToGallon() / (1.0 - ((minutes / 60.0) * 0.1)), Quantity::QuantityType_gallon);
+}
+double Recipe::boilGravity(double minutes) const
+{
+    return ((originalGravity() - 1) * (boilVolume(minutes).valueToGallon() / volume().valueToGallon())) + 1;
+}
+
+
+void Recipe::addIngredient(Ingredient *ingredient)
+{
+    addIngredient(new RecipeIngredient(ingredient, this));
+}
+
+void Recipe::addIngredient(RecipeIngredient *ingredient)
+{
+    emit addingIngredient();
+    connect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    _ingredients.append(ingredient);
+    emit addedIngredient();
+    emit dataChanged();
+}
+
+void Recipe::removeIngredient(RecipeIngredient *ingredient)
+{
+    int index = _ingredients.indexOf(ingredient);
+    emit removingIngredient(index);
+    disconnect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    _ingredients.removeOne(ingredient);
+    emit removedIngredient(index);
+    emit dataChanged();
+}
+
+void Recipe::ingredientChanged()
+{
+    emit dataChanged();
+}
+
+QDomElement Recipe::toXml(QDomDocument document)
+{
+    QDomElement element = document.createElement("Recipe");
+
+    element.setAttribute("name", name());
+    element.setAttribute("efficiency", efficiency());
+
+    QDomElement elementVolume = document.createElement("Volume");
+    elementVolume.appendChild(volume().toXml(document));
+    element.appendChild(elementVolume);
+
+    for(int i=0; i < ingredients().count(); i++) {
+        element.appendChild(ingredients().at(i)->toXml(document));
+    }
+
+    return element;
+}
+
+void Recipe::fromXml(QDomElement element)
+{
+    setName(element.attribute("name", name()));
+    setEfficiency(element.attribute("efficiency", QString().setNum(efficiency())).toDouble());
+
+    QDomNodeList nodes = element.elementsByTagName("RecipeIngredient");
+    for(int i=0; i < nodes.count(); i++) {
+        QDomElement element = nodes.at(i).toElement();
+        if(!element.isNull()) {
+            addIngredient(new RecipeIngredient(element));
+        }
+    }
+
+    QDomElement elementVolume = element.elementsByTagName("Volume").at(0).toElement();
+    setVolume(Quantity(elementVolume.firstChildElement()));
+
+}
+
+
+
+

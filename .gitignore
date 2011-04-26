@@ -1,0 +1,9 @@
+*.pro.user
+*.o
+*.exe
+*.dll
+moc_*
+qrc_*
+ui_*
+Makefile*
+object_script*

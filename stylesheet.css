@@ -1,0 +1,131 @@
+QScrollBar:vertical {
+    border: 2px solid grey;
+}
+
+QLineEdit, QAbstractSpinBox, QComboBox {
+    border: 1px solid #999999;
+    border-radius: 3px;
+    padding: 0px;
+}
+
+QLineEdit:focus, QAbstractSpinBox:focus, QComboBox:focus {
+    border: 1px solid #666666;
+}
+
+QHeaderView::up-arrow, QScrollBar::up-arrow , QAbstractSpinBox::up-arrow{
+    image: url(":/ThreeBrooks/scrollUp.svg");
+    width: 7px;
+}
+QComboBox::down-arrow, QHeaderView::down-arrow, QScrollBar::down-arrow, QAbstractSpinBox::down-arrow {
+    image: url(":/ThreeBrooks/scrollDown.svg");
+    width: 7px;
+}
+
+QAbstractSpinBox::up-button, QScrollBar::up-button {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    padding: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    border-top-right-radius: 4px;
+}
+QAbstractSpinBox::down-button, QComboBox::drop-down, QScrollBar::down-button {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    padding: 0px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 1px;
+}
+
+
+QLineEdit[readOnly="true"], QLineEdit[enabled="false"],
+QAbstractSpinBox[readOnly="true"], QAbstractSpinBox[enabled="false"],
+QComboBox[readOnly="true"], QComboBox[enabled="false"] {
+    background-color: #dddddd;
+    }
+
+
+QGroupBox {
+    border-top: 1px solid #666666;
+    margin-top: 2ex;
+    padding-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 3px;
+}
+
+QHeaderView::section {
+    margin: 0px;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    padding: 0px 1px 1px 3px;
+}
+
+QTreeView, QTableView, QListView {
+    margin: 0px;
+    border: 1px solid #666666;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+QPushButton {
+    margin: 0px;
+    border: 1px solid #666666;
+    border-radius: 5px; 
+    padding: 1ex;
+}
+
+/* BEGIN RecipeWidget */
+#RecipeWidget #grpIngredients QToolButton {
+    border: none;
+}
+/* END RecipeWidget */
+
+/* BEGIN IngredientToolbox */
+#IngredientToolbox QToolButton {
+    border: none;
+}
+
+QToolBox::tab {
+    margin: 0px; 
+    border: 1px solid #999999; 
+    border-radius: 1px; 
+    padding: 1px;
+}
+
+QToolBox::tab:first {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+QToolBox::tab:last {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+QToolBox::tab:last:selected {
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+}
+
+QToolBox::tab:selected {
+    font: bold;
+    border-color: #666666;
+    border-bottom-width: 0px;
+}
+
+QToolBox QFrame {
+    border-top-width: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 5px;
+}
+/* END IngredientToolbox */
+
+

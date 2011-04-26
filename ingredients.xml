@@ -1,0 +1,349 @@
+<!DOCTYPE Ingredients>
+<Ingredients>
+ <Ingredient extract="false" type="Grain" id="{033a2a42-1ec1-4241-8082-d85bb29b7443}" specificGravity="1.036" name="Pilsner" color="1"/>
+ <Ingredient extract="false" type="Grain" id="{2490c4dc-21ce-44c7-8b44-9615db8be97f}" specificGravity="1.037" name="2-Row Brewer's Malt" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{bcbe54fb-6dd4-4892-96db-74fd270eae6d}" specificGravity="1.035" name="6-Row Malt" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{48d889b1-e111-4b89-a031-b1d3c13f5d24}" specificGravity="1.036" name="Belgian Pale Ale" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{889a4a2a-ec5d-47fe-9e26-fbd522a13130}" specificGravity="1.036" name="Belgian Pilsner" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{da136d37-df23-411c-8c3d-eba02193827c}" specificGravity="1.037" name="Pilsner" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{499ba0ed-80e4-4895-a406-3e190aa14019}" specificGravity="1.038" name="Golden Promise" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{7785e9df-32bd-42fd-8d68-73209e47cb16}" specificGravity="1.038" name="Pale Ale Malt" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{cef8790d-03ab-4386-9054-a75e072e68de}" specificGravity="1.038" name="Maris Otter" color="4"/>
+ <Ingredient extract="false" type="Grain" id="{eb77fe18-c6ca-4621-8e2c-2d3daba2c1ed}" specificGravity="1.038" name="Pale Ale" color="4"/>
+ <Ingredient extract="false" type="Grain" id="{3bb85ce4-7da6-4c67-9334-cb90e67a77fa}" specificGravity="1.037" name="Pale Ale Malt" color="4"/>
+ <Ingredient extract="false" type="Grain" id="{9f3139e4-3c77-4da3-8f12-2e9534040b6c}" specificGravity="1.034" name="2-Row Carapils" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{d4a86f4e-370c-46e1-aef6-9c28bb3e40e8}" specificGravity="1.037" name="Cara Foam" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{f059a299-712b-42ce-8536-2ba2686fce8d}" specificGravity="1.03" name="Caramel Pils" color="8"/>
+ <Ingredient extract="false" type="Grain" id="{0abd2057-1b63-4ce3-85ae-ef465febce59}" specificGravity="1.035" name="2-Row Caramel 10" color="10"/>
+ <Ingredient extract="false" type="Grain" id="{09768939-37d0-4749-8dbc-77baeb25fa7e}" specificGravity="1.035" name="Cara Hell" color="13"/>
+ <Ingredient extract="false" type="Grain" id="{bc00871c-0024-49b9-b24d-d57cc4c57e9e}" specificGravity="1.034" name="2-Row Caramel 20" color="20"/>
+ <Ingredient extract="false" type="Grain" id="{59557fbb-8ff3-4b0b-a376-770ca7eaad85}" specificGravity="1.034" name="Caramel Vienne" color="22"/>
+ <Ingredient extract="false" type="Grain" id="{0f14e9d6-bd80-4027-8134-da20710df04e}" specificGravity="1.036" name="Cara Red" color="24"/>
+ <Ingredient extract="false" type="Grain" id="{423b9b7a-f8d6-48a7-879a-465e737a4f16}" specificGravity="1.037" name="Honey Malt" color="25"/>
+ <Ingredient extract="false" type="Grain" id="{c6669dce-2ade-4917-942b-7904bf405952}" specificGravity="1.034" name="CaraMalt" color="34"/>
+ <Ingredient extract="false" type="Grain" id="{2ca5dc86-2424-464c-8442-f01e74d143cc}" specificGravity="1.037" name="Cara Amber" color="36"/>
+ <Ingredient extract="false" type="Grain" id="{6e28bd6a-8849-43e1-ac15-9dcbe5d2f02f}" specificGravity="1.034" name="2-Row Caramel 40" color="40"/>
+ <Ingredient extract="false" type="Grain" id="{484f77e6-6b06-473d-81d4-6e3eeea80c52}" specificGravity="1.038" name="Cara Munich I" color="43"/>
+ <Ingredient extract="false" type="Grain" id="{cfa2ba9a-e41b-4425-9add-c341623da069}" specificGravity="1.038" name="Cara Munich II" color="46"/>
+ <Ingredient extract="false" type="Grain" id="{b11b9244-e672-4f1b-8866-bdbf40e565bf}" specificGravity="1.035" name="Medium Crystal" color="55"/>
+ <Ingredient extract="false" type="Grain" id="{1a793f19-6b78-43dd-9357-547b7de8ca94}" specificGravity="1.033" name="Caramel Munich" color="56"/>
+ <Ingredient extract="false" type="Grain" id="{20a38b97-265b-44fb-8fe7-e3967a791b77}" specificGravity="1.038" name="Cara Munich III" color="57"/>
+ <Ingredient extract="false" type="Grain" id="{8eedd372-59ef-42e6-a9f1-15170aed4482}" specificGravity="1.034" name="2-Row Caramel 60" color="60"/>
+ <Ingredient extract="false" type="Grain" id="{85eb1ce3-0419-4f01-89d9-540e4f6b19cc}" specificGravity="1.035" name="Dark Crystal" color="75"/>
+ <Ingredient extract="false" type="Grain" id="{586f6365-718c-4990-8e6b-91f3977b1563}" specificGravity="1.033" name="2-Row Caramel 80" color="80"/>
+ <Ingredient extract="false" type="Grain" id="{45a0e004-05ed-4974-bab8-564375136674}" specificGravity="1.032" name="2-Row Caramel 120" color="120"/>
+ <Ingredient extract="false" type="Grain" id="{052ed885-7da7-48e8-8ea8-c942cd743211}" specificGravity="1.034" name="Cara Aroma" color="130"/>
+ <Ingredient extract="false" type="Grain" id="{1f4b8551-b91f-4d46-a82c-a0d77dbd5600}" specificGravity="1.03" name="Special B" color="148"/>
+ <Ingredient extract="false" type="Grain" id="{35271c59-f58f-4e31-ae27-a49d1c6253a6}" specificGravity="1.035" name="Extra Dark Crystal" color="160"/>
+ <Ingredient extract="false" type="Grain" id="{2a12eeed-2bb5-42f6-a1ff-edb7e3e7f3ea}" specificGravity="1.06" name="Pilsen (Extra) Light Dry Extract" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{e88aa8c9-a043-486f-b30d-270732f6db2d}" specificGravity="1.06" name="Bavarian Wheat Dry Extract" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{7618bd43-04f7-4b9d-9e15-7632b84e9f3b}" specificGravity="1.06" name="Golden Light Dry Extract" color="4"/>
+ <Ingredient extract="false" type="Grain" id="{335edeb8-19bf-4dcc-b47d-3badce410dc3}" specificGravity="1.06" name="Sparkling Amber Dry Extract" color="10"/>
+ <Ingredient extract="false" type="Grain" id="{a2507faf-f0fb-4f7f-a32b-5dfa97767fe4}" specificGravity="1.06" name="Traditional Dark Dry Extract" color="30"/>
+ <Ingredient extract="false" type="Grain" id="{23555308-ff1f-4e30-a400-7bfdc14031c4}" specificGravity="1.038" name="Vienna" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{b4a7521d-e23b-4a80-9369-fbefff6cc5b1}" specificGravity="1.035" name="Munich Type II" color="9"/>
+ <Ingredient extract="false" type="Grain" id="{05f51017-c1f7-4fcb-9278-3a37fdddafa5}" specificGravity="1.037" name="Aromatic" color="19"/>
+ <Ingredient extract="false" type="Grain" id="{0b4624c9-c566-4571-88e2-1e1795cbf35e}" specificGravity="1.034" name="Victory" color="28"/>
+ <Ingredient extract="false" type="Grain" id="{2ee4b583-36b5-414d-b60b-a37ca86a402e}" specificGravity="1.035" name="Dark Munich" color="30"/>
+ <Ingredient extract="false" type="Grain" id="{39623dd0-0e04-480b-bf4b-f0284a06c8d3}" specificGravity="1.033" name="Special Roast Malt" color="50"/>
+ <Ingredient extract="false" type="Grain" id="{76ddbea7-5ee2-4966-a263-01f244f98394}" specificGravity="1.05" name="Pilsen Extra Light Liquid Extract" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{e3b00a83-9b83-4b10-a229-382c2c40f839}" specificGravity="1.037" name="White Sorghum Syrup" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{e0a0d200-6cb8-480a-8a59-edf2cd613d1c}" specificGravity="1.05" name="Bavarian Wheat Liquid Extract" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{f06a720a-3974-4680-8fc0-875863bd9588}" specificGravity="1.055" name="Wheat LME unhopped" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{426e41bd-b0fb-443c-aa6f-f5f865be8ace}" specificGravity="1.05" name="Golden Light Liquid Extract" color="4"/>
+ <Ingredient extract="false" type="Grain" id="{709c8e8b-a8c0-4c48-98cc-2e20afd2eafb}" specificGravity="1.055" name="Light LME unhopped" color="5"/>
+ <Ingredient extract="false" type="Grain" id="{30e72d78-1db0-465e-a0bf-6e83b384776f}" specificGravity="1.048" name="Munich Liquid Extract" color="8"/>
+ <Ingredient extract="false" type="Grain" id="{c5a0102f-16da-4ba0-b197-2ab5683013bd}" specificGravity="1.055" name="Amber LME unhopped" color="9"/>
+ <Ingredient extract="false" type="Grain" id="{97c417a9-3789-4cba-9be0-ae23129b83e4}" specificGravity="1.05" name="Sparkling Amber Liquid Extract" color="10"/>
+ <Ingredient extract="false" type="Grain" id="{008468a0-ec28-4d88-a446-fbf5b349a87d}" specificGravity="1.055" name="Dark Liquid LME unhopped" color="27"/>
+ <Ingredient extract="false" type="Grain" id="{39216831-32ed-45d1-b29a-0b56d2173c26}" specificGravity="1.05" name="Traditional Dark Liquid Extract" color="30"/>
+ <Ingredient extract="false" type="Grain" id="{5eda2ba6-d35c-45a9-92cc-293527356d5d}" specificGravity="1.037" name="2-Row, Organic" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{1fa9c9ec-0a57-4406-aec0-61d93827dc58}" specificGravity="1.034" name="Cara-Pils, Organic" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{2e15e0b3-a241-4420-9065-26cadb40ef4e}" specificGravity="1.036" name="Munich 10, Organic" color="10"/>
+ <Ingredient extract="false" type="Grain" id="{5bc6afd3-8721-4106-87f8-02dce2c57154}" specificGravity="1.034" name="Caramel 20, Organic" color="20"/>
+ <Ingredient extract="false" type="Grain" id="{9cea40ed-3606-4cc6-8bea-bf80e159ee17}" specificGravity="1.034" name="Caramel 60, Organic" color="60"/>
+ <Ingredient extract="false" type="Grain" id="{337bb0b4-7508-472b-a2eb-ce4740d5240e}" specificGravity="1.032" name="Caramel 120, Organic" color="120"/>
+ <Ingredient extract="false" type="Grain" id="{57e418be-819a-4eb1-90ba-17cff6ace691}" specificGravity="1.035" name="Chocolate, Organic" color="350"/>
+ <Ingredient extract="false" type="Grain" id="{af927386-08b1-4b99-999d-a3d46f502ab6}" specificGravity="1.032" name="Biscuit" color="23"/>
+ <Ingredient extract="false" type="Grain" id="{3355020f-5bf8-4716-bb49-8eb8c30664aa}" specificGravity="1.037" name="Amber" color="28"/>
+ <Ingredient extract="false" type="Grain" id="{97d1d579-d205-48b0-a0a2-9c5133fbd862}" specificGravity="1.035" name="Brown" color="65"/>
+ <Ingredient extract="false" type="Grain" id="{e875678f-c466-447b-904d-3bb02794b69c}" specificGravity="1.035" name="Kiln Coffee" color="165"/>
+ <Ingredient extract="false" type="Grain" id="{3c875237-4c77-4acb-9eb8-0b5252861eda}" specificGravity="1.034" name="Pale Chocolate Malt" color="225"/>
+ <Ingredient extract="false" type="Grain" id="{cb61a235-43ba-4822-b1c3-da668d027bb6}" specificGravity="1.033" name="Roasted Barley" color="300"/>
+ <Ingredient extract="false" type="Grain" id="{ac3eb958-e4d8-45f8-bdd2-60b711f322c1}" specificGravity="1.036" name="De-Husked Carafa I" color="320"/>
+ <Ingredient extract="false" type="Grain" id="{380e161d-1234-45a1-831b-af3d32fd1b57}" specificGravity="1.035" name="Chocolate Malt" color="412"/>
+ <Ingredient extract="false" type="Grain" id="{8ade0a05-4b38-4a54-b9a7-acbb2db1698b}" specificGravity="1.036" name="De-Husked Carafa II" color="415"/>
+ <Ingredient extract="false" type="Grain" id="{8b0fa6e5-30ca-4f0e-a63a-710a52bff533}" specificGravity="1.032" name="Black Barley" color="500"/>
+ <Ingredient extract="false" type="Grain" id="{b7f92a45-5e77-4204-8c90-5c5275546fa2}" specificGravity="1.036" name="De-Husked Carafa III" color="525"/>
+ <Ingredient extract="false" type="Grain" id="{e4b8aac9-71bc-4bd0-bcba-dd61e8e05263}" specificGravity="1.034" name="Black Malt" color="550"/>
+ <Ingredient extract="false" type="Grain" id="{c7882e7d-ece7-4144-9d4a-48d1c1a4d94d}" specificGravity="1.03" name="De-Bittered Black" color="550"/>
+ <Ingredient extract="false" type="Grain" id="{00525468-57a7-4230-89e6-d9f6787708ea}" specificGravity="1.035" name="Roasted Barley" color="550"/>
+ <Ingredient extract="false" type="Grain" id="{6f7052b5-375e-4d2c-a924-89db4a069d26}" specificGravity="1.03" name="Acidulated" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{0c37e961-64bd-4432-8366-59ee5cf2d99e}" specificGravity="1.033" name="Oat Malt" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{c4ec4156-f3cc-4114-8b2f-28bea1964877}" specificGravity="1.037" name="Smoked Malt" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{90ce0a36-e29f-4116-af1b-7eee0f2ec8d9}" specificGravity="1.034" name="Peated Malt" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{1d5552ad-942a-4dbe-991b-4577f6e87e37}" specificGravity="1.029" name="Rye Malt" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{d00a18b6-1c25-43fe-8c09-3b7a3b74ac54}" specificGravity="1.037" name="Smoked Malt" color="5"/>
+ <Ingredient extract="false" type="Grain" id="{e73c231d-a225-449e-9e09-49219c867006}" specificGravity="1.035" name="Golden Naked Oats" color="10"/>
+ <Ingredient extract="false" type="Grain" id="{74e8e221-b876-44a2-b3c1-9e979d0de6e7}" specificGravity="1.037" name="Melanoidin" color="30"/>
+ <Ingredient extract="false" type="Grain" id="{2d8eec54-b026-4e18-90d9-19aa9183e7e7}" specificGravity="1.032" name="Chocolate Rye" color="245"/>
+ <Ingredient extract="false" type="Grain" id="{d78df392-cb42-4d07-8802-9ed4ab199ae0}" specificGravity="1.04" name="Unmalted Wheat" color="1"/>
+ <Ingredient extract="false" type="Grain" id="{0c8da309-ec1a-4112-bf40-1d0c7f6ea490}" specificGravity="1.038" name="Pale Wheat" color="2"/>
+ <Ingredient extract="false" type="Grain" id="{dfc56f31-649a-45bb-b2c1-17e87d8d75da}" specificGravity="1.038" name="White Wheat" color="3"/>
+ <Ingredient extract="false" type="Grain" id="{87801328-59d7-4308-9583-355e00fd6aa0}" specificGravity="1.038" name="Dark Wheat" color="7"/>
+ <Ingredient extract="false" type="Grain" id="{1de71803-1f20-4ef6-9679-bb325a6c56b9}" specificGravity="1.037" name="Caramel Wheat" color="50"/>
+ <Ingredient extract="false" type="Grain" id="{6d299c9f-3472-4b71-adfc-9958068a6e8d}" specificGravity="1.035" name="Chocolate Wheat" color="415"/>
+ <Ingredient alphaAcid="0.052" type="Hops" id="{23afcc0b-8fdd-4958-af08-fc7664088c9b}" name="Ahtanum Pellets"/>
+ <Ingredient alphaAcid="0.103" type="Hops" id="{be9acd38-505f-4024-9453-6be86aa89aad}" name="Amarillo Pellets"/>
+ <Ingredient alphaAcid="0.113" type="Hops" id="{d18e7a6d-42f2-413a-967f-8e36d0ce0809}" name="Bravo Pellets"/>
+ <Ingredient alphaAcid="0.097" type="Hops" id="{2138a65b-2344-469f-9493-0c8e25fc03ae}" name="Brewers Gold Pellets"/>
+ <Ingredient alphaAcid="0.079" type="Hops" id="{30f619fe-36e7-4298-b1fe-2ba10371be38}" name="Bullion Pellets"/>
+ <Ingredient alphaAcid="0.054" type="Hops" id="{6fd01800-8986-4f00-ba9b-c9819d66f948}" name="Cascade Pellets"/>
+ <Ingredient alphaAcid="0.096" type="Hops" id="{743c97cd-b34e-4091-8e54-a7c3932f80c5}" name="Centennial Pellets"/>
+ <Ingredient alphaAcid="0.07000000000000001" type="Hops" id="{9d7696c8-deaf-4a2d-9dd8-42b1810d783d}" name="Challenger,UK Pellets"/>
+ <Ingredient alphaAcid="0.1" type="Hops" id="{e8b136ad-2e81-4340-a603-ddb341a08891}" name="Chinook Pellets"/>
+ <Ingredient alphaAcid="0.134" type="Hops" id="{7ad075d4-a2c9-4964-b8e4-5b3e3a3e0fb7}" name="Citra Pellets"/>
+ <Ingredient alphaAcid="0.05" type="Hops" id="{bc5ae60b-06a4-4032-bb65-ffd13c3db11b}" name="Cluster Pellets"/>
+ <Ingredient alphaAcid="0.147" type="Hops" id="{840d4747-7046-4c6c-9351-655a9786c950}" name="Columbus Pellets"/>
+ <Ingredient alphaAcid="0.031" type="Hops" id="{5707cc7e-518e-4a9c-9e5c-9fdd695d95d5}" name="Crystal Pellets"/>
+ <Ingredient alphaAcid="0.025" type="Hops" id="{83cc1516-8d63-4a08-9a3a-0aa5cd8eb277}" name="French Strisselspalt Pellets"/>
+ <Ingredient alphaAcid="0.036" type="Hops" id="{1d8542d0-0e49-48db-92f3-a9119e70fc06}" name="Fuggles Pellets, UK"/>
+ <Ingredient alphaAcid="0.11" type="Hops" id="{7317a102-6e1f-4279-9699-783a9d71990a}" name="Galena Pellets"/>
+ <Ingredient alphaAcid="0.052" type="Hops" id="{cb269faf-5d94-4fed-b74e-bca6a6f40689}" name="Glacier Pellets"/>
+ <Ingredient alphaAcid="0.128" type="Hops" id="{8f8556ea-cfb2-41dd-a3ae-3746a7ebc866}" name="Green Bullet, NZ Pellets"/>
+ <Ingredient alphaAcid="0.038" type="Hops" id="{39e9776c-4812-488f-86c6-ef90be9d469e}" name="Hallertau Pellets, German"/>
+ <Ingredient alphaAcid="0.073" type="Hops" id="{c1a2b83c-9ab9-4f1c-859e-b76e00b7f053}" name="Hallertau, NZ Pellets"/>
+ <Ingredient alphaAcid="0.039" type="Hops" id="{0f057477-55e6-477b-b963-75d56efff39a}" name="Hersbrucker, German Pellets"/>
+ <Ingredient alphaAcid="0.08500000000000001" type="Hops" id="{12901989-9078-4b15-a29d-5749d7924b28}" name="Horizon Pellets"/>
+ <Ingredient alphaAcid="0.054" type="Hops" id="{a220fda3-3b3d-4fdb-96a2-78f188e24577}" name="Kent Goldings, UK Pellets"/>
+ <Ingredient alphaAcid="0.07000000000000001" type="Hops" id="{9755ea90-43e1-4a25-b2b1-2821c2648507}" name="Liberty Pellets"/>
+ <Ingredient alphaAcid="0.125" type="Hops" id="{fb108b11-98dd-403a-92d8-b0ba030f7ed4}" name="Magnum Pellets, GR"/>
+ <Ingredient alphaAcid="0.166" type="Hops" id="{b35cb84f-5715-4750-8401-14ceeff7554e}" name="Millennium Pellets"/>
+ <Ingredient alphaAcid="0.08599999999999999" type="Hops" id="{bec638cd-96af-4547-891b-0ef75dd9f061}" name="Motueka, NZ Pellets"/>
+ <Ingredient alphaAcid="0.04" type="Hops" id="{92934288-457f-415b-871c-dbd55d564990}" name="Mt. Hood Pellets"/>
+ <Ingredient alphaAcid="0.095" type="Hops" id="{ee265427-ecbe-42ae-bde2-602df8539f70}" name="Northern Brewer Pellets"/>
+ <Ingredient alphaAcid="0.13" type="Hops" id="{159593af-7505-4cf4-900d-062b48e20757}" name="Nugget Pellets"/>
+ <Ingredient alphaAcid="0.15" type="Hops" id="{d681ef96-c051-4af9-b118-b0fc21566e39}" name="Pacific Gem, NZ Pellets"/>
+ <Ingredient alphaAcid="0.137" type="Hops" id="{5202ddf4-9c61-4f99-924e-b7f42ce45473}" name="Pacific Jade, NZ Pellets"/>
+ <Ingredient alphaAcid="0.045" type="Hops" id="{e2be7951-eeeb-4c8f-809c-156ae59f966f}" name="Pacifica, NZ Pellets"/>
+ <Ingredient alphaAcid="0.083" type="Hops" id="{99e23f5c-d4d9-43dc-9ee6-1e56952c4c9c}" name="Palisades Pellets"/>
+ <Ingredient alphaAcid="0.075" type="Hops" id="{8286cd36-7ce4-45a7-92da-cd172debd5b1}" name="Perle, GR Pellets"/>
+ <Ingredient alphaAcid="0.0622" type="Hops" id="{8f9b5bf4-2098-4b31-b26c-9fbed16c7f8b}" name="Rogue Farms Independent"/>
+ <Ingredient alphaAcid="0.0542" type="Hops" id="{61586ae8-1181-406e-94c0-9d08491db779}" name="Rogue Farms Revolution"/>
+ <Ingredient alphaAcid="0.032" type="Hops" id="{e5a88bd4-6e0b-49d6-8e24-122052742b3e}" name="Saaz, Czech Pellets"/>
+ <Ingredient alphaAcid="0.045" type="Hops" id="{1cff6d0d-e208-4107-be61-ee7c2dd1a00f}" name="Saaz, US Pellets"/>
+ <Ingredient alphaAcid="0.037" type="Hops" id="{bb61ec80-5b7d-447a-99ea-a98c4302de5b}" name="Saphir, German Pellets."/>
+ <Ingredient alphaAcid="0.049" type="Hops" id="{35833674-bb93-4119-92c0-3030e88773a7}" name="Select Pellets, GR "/>
+ <Ingredient alphaAcid="0.122" type="Hops" id="{5f97d206-3ad5-4d3e-8ef4-5536fd6b6b35}" name="Simcoe Pellets"/>
+ <Ingredient alphaAcid="0.102" type="Hops" id="{0220870b-aa23-440b-8e01-c5cd36041548}" name="Sorachi Ace Pellets - 1oz."/>
+ <Ingredient alphaAcid="0.149" type="Hops" id="{df884c5d-bf64-44c5-b2c7-06428bc2139e}" name="Southern Cross, NZ Pellets"/>
+ <Ingredient alphaAcid="0.026" type="Hops" id="{5b6e3e47-8d82-437c-b7df-bd46f7f42f8a}" name="Spalt, German Pellets"/>
+ <Ingredient alphaAcid="0.061" type="Hops" id="{4733edfc-ab93-41d4-b6bb-8fbf65525744}" name="Sterling, US Pellets"/>
+ <Ingredient alphaAcid="0.026" type="Hops" id="{6149c9af-1ed4-4127-92fb-8260da8cc22e}" name="Styrian Golding Pellets"/>
+ <Ingredient alphaAcid="0.158" type="Hops" id="{eaa15f35-62cf-4e78-a1d8-a248a4109ce2}" name="Summit Pellets"/>
+ <Ingredient alphaAcid="0.128" type="Hops" id="{1be36af2-e934-4c5a-8bb4-09bad7466a1e}" name="Super Alpha, NZ Pellets"/>
+ <Ingredient alphaAcid="0.08599999999999999" type="Hops" id="{e685761a-41a4-49ce-820e-37a60e7217c3}" name="Target, German Pellets"/>
+ <Ingredient alphaAcid="0.032" type="Hops" id="{41e4301f-cfec-47be-ab82-6f70d6cd627e}" name="Tettnang, German Pellets"/>
+ <Ingredient alphaAcid="0.058" type="Hops" id="{f42a8978-a13d-4c98-af1c-f1ff53950d96}" name="Vanguard Plugs"/>
+ <Ingredient alphaAcid="0.158" type="Hops" id="{5a074448-2171-4037-b395-d6d26df20902}" name="Warrior Pellets"/>
+ <Ingredient alphaAcid="0.048" type="Hops" id="{25e8114f-b805-4120-972f-7fea61049c34}" name="Williamette Pellets"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{ea52af5c-41cf-47f6-a694-2476f41b8bb3}" name="WYeast 1007 - German Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.76" maximumTemperature="75" type="Yeast" id="{00b46018-9d05-4dde-96f6-1229fca6ce2a}" name="WYeast 1010 - American Wheat"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{358dcd2c-5910-4d5a-8941-3a459cce85ce}" name="WYeast 1028 - London Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{39bbe6b3-4cb6-44d7-9699-2a28e47571e0}" name="WYeast 1056 - American Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{03fc7213-0efa-4dcc-932a-6c316feb18ae}" name="WYeast 1084 - Irish Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{06afd5c1-5b4a-4fe7-9987-e51fbd7b7b82}" name="WYeast 1098 - British Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.7" maximumTemperature="75" type="Yeast" id="{147f930a-62e6-49bb-86e9-538f58f1c38a}" name="WYeast 1099 - Whitbread Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.7" maximumTemperature="75" type="Yeast" id="{57fd5018-837c-40fe-9d1b-2eb783ea8d69}" name="WYeast 1187 - Ringwood Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{f9835e4d-d837-4d10-ba5f-d084f5192562}" name="WYeast 1214 - Belgian Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{591c3df0-cab7-458d-8915-756332f58e63}" name="WYeast 1272 - American Ale II"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{af93a76c-9395-4571-a518-1fdfbf68a465}" name="WYeast 1275 - Thames Valley Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{64483469-990d-4bbf-b8ca-52b3f6f8485a}" name="WYeast 1318 - London Ale III"/>
+ <Ingredient minimumTemperature="65" attenuation="0.69" maximumTemperature="75" type="Yeast" id="{da4b2612-fa8c-4de7-b934-cbb59f980443}" name="WYeast 1332 - Northwest Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.745" maximumTemperature="75" type="Yeast" id="{5291299e-2a87-41eb-945a-5f9ea3a7c5d5}" name="WYeast 1334 - British Ale II"/>
+ <Ingredient minimumTemperature="65" attenuation="0.69" maximumTemperature="75" type="Yeast" id="{6a4cd144-3d29-4983-a363-9f84b918ee8d}" name="WYeast 1338 - European Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{7d7425c5-0252-4828-8189-297130325a5a}" name="WYeast 1388 - Belgian Strong Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{bc3478b7-67ac-46ce-9bed-8949a71cbb88}" name="WYeast 1450 - Denny's Favorite 50"/>
+ <Ingredient minimumTemperature="65" attenuation="0.71" maximumTemperature="75" type="Yeast" id="{a3be5409-96de-4127-98c0-55289a8e5acb}" name="WYeast 1728 - Scottish Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{e879dc8c-0152-41e8-bca1-510a471e2555}" name="WYeast 1762 - Belgian Abbey II"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{46edb945-ca82-412c-87de-c44ac17a1f7b}" name="WYeast 1764 - Pacman"/>
+ <Ingredient minimumTemperature="65" attenuation="0.69" maximumTemperature="75" type="Yeast" id="{a671c218-c634-4c8f-a6a0-647ed871c800}" name="WYeast 1968 - London ESB Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{e3047a9b-cf91-4508-ae86-d5b3f0758b7d}" name="WYeast 2000 - Budvar Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{e8a787fa-e024-4d79-9e69-0b3fa5a7c6b5}" name="WYeast 2001 - Urquell Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{fcbf4b0a-d413-4b8b-930b-d782fe4578b7}" name="WYeast 2007 - Pilsen Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{0cad8228-840c-4b07-86a8-6d7761ebf5d9}" name="WYeast 2035 - American Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{8a3aa2f3-0efe-4879-89bb-93f32dab325a}" name="WYeast 2042 - Danish Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.69" maximumTemperature="75" type="Yeast" id="{77bd2f24-8bb3-461f-bde1-967fec553155}" name="WYeast 2112 - California Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.71" maximumTemperature="75" type="Yeast" id="{803399ce-9a23-4d27-9616-bebad1ecdc3d}" name="WYeast 2124 - Bohemian Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{9e95b5b6-a6a9-4fdc-8b6c-f72e83958392}" name="WYeast 2206 - Bavarian Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{9dadf2bc-c6f6-46b6-b457-6cef96a1e8c2}" name="WYeast 2278 - Czech Pilsner Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{35ee1a5c-6b99-4176-a2a3-1c1175acb6f5}" name="WYeast 2308 - Munich Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.72" maximumTemperature="75" type="Yeast" id="{a4563653-d17d-4931-a054-4b261fd7fb3c}" name="WYeast 2487 - Hella Bock Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{cd5b8e78-9bd3-4194-9293-32cc37b70699}" name="WYeast 2565 - Kolsch Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{d2050712-b8a6-4498-944c-b361c6bf9951}" name="WYeast 2633 - Octoberfest Lager Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{1a218c77-8606-471b-9eeb-87c939482c53}" name="WYeast 3056 - Bavarian Wheat Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{0dc8d936-09d2-48d5-99f7-99f5d5f1a7a9}" name="WYeast 3068 - Weihenstephan Weizen"/>
+ <Ingredient minimumTemperature="65" attenuation="0.7" maximumTemperature="75" type="Yeast" id="{86cf7f5e-16e4-4dcd-ac82-eb0a749b4df9}" name="WYeast 3278 - Belgian Lambic"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{3833e9fc-05a4-42a7-b2c7-49c8ef8a300a}" name="WYeast 3333 - German Wheat"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{f11fc109-5087-4e3a-b3aa-dee29b100768}" name="WYeast 3463 - Forbidden Fruit"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{37bd7cdb-d32c-4ab2-855f-935effdf62b9}" name="WYeast 3522 - Belgian Ardennes"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{d9422e91-ae1f-438c-8b89-8569139f3164}" name="WYeast 3638 - Bavarian Wheat Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.8" maximumTemperature="75" type="Yeast" id="{bed54348-55f6-406c-a351-230c20158236}" name="WYeast 3711 - French Saison"/>
+ <Ingredient minimumTemperature="65" attenuation="0.78" maximumTemperature="75" type="Yeast" id="{f3a1f96a-88ba-427f-aec9-49bab820b156}" name="WYeast 3724 - Belgian Saison"/>
+ <Ingredient minimumTemperature="65" attenuation="0.77" maximumTemperature="75" type="Yeast" id="{b117a42f-7e1a-43d8-a357-ba6105cb16a0}" name="WYeast 3725 - Bier de Garde Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.82" maximumTemperature="75" type="Yeast" id="{e135d495-82d0-4291-8c7e-7330da9bf62a}" name="WYeast 3763 - Roeselare Ale Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.775" maximumTemperature="75" type="Yeast" id="{9fd0bc33-2521-4ecc-85ad-342829ddf808}" name="WYeast 3787 - Trappist High Gravity"/>
+ <Ingredient minimumTemperature="65" attenuation="0.775" maximumTemperature="75" type="Yeast" id="{3241c506-3ac6-469c-93ed-adfc35ac7e2b}" name="WYeast 3789 - Trappist Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{161269ac-6ef9-498d-b67b-630bab550939}" name="WYeast 3942 - Belgian Wheat Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{33763a6c-a9fb-4887-aa1c-1c645d9b0090}" name="WYeast 3944 - Belgian Witbier"/>
+ <Ingredient minimumTemperature="65" attenuation="0.8" maximumTemperature="75" type="Yeast" id="{997c237a-09fc-49ae-b748-2720531ca219}" name="WYeast 4021 - Pasteur Champagne"/>
+ <Ingredient minimumTemperature="65" attenuation="0.82" maximumTemperature="75" type="Yeast" id="{74e03439-14c9-4749-8e95-92fc05894d1b}" name="WYeast 5112 - Brettanomyces bruxellensis"/>
+ <Ingredient minimumTemperature="65" attenuation="0.7" maximumTemperature="75" type="Yeast" id="{63a9ef56-2f64-46ed-a706-38e4e2dee29a}" name="WYeast 5335 - Lactobacillus"/>
+ <Ingredient minimumTemperature="65" attenuation="0.82" maximumTemperature="75" type="Yeast" id="{a26845ea-2642-4a58-9bce-5ff3b703ce4f}" name="WYeast 5526 - Brettanomyces lambicus"/>
+ <Ingredient minimumTemperature="65" attenuation="0" maximumTemperature="75" type="Yeast" id="{703202e8-6e5b-4b89-b85b-581b87a56368}" name="WYeast 5733 - Pediococcus"/>
+ <Ingredient minimumTemperature="65" attenuation="0.765" maximumTemperature="75" type="Yeast" id="{e953b9cf-a526-4400-b61e-45a27967174c}" name="WLP001 - California Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.665" maximumTemperature="75" type="Yeast" id="{a7dee8b1-a27e-4a7f-927f-b3b8b5d74fc2}" name="WLP002 - English Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.715" maximumTemperature="75" type="Yeast" id="{b3027119-4261-4e17-9067-47134cea6595}" name="WLP004 - Irish Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.705" maximumTemperature="75" type="Yeast" id="{30291a81-20fd-4276-bd3f-974e0e87bb27}" name="WLP005 - British Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{d86053ef-13b1-4eb7-b9b2-a5cb6f926f0c}" name="WLP007 - Dry English Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.725" maximumTemperature="75" type="Yeast" id="{945ebf80-3fee-43d0-a545-61b750e0e3d5}" name="WLP008 - East Coast Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{c75546b7-0bff-48df-8119-007dbac8d76d}" name="WLP009 - Australian Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.675" maximumTemperature="75" type="Yeast" id="{94eb3d65-61bd-4844-b940-0c89fed4c051}" name="WLP011 - European Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.71" maximumTemperature="75" type="Yeast" id="{f82bbb09-e371-4129-83ac-6e3c2131d04c}" name="WLP013 - London Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{dfa43034-a1ac-468c-bdee-ceb733aac6a7}" name="WLP022 - Essex Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.72" maximumTemperature="75" type="Yeast" id="{109ef33a-2218-4930-b9dc-7833478c65fb}" name="WLP023 - Burton Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.725" maximumTemperature="75" type="Yeast" id="{dfd1b0d8-851c-4ea6-bbab-1f3b102567b7}" name="WLP028 - Edinburgh Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{c02e16df-adef-4ab2-a655-d6643c5168c3}" name="WLP029 - German Ale/Kolsch"/>
+ <Ingredient minimumTemperature="65" attenuation="0.69" maximumTemperature="75" type="Yeast" id="{ca0d842e-5b74-4945-acb6-640f318aa1d5}" name="WLP036 - Dusseldorf Alt"/>
+ <Ingredient minimumTemperature="65" attenuation="0.675" maximumTemperature="75" type="Yeast" id="{f0d8cab1-d6db-4ab9-b626-b07adf19c26a}" name="WLP041 - Pacific Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.725" maximumTemperature="75" type="Yeast" id="{b722f88f-610f-4916-bcc0-5c3d05c74540}" name="WLP051 - California Ale V"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{32e8e932-130d-4e3c-a5ac-decfac66ca58}" name="WLP060 - American Ale Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.78" maximumTemperature="75" type="Yeast" id="{bf9820cd-a71c-4d0f-9a0a-7d281ab9e412}" name="WLP080 - Cream Ale Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.8" maximumTemperature="75" type="Yeast" id="{60a25768-a884-4cb6-8081-cd7939a3f5e8}" name="WLP099 - Super High Gravity Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{035d8eeb-1425-471e-a579-c55647a83e00}" name="WLP300 - Hefeweizen"/>
+ <Ingredient minimumTemperature="65" attenuation="0.725" maximumTemperature="75" type="Yeast" id="{7f3d4c77-76d7-413e-9401-d66fdce8066e}" name="WLP320 - American Hefe"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{27928f96-74ba-43b0-8140-4647c12ebd45}" name="WLP351 - Bavarian Weizen"/>
+ <Ingredient minimumTemperature="65" attenuation="0.76" maximumTemperature="75" type="Yeast" id="{0fa4d90f-380f-41d4-81d3-933152c0e409}" name="WLP380 - Hefeweizen Ale IV"/>
+ <Ingredient minimumTemperature="65" attenuation="0.76" maximumTemperature="75" type="Yeast" id="{27b05458-6c37-41e2-97e6-46a063e183a5}" name="WLP400 - Belgian Wit"/>
+ <Ingredient minimumTemperature="65" attenuation="0.755" maximumTemperature="75" type="Yeast" id="{574fe65c-3c82-4942-800a-30669a32b897}" name="WLP500 - Trappist Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.765" maximumTemperature="75" type="Yeast" id="{c3cb6f52-0be2-498e-bc84-d78c48d0d323}" name="WLP515 - Antwerp Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.755" maximumTemperature="75" type="Yeast" id="{57ac3b24-38b1-4ec1-9472-b468220954b4}" name="WLP530 - Abbey Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{16c21ba1-8314-447e-a538-d0c470e035c7}" name="WLP550 - Belgian Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.7" maximumTemperature="75" type="Yeast" id="{c44ad108-804d-4f7c-ab72-da7116ada0cd}" name="WLP565 - Belgian Saison"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{56d98161-dc46-4491-beb3-0739b1a253e1}" name="WLP568 - Saison Ale Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.775" maximumTemperature="75" type="Yeast" id="{b745d63e-75d0-4309-ba19-8e4b7f3f8eff}" name="WLP570 - Belgian Golden"/>
+ <Ingredient minimumTemperature="65" attenuation="0.77" maximumTemperature="75" type="Yeast" id="{f5f4e50b-840f-4320-b5fc-c2194c9115e7}" name="WLP575 - Belgian Ale Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.77" maximumTemperature="75" type="Yeast" id="{da65b2f3-bdc0-4125-a0e2-05ca39972952}" name="WLP630 - Berliner Weisse Blend"/>
+ <Ingredient minimumTemperature="65" attenuation="0.82" maximumTemperature="75" type="Yeast" id="{0025402b-b666-4a8e-a493-a411c91b8be3}" name="WLP645 - Brettanomyces claussenii"/>
+ <Ingredient minimumTemperature="65" attenuation="0.82" maximumTemperature="75" type="Yeast" id="{11895cf9-55bc-4f33-9cda-b3549650455d}" name="WLP650 - Brettanomyces bruxellensis"/>
+ <Ingredient minimumTemperature="65" attenuation="0.82" maximumTemperature="75" type="Yeast" id="{906c0b65-7da6-4ea0-8438-a8ea878d63c6}" name="WLP653 - Brettanomyces lambicus"/>
+ <Ingredient minimumTemperature="65" attenuation="0.82" maximumTemperature="75" type="Yeast" id="{1e38e556-01b4-461c-b1ab-713c8cd26732}" name="WLP655 - Belgian Sour Mix"/>
+ <Ingredient minimumTemperature="65" attenuation="0.7" maximumTemperature="75" type="Yeast" id="{67e6a8f0-fd28-4d70-b21c-5849837f91d8}" name="WLP677 - Lactobacillus delbrueckii"/>
+ <Ingredient minimumTemperature="65" attenuation="0.8" maximumTemperature="75" type="Yeast" id="{8347b94d-e164-4022-bcb7-c4bf24a32708}" name="WLP715 - Champagne Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.745" maximumTemperature="75" type="Yeast" id="{720bf534-ad24-4398-86f8-3535e7204034}" name="WLP800 - Pilsner Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.775" maximumTemperature="75" type="Yeast" id="{a30a21ec-59ac-4bcb-95c8-650a097a0d5d}" name="WLP802 - Czech Budejovice"/>
+ <Ingredient minimumTemperature="65" attenuation="0.675" maximumTemperature="75" type="Yeast" id="{5e329ed2-8992-4cd8-916e-b82e63761671}" name="WLP810 - San Fran Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{7c0409f2-a6b3-400c-9755-8d96338aaf67}" name="WLP815 - Belgian Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.69" maximumTemperature="75" type="Yeast" id="{30bdcf36-c1d8-4d48-9cd4-764aff809747}" name="WLP820 - Oktoberfest Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.765" maximumTemperature="75" type="Yeast" id="{03f66f8b-1a82-4a13-9015-2efd677dbe97}" name="WLP830 - German Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{baf8f7ea-f10a-410c-a251-e36369e32036}" name="WLP833 - German Bock"/>
+ <Ingredient minimumTemperature="65" attenuation="0.72" maximumTemperature="75" type="Yeast" id="{c8a3c504-8ef5-4c85-87b6-717113561f6a}" name="WLP838 - So. German Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.775" maximumTemperature="75" type="Yeast" id="{a353578e-1955-4b09-bb40-00e2498eef32}" name="WLP840 - American Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.6800000000000001" maximumTemperature="75" type="Yeast" id="{ba0749b9-679f-4fb5-881c-c6468a77ae59}" name="WLP862 - Cry Havoc"/>
+ <Ingredient minimumTemperature="65" attenuation="0.69" maximumTemperature="75" type="Yeast" id="{84e695c3-58ea-48e3-94d6-16cd671a284a}" name="WLP920 - Old Bavarian Lager Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{92a67d2b-3fc1-4ed1-a526-a84095817170}" name="WLP940 - Mexican Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{cf42461d-45e4-42cd-bfb5-7b23c765a009}" name="Cooper's Ale Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.73" maximumTemperature="75" type="Yeast" id="{6c75db22-bc6d-4841-8771-9fb34c070c34}" name="Danstar Munich"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{6c5c7994-e2ff-43d0-9ae6-dc760ee59193}" name="Danstar Nottingham Ale Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{e5df3745-e292-4f04-8fa6-7fb7407526b8}" name="Munton's Ale Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.85" maximumTemperature="75" type="Yeast" id="{ad7e303c-dafc-4586-8213-1a3819b8895d}" name="Red Star Montrachet Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.85" maximumTemperature="75" type="Yeast" id="{36291e7c-b6f7-4157-b434-95618a3aba21}" name="Red Star Pasteur Champagne Yeast"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{04bc4244-f75b-4977-bce9-12c1ed620bc1}" name="SAFALE S-04 - (Whitbread)"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{1d1a2efb-9856-40fb-bb56-1faf9f412a78}" name="SAFALE S-33 - (EDME)"/>
+ <Ingredient minimumTemperature="65" attenuation="0.75" maximumTemperature="75" type="Yeast" id="{1784e192-b7ed-401c-aa87-c75dfd085a52}" name="SAFALE US-05 American Ale"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{62aaeb49-df02-416a-a044-1598b9c0c97f}" name="SAFBREW T-58"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{95567864-b55d-4148-9017-ec914dc8ee52}" name="SAFBREW WB-06 Wheat Beer"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{a4fe0bc1-7ba2-4aa1-97cc-8f6f80594bd4}" name="SAFLAGER S-23 - Lager"/>
+ <Ingredient minimumTemperature="65" attenuation="0.74" maximumTemperature="75" type="Yeast" id="{48671992-70c2-49c7-8879-22523a48c621}" name="Saflager W-34/70"/>
+ <Ingredient type="Ingredient" id="{d5c00c50-f755-4d49-a125-d85581570e74}" name="Adjuncts - Briess Flaked Barley"/>
+ <Ingredient type="Ingredient" id="{55966dde-8e40-463d-9dc4-45f589864d7e}" name="Adjuncts - Briess Flaked Corn"/>
+ <Ingredient type="Ingredient" id="{190b2f09-5889-447b-8a4f-13963a078539}" name="Adjuncts - Briess Flaked Oats"/>
+ <Ingredient type="Ingredient" id="{07a11ce7-9463-4165-9e37-255e2739a258}" name="Adjuncts - Briess Flaked Rice"/>
+ <Ingredient type="Ingredient" id="{9f605d3c-b494-4f83-bdf9-6dd60a825431}" name="Adjuncts - Briess Flaked Rye"/>
+ <Ingredient type="Ingredient" id="{7d66a922-93c2-43e3-b8e4-182028a2b2ec}" name="Adjuncts - Briess Flaked Wheat"/>
+ <Ingredient type="Ingredient" id="{bf89fb2d-7d48-41ae-a602-92de343da88a}" name="Adjuncts - Munton's Torrified Wheat"/>
+ <Ingredient type="Ingredient" id="{6eae4e61-39ec-4888-8f73-e329c46e3e58}" name="Adjuncts - Rice Hulls"/>
+ <Ingredient type="Ingredient" id="{8d4c6c07-0732-485c-ad99-3cd4e8226e3e}" name="Adjuncts - Rice Syrup Solids"/>
+ <Ingredient type="Ingredient" id="{4b5b2276-1c19-424f-a23b-fb356bdb3d1a}" name="Enhancers - American Oak Infusion Spiral"/>
+ <Ingredient type="Ingredient" id="{ed035b2d-73f1-4752-a2f2-a43f63e95bb3}" name="Enhancers - Amylase Enzyme"/>
+ <Ingredient type="Ingredient" id="{f501ea1a-9957-46d5-bcbb-50a0b616cc94}" name="Enhancers - Ascorbic Acid"/>
+ <Ingredient type="Ingredient" id="{8adeb25f-89a7-4695-951a-96dd6629bbcf}" name="Enhancers - Biofine Clear"/>
+ <Ingredient type="Ingredient" id="{9fa6bbf9-e3a1-4eb9-b667-10069d4044bf}" name="Enhancers - Campden Tablets"/>
+ <Ingredient type="Ingredient" id="{280d73f0-70b9-4967-bd3f-28dc7027dd7a}" name="Enhancers - Diammonium Phosphate"/>
+ <Ingredient type="Ingredient" id="{e5919b63-63ee-438f-8ef9-b665cad6c135}" name="Enhancers - Fermcap S"/>
+ <Ingredient type="Ingredient" id="{a333256e-cabc-440c-a717-f6ca4faaa090}" name="Enhancers - Five Star Super Moss"/>
+ <Ingredient type="Ingredient" id="{54df6183-bc8a-4aa2-87f4-f9b1d694fe00}" name="Enhancers - French Oak Chips"/>
+ <Ingredient type="Ingredient" id="{461fe85b-d270-4767-9dd5-37b3fc064661}" name="Enhancers - French Oak Infusion Spiral"/>
+ <Ingredient type="Ingredient" id="{68c3db66-4a21-492c-bba4-f9c05424bafa}" name="Enhancers - Gelatin"/>
+ <Ingredient type="Ingredient" id="{10b3ca05-aa5d-4f29-b087-406ecfd2addd}" name="Enhancers - Irish Moss"/>
+ <Ingredient type="Ingredient" id="{ad8ff1fe-9aae-4038-8282-0824a2d34250}" name="Enhancers - Lactic Acid"/>
+ <Ingredient type="Ingredient" id="{3f394e77-c9f0-4278-8d37-f80c102601d2}" name="Enhancers - Oak Chips, Toasted"/>
+ <Ingredient type="Ingredient" id="{f67f63d1-06bf-4098-a8c7-49c21b02233a}" name="Enhancers - Oak Chips, Untoasted"/>
+ <Ingredient type="Ingredient" id="{bbd3cfaf-b160-45b5-8be9-5dacf3326fcb}" name="Enhancers - Whirlfloc Tablets"/>
+ <Ingredient type="Ingredient" id="{77d42188-bd1e-4235-a676-62cf62af950d}" name="Enhancers - White Labs Clarity Ferm"/>
+ <Ingredient type="Ingredient" id="{ce31d4ca-0557-421f-b3c7-79f5e879905c}" name="Enhancers - White Labs Servomyces Yeast Nutrient"/>
+ <Ingredient type="Ingredient" id="{dfe865df-599f-4bcd-ab29-5bd5e5cbb67e}" name="Enhancers - Wyeast Labs Beer Yeast Nutrient"/>
+ <Ingredient type="Ingredient" id="{498b9204-34fe-4eb8-a9f7-1c4e49973b2c}" name="Flavorings - Apple Flavoring"/>
+ <Ingredient type="Ingredient" id="{045e4ef9-200b-40af-b2ff-89a3c4502e01}" name="Flavorings - Apricot Flavoring"/>
+ <Ingredient type="Ingredient" id="{f993f7a9-6ef6-4f7e-98b2-12e47504904c}" name="Flavorings - Blackberry Flavoring"/>
+ <Ingredient type="Ingredient" id="{db0a2560-b753-4ae3-b9a3-302c976dec99}" name="Flavorings - Blueberry Flavoring"/>
+ <Ingredient type="Ingredient" id="{a8464a72-3237-4aaf-b384-7e90a6680836}" name="Flavorings - Boysenberry Flavoring"/>
+ <Ingredient type="Ingredient" id="{4e2202de-e49a-41a6-a1d1-5a2e6ec6ab9b}" name="Flavorings - Cherry Flavoring"/>
+ <Ingredient type="Ingredient" id="{7eb1f100-a8fc-4a28-be4c-b2204e20e41e}" name="Flavorings - Cranberry Flavoring"/>
+ <Ingredient type="Ingredient" id="{950f6b08-9e48-43aa-ae7a-0316df7de58e}" name="Flavorings - Hazelnut Flavoring"/>
+ <Ingredient type="Ingredient" id="{72f39eca-876b-430b-aeed-48604aa0c303}" name="Flavorings - Lemon Flavoring"/>
+ <Ingredient type="Ingredient" id="{79bc7348-682d-4e68-9f1b-987e9bb4b702}" name="Flavorings - Mango Flavoring"/>
+ <Ingredient type="Ingredient" id="{25e8cce5-8f27-4044-b7ad-da68ad363b52}" name="Flavorings - Peach Flavoring"/>
+ <Ingredient type="Ingredient" id="{14695735-975d-439b-8f83-299bdcedc418}" name="Flavorings - Plum Flavoring"/>
+ <Ingredient type="Ingredient" id="{b04738a9-a136-4168-9b9d-a8e3ddcab427}" name="Flavorings - Raspberry Flavoring"/>
+ <Ingredient type="Ingredient" id="{1093175c-32c2-454a-939d-4d442f728cbb}" name="Flavorings - Strawberry Flavoring"/>
+ <Ingredient type="Ingredient" id="{80fb6975-3e51-4ea4-b099-10fa77703c19}" name="Spices and Herbs - Anise Seed"/>
+ <Ingredient type="Ingredient" id="{62836f2b-2efe-4f3c-99f6-07edd9354dec}" name="Spices and Herbs - Bitter Orange Peel"/>
+ <Ingredient type="Ingredient" id="{2520198d-c726-4483-9400-eac77bc7550c}" name="Spices and Herbs - Black Peppercorns"/>
+ <Ingredient type="Ingredient" id="{940b852e-1cf4-4dec-8537-2b3f16221a50}" name="Spices and Herbs - Cinnamon Sticks"/>
+ <Ingredient type="Ingredient" id="{a71127bd-6542-4d84-bb79-4c1b146aacc9}" name="Spices and Herbs - Dried Elderflowers"/>
+ <Ingredient type="Ingredient" id="{fea45cf1-5f21-4e9b-a086-e4a01be023e4}" name="Spices and Herbs - Dried Mugwort"/>
+ <Ingredient type="Ingredient" id="{b2abd32c-e74a-4941-882f-7e9c1de24904}" name="Spices and Herbs - Dried Wintergreen"/>
+ <Ingredient type="Ingredient" id="{ec955655-97d5-4236-8c72-d7b78963b9dc}" name="Spices and Herbs - Dried Woodruff"/>
+ <Ingredient type="Ingredient" id="{aa382118-c7a2-4003-889a-a1e23f600450}" name="Spices and Herbs - Dried Wormwood"/>
+ <Ingredient type="Ingredient" id="{79e50860-ff3f-460d-a42f-50b7ff45cc62}" name="Spices and Herbs - Heather Tips"/>
+ <Ingredient type="Ingredient" id="{872baf79-7b8e-43bf-8901-3286104d30a7}" name="Spices and Herbs - Paradise Seed"/>
+ <Ingredient type="Ingredient" id="{9a83ec2e-f391-412d-aa94-93cd785c0365}" name="Spices and Herbs - Rose Hips"/>
+ <Ingredient type="Ingredient" id="{b25a9712-768f-424b-bb80-032192d93f0e}" name="Spices and Herbs - Sarsaparilla"/>
+ <Ingredient type="Ingredient" id="{826336ba-82f8-4d2d-a09d-7a9ee30d98cf}" name="Spices and Herbs - Sweet Orange Peel"/>
+ <Ingredient type="Ingredient" id="{c14a9507-0fdb-4de8-9a92-93576c6d54e5}" name="Spices and Herbs - Coriander Seed"/>
+ <Ingredient type="Ingredient" id="{3ad12733-0c8f-4317-99ff-3e01e3e00a23}" name="Spices and Herbs - Elderberries"/>
+ <Ingredient type="Ingredient" id="{73f094d9-5df0-4e93-8bcc-dd016b8df7fd}" name="Spices and Herbs - Ginger Root"/>
+ <Ingredient type="Ingredient" id="{647de6b7-9d97-47eb-8c25-c5aefa758a3d}" name="Spices and Herbs - Green Peppercorns"/>
+ <Ingredient type="Ingredient" id="{1ecc4176-d104-4ec8-bc90-5edc48d25506}" name="Spices and Herbs - Hibiscus"/>
+ <Ingredient type="Ingredient" id="{68dee571-044e-4788-8566-cb3105ea508d}" name="Spices and Herbs - Juniper Berries"/>
+ <Ingredient type="Ingredient" id="{e14a4a10-a309-4aae-9acc-7425e6df273e}" name="Spices and Herbs - Licorice Root"/>
+ <Ingredient type="Ingredient" id="{d230b558-eca6-4dc0-8628-5a63c2d7f4c8}" name="Spices and Herbs - Organic Cacao Nibs"/>
+ <Ingredient type="Ingredient" id="{9a32ff2f-03be-43e7-9055-cfca2405b0b7}" name="Spices and Herbs - Spruce Essence"/>
+ <Ingredient type="Ingredient" id="{c52d57f0-b207-4d4e-bb90-af37eae1c095}" name="Sugars - Amber Candi Sugar"/>
+ <Ingredient type="Ingredient" id="{34cca085-5e8d-4728-83ac-bc744cc94680}" name="Sugars - Clear Candi Sugar"/>
+ <Ingredient type="Ingredient" id="{a752b42c-2546-48be-9531-3ef49bfabf0a}" name="Sugars - Cooper's Carbonation drops"/>
+ <Ingredient type="Ingredient" id="{b7505d71-a01c-4d3f-9665-42724f2902bc}" name="Sugars - Corn Sugar"/>
+ <Ingredient type="Ingredient" id="{6107f6bf-2468-4355-bbac-db7b506b610c}" name="Sugars - Lactose"/>
+ <Ingredient type="Ingredient" id="{4ab4f511-6c55-436a-bb83-f8f66ec1dc97}" name="Sugars - Malto Dextrin"/>
+ <Ingredient type="Ingredient" id="{fb46fbce-76b2-440c-9f56-d0e05702d8eb}" name="Sugars - Orange Blossom Honey."/>
+ <Ingredient type="Ingredient" id="{0d5446a3-ea6e-44c0-a0c4-50db303149db}" name="Sugars - Priming Sugar"/>
+ <Ingredient type="Ingredient" id="{8d2454cd-9602-405e-b532-d69b24b68382}" name="Sugars - Tupelo Honey"/>
+ <Ingredient type="Ingredient" id="{7449369c-2b80-4bdf-a193-fcedb5917996}" name="Sugars - Turbinado Sugar"/>
+ <Ingredient type="Ingredient" id="{dd02594c-1453-4fe7-88ab-e064219b4081}" name="Water Treatment - Burton Water Salts"/>
+ <Ingredient type="Ingredient" id="{fd7a036b-ad38-4157-9d1d-a5bdb4c19c9a}" name="Water Treatment - Calcium Carbonate"/>
+ <Ingredient type="Ingredient" id="{7dd2fb43-dae4-410b-9034-57c2e069908f}" name="Water Treatment - Calcium Chloride"/>
+ <Ingredient type="Ingredient" id="{f3a00ac0-3f6f-4f52-b060-837db8da0849}" name="Water Treatment - Epsom Salt"/>
+ <Ingredient type="Ingredient" id="{34fe7043-08ad-4868-88ca-87ffb4941402}" name="Water Treatment - Five Star 5.2 pH Stabilizer"/>
+ <Ingredient type="Ingredient" id="{cc64a322-6687-4efd-a3bd-c0b0d91c3959}" name="Water Treatment - Gypsum"/>
+</Ingredients>
