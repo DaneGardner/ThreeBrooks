@@ -321,10 +321,3 @@ void RecipeWidget::on_btnRemove_clicked()
     }
 }
 
-
-
-
-
-
-
-

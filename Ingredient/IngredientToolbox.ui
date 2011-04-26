@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>175</width>
+    <width>240</width>
     <height>329</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>240</width>
+    <height>0</height>
+   </size>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -20,17 +26,18 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+      <widget class="QToolButton" name="btnRemove">
+       <property name="toolTip">
+        <string>Delete all selected ingredients</string>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
+       <property name="text">
+        <string>...</string>
        </property>
-      </spacer>
+       <property name="icon">
+        <iconset resource="../Resources.qrc">
+         <normaloff>:/ThreeBrooks/Ingredients/remove.svg</normaloff>:/ThreeBrooks/Ingredients/remove.svg</iconset>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QToolButton" name="btnNew">
@@ -47,18 +54,17 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="btnRemove">
-       <property name="toolTip">
-        <string>Delete all selected ingredients</string>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="text">
-        <string>...</string>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
        </property>
-       <property name="icon">
-        <iconset resource="../Resources.qrc">
-         <normaloff>:/ThreeBrooks/Ingredients/remove.svg</normaloff>:/ThreeBrooks/Ingredients/remove.svg</iconset>
-       </property>
-      </widget>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -82,7 +88,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>175</width>
+        <width>240</width>
         <height>197</height>
        </rect>
       </property>
@@ -101,8 +107,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>61</height>
+        <width>200</width>
+        <height>197</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -120,8 +126,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>61</height>
+        <width>200</width>
+        <height>197</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -139,8 +145,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>61</height>
+        <width>200</width>
+        <height>197</height>
        </rect>
       </property>
       <property name="dragDropMode">
