@@ -32,6 +32,7 @@ Recipe::Recipe(QObject *parent) :
     _name = tr("New Recipe");
     _volume = Quantity(5.5, Quantity::QuantityType_gallon);
     _efficiency = 0.75;
+    _id = QUuid::createUuid();
 }
 
 Recipe::Recipe(QDomElement element, QObject *parent) :
@@ -93,6 +94,17 @@ void Recipe::setEfficiency(double efficiency)
     _efficiency = efficiency;
     emit dataChanged();
 }
+
+QUuid Recipe::id() const
+{
+    return _id;
+}
+void Recipe::setId(QUuid id)
+{
+    _id = id;
+    emit dataChanged();
+}
+
 
 double Recipe::originalGravity() const
 {
@@ -249,6 +261,7 @@ QDomElement Recipe::toXml(QDomDocument document)
 
     element.setAttribute("name", name());
     element.setAttribute("efficiency", efficiency());
+    element.setAttribute("id", id().toString());
 
     QDomElement elementVolume = document.createElement("Volume");
     elementVolume.appendChild(volume().toXml(document));
@@ -265,6 +278,7 @@ void Recipe::fromXml(QDomElement element)
 {
     setName(element.attribute("name", name()));
     setEfficiency(element.attribute("efficiency", QString().setNum(efficiency())).toDouble());
+    setId(QUuid(element.attribute("id", id().toString())));
 
     QDomNodeList nodes = element.elementsByTagName("RecipeIngredient");
     for(int i=0; i < nodes.count(); i++) {

@@ -30,6 +30,7 @@
 #include <math.h>
 #include <QObject>
 #include <QDomDocument>
+#include <QUuid>
 
 #include "../Ingredient/Ingredient.h"
 #include "../Ingredient/GrainIngredient.h"
@@ -57,9 +58,11 @@ public:
     void setVolume(Quantity volume);
     void setVolume(double volume);
 
-
     double efficiency() const;
     void setEfficiency(double efficiency);
+
+    virtual QUuid id() const;
+    virtual void setId(QUuid id);
 
     double originalGravity() const;
     double finalGravity() const;
@@ -90,16 +93,13 @@ public:
 
 signals:
     void dataChanged();
-    void addingIngredient();
-    void addedIngredient();
-    void removingIngredient(int index);
-    void removedIngredient(int index);
 
 protected:
     QString _name;
     QString _style;
     Quantity _volume;
     double _efficiency;
+    QUuid _id;
 
     QList<RecipeIngredient *> _ingredients;
 

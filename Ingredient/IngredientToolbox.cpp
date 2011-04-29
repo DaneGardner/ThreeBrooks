@@ -170,10 +170,6 @@ void IngredientToolbox::on_ToolBox_currentChanged(int page)
     QListView *listView = qobject_cast<QListView *>(ui->ToolBox->currentWidget());
     QSortFilterProxyModel *proxy = qobject_cast<QSortFilterProxyModel *>(listView->model());
     proxy->sort(0);
-
-    /*! \bug This is a workaround for a Qt4.7 (and others?) bug in the QSortFilterProxyModel
-             where it creates blank entries for every insert! */
-    proxy->setSourceModel(proxy->sourceModel());
 }
 
 void IngredientToolbox::insert(Ingredient *ingredient, bool sort)
@@ -199,14 +195,6 @@ void IngredientToolbox::on_btnNew_clicked()
         Ingredient *ingredient = dlg.ingredient();
         if(ingredient) {
             insert(ingredient);
-
-            /*! \bug This is a workaround for a Qt4.7 (and others?) bug in the
-                     QSortFilterProxyModel where it creates blank entries for every
-                     insert! We only need to worry about the current list, if we switch to
-                     another, it'll be sorted automatically. */
-            QListView *listView = qobject_cast<QListView *>(ui->ToolBox->currentWidget());
-            QSortFilterProxyModel *proxy = qobject_cast<QSortFilterProxyModel *>(listView->model());
-            proxy->setSourceModel(proxy->sourceModel());
         }
     }
 

@@ -28,6 +28,7 @@
 #define RECIPEMODEL_H
 
 #include <QAbstractItemModel>
+#include <QColor>
 #include "Recipe.h"
 
 class RecipeModel : public QAbstractItemModel

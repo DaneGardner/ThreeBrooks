@@ -107,8 +107,6 @@ void IngredientEditDialog::finalize()
 
     _ingredient->setName(ui->txtName->text());
 
-    bool okay;
-
     GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(_ingredient);
     if(grainIngredient) {
         grainIngredient->setColor(ui->spnColor->value());

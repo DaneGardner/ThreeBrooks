@@ -34,41 +34,8 @@ RecipeIngredientModel::RecipeIngredientModel(QObject *parent) :
 
 void RecipeIngredientModel::setRecipe(Recipe *recipe)
 {
-    if(_recipe) {
-        disconnect(_recipe, SIGNAL(addingIngredient()), this, SLOT(addingIngredient()));
-        disconnect(_recipe, SIGNAL(addedIngredient()), this, SLOT(addedIngredient()));
-        disconnect(_recipe, SIGNAL(removingIngredient(int)), this, SLOT(removingIngredient(int)));
-        disconnect(_recipe, SIGNAL(removedIngredient(int)), this, SLOT(removedIngredient(int)));
-    }
-
     _recipe = recipe;
-
-    connect(_recipe, SIGNAL(addingIngredient()), this, SLOT(addingIngredient()));
-    connect(_recipe, SIGNAL(addedIngredient()), this, SLOT(addedIngredient()));
-    connect(_recipe, SIGNAL(removingIngredient(int)), this, SLOT(removingIngredient(int)));
-    connect(_recipe, SIGNAL(removedIngredient(int)), this, SLOT(removedIngredient(int)));
 }
-
-void RecipeIngredientModel::addingIngredient()
-{
-    emit beginInsertRows(QModelIndex(), rowCount(), rowCount());
-}
-
-void RecipeIngredientModel::addedIngredient()
-{
-    emit endInsertRows();
-}
-
-void RecipeIngredientModel::removingIngredient(int row)
-{
-    emit beginRemoveRows(QModelIndex(), row, row+1);
-}
-
-void RecipeIngredientModel::removedIngredient(int row)
-{
-    emit endRemoveRows();
-}
-
 
 /* END QAbstractItemModel operators */
 QModelIndex RecipeIngredientModel::index(int row, int column, const QModelIndex &parent) const
@@ -109,6 +76,10 @@ QVariant RecipeIngredientModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     RecipeIngredient *ingredient = static_cast<RecipeIngredient *>(index.internalPointer());
+
+    if(role == Qt::UserRole) {
+        return qVariantFromValue(ingredient);
+    }
 
     if(role == Qt::DisplayRole) {
         if(ingredient) {
@@ -202,11 +173,6 @@ Qt::ItemFlags RecipeIngredientModel::flags(const QModelIndex &index) const
     return flags;
 }
 
-Qt::DropActions RecipeIngredientModel::supportedDropActions() const
-{
-    return Qt::MoveAction | Qt::CopyAction;
-}
-
 bool RecipeIngredientModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     for(int i=0; i < count; i++) {
@@ -215,6 +181,101 @@ bool RecipeIngredientModel::removeRows(int row, int count, const QModelIndex &pa
 
     return true;
 }
+
+Qt::DropActions RecipeIngredientModel::supportedDropActions() const
+{
+    return Qt::MoveAction | Qt::CopyAction;
+}
+
+QStringList RecipeIngredientModel::mimeTypes() const
+{
+    QStringList types = QAbstractItemModel::mimeTypes();
+    types << "application/x-recipeingredientlist";
+    return types;
+}
+
+QMimeData *RecipeIngredientModel::mimeData(const QModelIndexList &indexes) const
+{
+    QMimeData *data = QAbstractItemModel::mimeData(indexes);
+
+    QDomDocument document("RecipeIngredientList");
+    document.appendChild(document.createElement("RecipeIngredients"));
+    document.firstChildElement().setAttribute("applicationPid", QApplication::applicationPid());
+    document.firstChildElement().setAttribute("recipeId", _recipe->id().toString());
+
+    for(int i = indexes.count(); i > 0; i--) {
+        QModelIndex modelIndex = indexes.at(i-1);
+        if(modelIndex.column())
+            continue;
+
+        RecipeIngredient *recipeIngredient =
+                this->data(modelIndex, Qt::UserRole).value<RecipeIngredient *>();
+        document.firstChildElement().appendChild(recipeIngredient->toXml(document));
+    }
+
+    data->setData("application/x-recipeingredientlist", document.toByteArray());
+
+    return data;
+}
+
+bool RecipeIngredientModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+{
+    if(action == Qt::IgnoreAction)
+        return true;
+
+    if(row < 0) {
+        if(parent.isValid()) {
+            row = parent.row();
+        } else {
+            row = rowCount();
+        }
+    }
+
+    if((action == Qt::CopyAction || action == Qt::MoveAction) && data->hasFormat("application/x-recipeingredientlist")) {
+        QDomDocument document("RecipeIngredientList");
+        document.setContent(data->data("application/x-recipeingredientlist"));
+        if(document.isNull())
+            return false;
+
+        QDomElement parentElement = document.firstChildElement("RecipeIngredients");
+        if(parentElement.isNull())
+            return false;
+
+        QDomElement element = parentElement.firstChildElement("RecipeIngredient");
+        while(!element.isNull()) {
+            this->insert(row, new RecipeIngredient(element, _recipe));
+            element = element.nextSiblingElement();
+        }
+
+        return true;
+    }
+
+    if(action == Qt::CopyAction && data->hasFormat("application/x-ingredientlist")) {
+        QDomDocument document("IngredientList");
+        document.setContent(data->data("application/x-ingredientlist"));
+        if(document.isNull())
+            return false;
+
+        QDomElement parentElement = document.firstChildElement("Ingredients");
+        if(parentElement.isNull())
+            return false;
+
+        if(parentElement.attribute("applicationPid").toLongLong() != QApplication::applicationPid())
+            return false;
+
+        QDomElement element = parentElement.firstChildElement("Ingredient");
+        while(!element.isNull()) {
+            this->insert(row, Ingredient::createIngredient(element));
+            element = element.nextSiblingElement();
+        }
+
+        return true;
+    }
+
+    return QAbstractItemModel::dropMimeData(data, action, row, column, parent);
+}
+
+
 /* END QAbstractItemModel operators */
 
 
@@ -256,7 +317,7 @@ void RecipeIngredientModel::append(RecipeIngredient *ingredient)
 
 void RecipeIngredientModel::insert(int row, RecipeIngredient *ingredient)
 {
-    beginInsertRows(QModelIndex(), row, row+1);
+    beginInsertRows(QModelIndex(), row, row);
     connect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
     _recipe->insert(row, ingredient);
     endInsertRows();
@@ -264,8 +325,7 @@ void RecipeIngredientModel::insert(int row, RecipeIngredient *ingredient)
 
 void RecipeIngredientModel::remove(RecipeIngredient *ingredient)
 {
-    if(_recipe->contains(ingredient));
-        remove(row(ingredient));
+    remove(row(ingredient));
 }
 
 void RecipeIngredientModel::remove(int row)
@@ -292,6 +352,7 @@ void RecipeIngredientModel::move(int row, int destination)
     }
 
     _recipe->move(row, destination);
+
     endMoveRows();
 }
 /* END QList operators */

@@ -137,6 +137,35 @@ Qt::ItemFlags IngredientModel::flags(const QModelIndex &index) const
     return flags;
 }
 
+QStringList IngredientModel::mimeTypes() const
+{
+    QStringList types = QAbstractItemModel::mimeTypes();
+    types << "application/x-ingredientlist";
+    return types;
+}
+
+QMimeData *IngredientModel::mimeData(const QModelIndexList &indexes) const
+{
+    QMimeData *data = QAbstractItemModel::mimeData(indexes);
+
+    QDomDocument document("IngredientList");
+    document.appendChild(document.createElement("Ingredients"));
+    document.firstChildElement().setAttribute("applicationPid", QApplication::applicationPid());
+
+    for(int i = indexes.count(); i > 0; i--) {
+        QModelIndex modelIndex = indexes.at(i-1);
+        if(modelIndex.column())
+            continue;
+
+        Ingredient *ingredient = this->data(modelIndex, Qt::UserRole).value<Ingredient *>();
+        document.firstChildElement().appendChild(ingredient->toXml(document));
+    }
+
+    data->setData("application/x-ingredientlist", document.toByteArray());
+
+    return data;
+}
+
 
 /* QList operators */
 int IngredientModel::row(Ingredient *ingredient) const
@@ -161,7 +190,7 @@ void IngredientModel::append(Ingredient *ingredient)
 
 void IngredientModel::insert(int row, Ingredient *ingredient)
 {
-    beginInsertRows(QModelIndex(), row, row+1);
+    beginInsertRows(QModelIndex(), row, row);
     connect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
     _ingredients.insert(row, ingredient);
     endInsertRows();
@@ -188,8 +217,16 @@ void IngredientModel::move(Ingredient *ingredient, int destination)
 
 void IngredientModel::move(int row, int destination)
 {
-    beginMoveRows(QModelIndex(), row, row+1, QModelIndex(), destination);
+    /* QList::move and QAbstractItemModel::beginMoveRows differ in how they describe the
+       destination. We have to do a little translation if it's going up or down. */
+    if(row < destination) {
+        beginMoveRows(QModelIndex(), row, row, QModelIndex(), destination+1);
+    } else {
+        beginMoveRows(QModelIndex(), row, row, QModelIndex(), destination);
+    }
+
     _ingredients.move(row, destination);
+
     endMoveRows();
 }
 

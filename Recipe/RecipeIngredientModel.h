@@ -27,7 +27,9 @@
 #ifndef RECIPEINGREDIENTMODEL_H
 #define RECIPEINGREDIENTMODEL_H
 
+#include <QApplication>
 #include <QAbstractItemModel>
+#include <QMimeData>
 #include <QIcon>
 #include "Recipe/Recipe.h"
 
@@ -40,6 +42,8 @@ public:
     Recipe *recipe() { return _recipe; }
     void setRecipe(Recipe *recipe);
 
+    void addIngredient(RecipeIngredient *ingredient);
+
     /* QAbstractItemModel operations */
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
     QModelIndex parent(const QModelIndex &child) const;
@@ -48,11 +52,13 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role);
-    Qt::ItemFlags flags(const QModelIndex &index) const;
-    Qt::DropActions supportedDropActions() const;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
+    Qt::DropActions supportedDropActions() const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 
-    void addIngredient(RecipeIngredient *ingredient);
+    QStringList mimeTypes() const;
+    QMimeData *mimeData(const QModelIndexList &indexes) const;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent);
 
     /* QList operations */
     int row(RecipeIngredient *ingredient) const;
@@ -69,10 +75,6 @@ public:
     void move(int row, int destination);
 
 protected slots:
-    void addingIngredient();
-    void addedIngredient();
-    void removingIngredient(int);
-    void removedIngredient(int);
     void ingredientChanged();
 
 protected:

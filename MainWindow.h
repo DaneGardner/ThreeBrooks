@@ -31,6 +31,9 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QSettings>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QTextDocument>
 #include "Ingredient/IngredientToolBox.h"
 #include "Recipe/RecipeWidget.h"
 
@@ -52,6 +55,10 @@ protected slots:
     void on_actionCloseRecipe_triggered();
     bool on_actionSaveRecipe_triggered();
     bool on_actionSaveAsRecipe_triggered();
+    void on_actionDocumentation_triggered();
+    void on_actionAboutThreeBrooks_triggered();
+    void on_actionAboutQt4_triggered();
+    void on_actionPrint_triggered();
     void on_tabWidget_tabCloseRequested(int);
     void on_tabWidget_currentChanged(int);
     void recipeChanged(QWidget *sender = NULL);

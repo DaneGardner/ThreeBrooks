@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>240</width>
-    <height>329</height>
+    <height>326</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,16 +26,12 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QToolButton" name="btnRemove">
+      <widget class="QLineEdit" name="txtFilter">
        <property name="toolTip">
-        <string>Delete all selected ingredients</string>
+        <string>Search the ingredient lists below</string>
        </property>
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../Resources.qrc">
-         <normaloff>:/ThreeBrooks/Ingredients/remove.svg</normaloff>:/ThreeBrooks/Ingredients/remove.svg</iconset>
+       <property name="placeholderText">
+        <string>Filter</string>
        </property>
       </widget>
      </item>
@@ -54,29 +50,20 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+      <widget class="QToolButton" name="btnRemove">
+       <property name="toolTip">
+        <string>Delete all selected ingredients</string>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
+       <property name="text">
+        <string>...</string>
        </property>
-      </spacer>
+       <property name="icon">
+        <iconset resource="../Resources.qrc">
+         <normaloff>:/ThreeBrooks/Ingredients/remove.svg</normaloff>:/ThreeBrooks/Ingredients/remove.svg</iconset>
+       </property>
+      </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="txtFilter">
-     <property name="toolTip">
-      <string>Search the ingredient lists below</string>
-     </property>
-     <property name="placeholderText">
-      <string>Filter</string>
-     </property>
-    </widget>
    </item>
    <item>
     <widget class="QToolBox" name="ToolBox">
@@ -92,7 +79,7 @@
         <x>0</x>
         <y>0</y>
         <width>240</width>
-        <height>197</height>
+        <height>216</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -111,7 +98,7 @@
         <x>0</x>
         <y>0</y>
         <width>240</width>
-        <height>197</height>
+        <height>219</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -130,7 +117,7 @@
         <x>0</x>
         <y>0</y>
         <width>240</width>
-        <height>197</height>
+        <height>219</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -149,7 +136,7 @@
         <x>0</x>
         <y>0</y>
         <width>240</width>
-        <height>197</height>
+        <height>219</height>
        </rect>
       </property>
       <property name="dragDropMode">

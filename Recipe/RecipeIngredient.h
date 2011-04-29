@@ -29,6 +29,7 @@
 
 #include <QObject>
 #include <QDomDocument>
+#include <QMetaType>
 #include "../Ingredient/Ingredient.h"
 #include "../Quantity.h"
 
@@ -71,5 +72,7 @@ protected:
 protected slots:
     void ingredientChanged();
 };
+
+Q_DECLARE_METATYPE(RecipeIngredient *);
 
 #endif // RECIPEINGREDIENT_H

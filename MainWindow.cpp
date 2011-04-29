@@ -24,9 +24,10 @@
 
  */
 
-
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -196,6 +197,96 @@ bool MainWindow::on_actionSaveAsRecipe_triggered()
         return false;
     }
     return true;
+}
+
+void MainWindow::on_actionDocumentation_triggered()
+{
+    //TODO:
+}
+
+void MainWindow::on_actionAboutThreeBrooks_triggered()
+{
+    //TODO:
+}
+
+void MainWindow::on_actionAboutQt4_triggered()
+{
+    QApplication::aboutQt();
+}
+
+void MainWindow::on_actionPrint_triggered()
+{
+
+    QPrinter printer;
+    QPrintDialog *dialog = new QPrintDialog(&printer, this);
+    dialog->setWindowTitle(tr("Print Recipe"));
+    if(dialog->exec() != QDialog::Accepted)
+        return;
+
+    Recipe *recipe = qobject_cast<RecipeWidget *>(ui->tabWidget->currentWidget())->recipe();
+
+    QTextDocument document(this);
+    QDomDocument xhtml("PrintRecipe");
+    xhtml.appendChild(xhtml.createElement("html"));
+    xhtml.firstChild().appendChild(xhtml.createElement("head"));
+
+    QDomElement bodyElement = xhtml.createElement("body");
+    xhtml.firstChild().appendChild(bodyElement);
+
+    QDomElement element = xhtml.createElement("h1");
+    element.appendChild(xhtml.createTextNode(recipe->name()));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Properties"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    element.appendChild(xhtml.createTextNode(QString("Style: %1").arg(recipe->style())));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Volume: %1").arg(recipe->volume().toString())));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Boil time: %1 minutes").arg(recipe->boilTime())));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Efficiency: %1%").arg(recipe->efficiency() * 100)));
+    element.appendChild(xhtml.createElement("br"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Calculated"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    element.appendChild(xhtml.createTextNode(QString("Original gravity: %1").arg(recipe->originalGravity(), 0, 'f', 3)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Final Gravity: %1").arg(recipe->finalGravity(), 0, 'f', 3)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Bitterness: %1 IBU").arg(recipe->bitterness(), 0, 'f', 0)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Color: %1 SRM").arg(recipe->color(), 0, 'f', 1)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("ABV: %1%").arg(recipe->alcoholByVolume() * 100, 0, 'f', 1)));
+    element.appendChild(xhtml.createElement("br"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Ingredients"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    foreach(RecipeIngredient *recipeIngredient, recipe->ingredients()) {
+
+        QString ingredientText = QString("%1 - %2").arg(recipeIngredient->name()).arg(recipeIngredient->quantity().toString());
+        if(recipeIngredient->minutes() > 0)
+            ingredientText += QString(" @ %1 minutes").arg(recipeIngredient->minutes(), 0, 'f', 0);
+
+        element.appendChild(xhtml.createTextNode(ingredientText));
+        element.appendChild(xhtml.createElement("br"));
+    }
+    bodyElement.appendChild(element);
+
+    document.setHtml(xhtml.toString());
+    document.print(&printer);
 }
 
 

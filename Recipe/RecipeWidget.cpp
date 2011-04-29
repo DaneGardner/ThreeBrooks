@@ -93,58 +93,39 @@ void RecipeWidget::setRecipe(Recipe *recipe)
 
 void RecipeWidget::dragEnterEvent(QDragEnterEvent *event)
 {
-    // We're accepting ingredient items only
-    QAbstractItemView *view = qobject_cast<QAbstractItemView *>(event->source());
-    if(view) {
-        QAbstractProxyModel *model = qobject_cast<QAbstractProxyModel *>(view->model());
-        if(model) {
-            QByteArray encoded = event->mimeData()->data("application/x-qabstractitemmodeldatalist");
-            QDataStream stream(&encoded, QIODevice::ReadOnly);
+    if(event->proposedAction() != Qt::IgnoreAction && event->mimeData()->hasFormat("application/x-ingredientlist")) {
+        QDomDocument document("IngredientList");
+        document.setContent(event->mimeData()->data("application/x-ingredientlist"));
+        if(document.isNull())
+            return;
 
-            while (!stream.atEnd())
-            {
-                int row, col;
-                QMap<int,  QVariant> roleDataMap;
-                stream >> row >> col >> roleDataMap;
+        QDomElement parentElement = document.firstChildElement("Ingredients");
+        if(parentElement.isNull())
+            return;
 
-                QModelIndex index = model->sourceModel()->index(row, 0);
-                QObject *object = static_cast<QObject *>(index.internalPointer());
-                Ingredient *ingredient = qobject_cast<Ingredient *>(object);
-                if(ingredient) {
-                    event->acceptProposedAction();
-                }
-            }
-        }
+        if(parentElement.attribute("applicationPid").toULongLong() != QApplication::applicationPid())
+            return;
+
+        event->setDropAction(Qt::CopyAction);
+        event->accept();
+        return;
+    }
+
+    if(event->proposedAction() != Qt::IgnoreAction && event->mimeData()->hasFormat("application/x-recipeingredientlist")) {
+        event->setDropAction(Qt::CopyAction);
+        event->accept();
+        return;
     }
 }
 
 void RecipeWidget::dropEvent(QDropEvent *event)
 {
-    QAbstractItemView *view = qobject_cast<QAbstractItemView *>(event->source());
-    if(view) {
-        QAbstractProxyModel *model = qobject_cast<QAbstractProxyModel *>(view->model());
-        if(model) {
-            QByteArray encoded = event->mimeData()->data("application/x-qabstractitemmodeldatalist");
-            QDataStream stream(&encoded, QIODevice::ReadOnly);
+    if(event->mimeData()->hasFormat("application/x-ingredientlist")) {
+        ui->trvIngredients->model()->dropMimeData(event->mimeData(), event->proposedAction(), -1, -1, QModelIndex());
+    }
 
-            while (!stream.atEnd())
-            {
-                int row, col;
-                QMap<int,  QVariant> roleDataMap;
-                stream >> row >> col >> roleDataMap;
-
-
-                QModelIndex index = model->sourceModel()->index(row, 0);
-                QObject *object = static_cast<QObject *>(index.internalPointer());
-                Ingredient *ingredient = qobject_cast<Ingredient *>(object);
-                if(ingredient) {
-                    RecipeIngredientModel *ingredientModel =
-                            qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
-                    ingredientModel->append(ingredient);
-                    event->acceptProposedAction();
-                }
-            }
-        }
+    if(event->mimeData()->hasFormat("application/x-recipeingredientlist")) {
+        ui->trvIngredients->model()->dropMimeData(event->mimeData(), event->proposedAction(), -1, -1, QModelIndex());
     }
 }
 
@@ -268,17 +249,25 @@ void RecipeWidget::on_btnRaise_clicked()
     if(!ui->trvIngredients->hasFocus())
         return;
 
-    QModelIndex modelIndex = ui->trvIngredients->selectionModel()->currentIndex();
-    if(!modelIndex.isValid())
+    QModelIndexList modelIndexes = ui->trvIngredients->selectionModel()->selectedRows();
+    if(modelIndexes.count() <= 0) {
         return;
+    }
 
-    RecipeIngredientModel *ingredientModel =
-            qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
+    RecipeIngredientModel *ingredientModel = qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
 
-    int index = modelIndex.row();
-    if(index > 0) {
+    /* The selection changes as we change the model, so we have to cache it, in the order we need to use it
+       before actually changing anything in the model */
+    QModelIndexList cache;
+    foreach(QModelIndex index, modelIndexes)
+        cache.push_back(index);
+
+    foreach(QModelIndex modelIndex, cache) {
+        int index = modelIndex.row();
+        if(index <= 0) break;
         ingredientModel->move(index, index-1);
     }
+
 }
 
 void RecipeWidget::on_btnLower_clicked()
@@ -286,15 +275,22 @@ void RecipeWidget::on_btnLower_clicked()
     if(!ui->trvIngredients->hasFocus())
         return;
 
-    QModelIndex modelIndex = ui->trvIngredients->selectionModel()->currentIndex();
-    if(!modelIndex.isValid())
+    QModelIndexList modelIndexes = ui->trvIngredients->selectionModel()->selectedRows();
+    if(modelIndexes.count() <= 0) {
         return;
+    }
 
-    RecipeIngredientModel *ingredientModel =
-            qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
+    RecipeIngredientModel *ingredientModel = qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
 
-    int index = modelIndex.row();
-    if(index+1 < ingredientModel->rowCount()) {
+    /* The selection changes as we change the model, so we have to cache it, in the order we need to use it
+       before actually changing anything in the model */
+    QModelIndexList cache;
+    foreach(QModelIndex index, modelIndexes)
+        cache.push_front(index);
+
+    foreach(QModelIndex modelIndex, cache) {
+        int index = modelIndex.row();
+        if(index >= ingredientModel->rowCount()-1) break;
         ingredientModel->move(index, index+1);
     }
 }
@@ -304,20 +300,30 @@ void RecipeWidget::on_btnRemove_clicked()
     if(!ui->trvIngredients->hasFocus())
         return;
 
-    QModelIndex modelIndex = ui->trvIngredients->selectionModel()->currentIndex();
-    if(!modelIndex.isValid())
+    QModelIndexList modelIndexes = ui->trvIngredients->selectionModel()->selectedRows();
+    if(modelIndexes.count() <= 0) {
         return;
+    }
 
     QMessageBox dlg( QMessageBox::Warning,
                      tr("Remove Ingredient"),
-                     tr("Are you sure that you want to remove the selected ingredient from the recipe?"),
+                     tr("Are you sure that you want to remove the selected ingredients from the recipe?"),
                      QMessageBox::Yes|QMessageBox::No,
                      this);
 
+    RecipeIngredientModel *ingredientModel = qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
     if(dlg.exec() == QMessageBox::Yes) {
-        RecipeIngredientModel *ingredientModel =
-                qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
-        ingredientModel->remove(modelIndex.row());
+
+        /* The selection changes as we change the model, so we have to cache it, in the order we need to use it
+           before actually changing anything in the model */
+        QModelIndexList cache;
+        foreach(QModelIndex index, modelIndexes)
+            cache.push_front(index);
+
+        foreach(QModelIndex modelIndex, cache) {
+            ingredientModel->remove(modelIndex.row());
+        }
+
     }
 }
 

@@ -61,7 +61,6 @@ QString Ingredient::type() const
     return tr("Ingredient");
 }
 
-
 QDomElement Ingredient::toXml(QDomDocument document)
 {
     QDomElement retval = document.createElement("Ingredient");
@@ -70,7 +69,6 @@ QDomElement Ingredient::toXml(QDomDocument document)
     retval.setAttribute("id", id().toString());
     return retval;
 }
-
 void Ingredient::fromXml(QDomElement element)
 {
     setName(element.attribute("name", name()));

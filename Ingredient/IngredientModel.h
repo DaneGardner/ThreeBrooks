@@ -27,7 +27,9 @@
 #ifndef INGREDIENTMODEL_H
 #define INGREDIENTMODEL_H
 
+#include <QApplication>
 #include <QAbstractItemModel>
+#include <QMimeData>
 #include <QVariant>
 #include <QString>
 #include <QIcon>
@@ -50,6 +52,8 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
+    QStringList mimeTypes() const;
+    QMimeData *mimeData(const QModelIndexList &indexes) const;
 
     /* QList operations */
     int row(Ingredient *ingredient) const;
