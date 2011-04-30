@@ -86,7 +86,14 @@ IngredientToolbox::IngredientToolbox(QString filepath, QWidget *parent) :
     connect(ui->otherView, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(editIngredient(QModelIndex)));
 
-    load();
+    try {
+        load();
+    } catch(QString err) {
+        throw err;
+    } catch(...) {
+        throw tr("Failed to load ingredients file");
+    }
+
     _ingredientsChanged = false;
 }
 
@@ -107,12 +114,17 @@ void IngredientToolbox::load(QString filepath)
     QDomDocument document("Ingredients");
     QFile file(filepath);
 
-    if(!file.open(QIODevice::ReadOnly))
-        throw new QString("Failed to open ingredients file");
+    if(!file.exists()) {
+        return;
+    }
+
+    if(!file.open(QIODevice::ReadOnly)) {
+        throw tr("Failed to open ingredients file");
+    }
 
     if(!document.setContent(&file)) {
         file.close();
-        throw new QString("Failed to read ingredients file");
+        throw tr("Failed to read ingredients file");
     }
 
     file.close();
@@ -143,7 +155,7 @@ void IngredientToolbox::save(QString filepath)
 
     QFile file(filepath);
     if(!file.open(QIODevice::WriteOnly)) {
-        throw new QString("Failed to open ingredients file");
+        throw tr("Failed to open ingredients file");
     }
 
     file.write(document.toString().toLatin1());
