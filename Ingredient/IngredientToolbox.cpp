@@ -246,11 +246,9 @@ void IngredientToolbox::removeSelected(QDialogButtonBox::StandardButton standard
 
     // Now we can remove them
     for(int i=0; i < ingredients.count(); i++) {
-        ingredientModel->remove(ingredients.at(i));
         _ingredients.removeOne(ingredients.at(i));
+        ingredientModel->remove(ingredients.at(i)); /* Ingredient is deleted when removed from the model; must do last */
         ingredientChanged();
-
-        //FIXME: We can't delete the ingredient memory because it might be used elsewhere. Gotta solve this
     }
 }
 

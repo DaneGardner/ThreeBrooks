@@ -23,8 +23,8 @@
    \section DESCRIPTION
 
  */
-
-QDialog {
+ 
+ QDialog {
     background-color: #F4F4F4;
 }
 
@@ -32,6 +32,8 @@ QLineEdit, QAbstractSpinBox, QComboBox {
     border: 1px solid #999999;
     border-radius: 3px;
     padding: 0px;
+    padding-bottom: 2px;
+    margin: 0px;
 }
 
 QLineEdit:focus, QAbstractSpinBox:focus, QComboBox:focus {
@@ -39,40 +41,60 @@ QLineEdit:focus, QAbstractSpinBox:focus, QComboBox:focus {
 }
 
 QHeaderView::up-arrow, QAbstractSpinBox::up-arrow{
-    image: url(":/ThreeBrooks/scrollUp.svg");
+/*    image: url(":/ThreeBrooks/scrollUp.svg"); */
     width: 7px;
 }
 QComboBox::down-arrow, QHeaderView::down-arrow, QAbstractSpinBox::down-arrow {
-    image: url(":/ThreeBrooks/scrollDown.svg");
+/*    image: url(":/ThreeBrooks/scrollDown.svg"); */
     width: 7px;
 }
 
 QAbstractSpinBox::up-button {
-    border: 1px solid #999999;
-    background-color: #cccccc;
+    border: 1px solid #333333;
+    border-bottom: 0;
+    background-color: #666666;
     padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 1px;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 1px;
     border-bottom-right-radius: 1px;
     border-top-right-radius: 4px;
 }
-QAbstractSpinBox::down-button, QComboBox::drop-down {
-    border: 1px solid #999999;
-    background-color: #cccccc;
+QAbstractSpinBox::down-button {
+    border: 1px solid #333333;
+    background-color: #666666;
     padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 1px;
     border-top-left-radius: 1px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 1px;
 }
-
+QComboBox::drop-down {
+    border: 1px solid #333333;
+    background-color: #666666;
+    padding: 0px;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    margin-left: 0px;
+}
 
 QLineEdit[readOnly="true"], QLineEdit[enabled="false"],
 QAbstractSpinBox[readOnly="true"], QAbstractSpinBox[enabled="false"],
 QComboBox[readOnly="true"], QComboBox[enabled="false"] {
     background-color: #dddddd;
 }
-
 
 QGroupBox {
     border-top: 1px solid #666666;
@@ -85,6 +107,8 @@ QGroupBox::title {
     padding: 0 3px;
 }
 
+QTableCornerButton::section { background-color: rgba(0, 0, 0, 0%); }
+QHeaderView { background-color: rgba(0, 0, 0, 0%); }
 QHeaderView::section {
     margin: 0px;
     border: 1px solid #333333;
@@ -95,14 +119,18 @@ QHeaderView::section {
 }
 QHeaderView::section:hover { background-color: #333333; }
 QHeaderView::section:selected, QHeaderView::section:checked { background-color: #333333; }
-QTableCornerButton::section { background-color: #ffffff; }
 
-QAbstractItemView { background-color: white; }
+#tblCalculated QHeaderView::section:vertical { margin-top: 1px; }
+#tblCalculated QHeaderView::section:horizontal { margin-right: 1px; }
+#tblCalculated { margin: 0px; padding: 0px; border: 0px; background-color: rgba(0, 0, 0, 0%); }
+#tblCalculated::item { background-color: #ffffff; }
+
 QTreeView, QTableView, QListView {
     margin: 0px;
     border: 1px solid #666666;
     border-radius: 5px;
     padding: 1px;
+    font: 5em;
 }
 
 
@@ -110,7 +138,7 @@ QPushButton {
     color: #FFFFFF;
     margin: 0px;
     border: 1px solid #333333;
-    border-radius: 5px;
+    border-radius: 5px; 
     padding: 1ex;
     background-color: #999999;
 }
@@ -135,9 +163,9 @@ QWidget#IngredientToolbox {
 }
 
 QToolBox::tab {
-    margin: 0px;
-    border-bottom: 1px solid #666666;
-    border-radius: 1px;
+    margin: 0px; 
+    border-bottom: 1px solid #666666; 
+    border-radius: 1px; 
     padding: 1px;
     background-color: #999999;
     color: #FFFFFF;
@@ -323,4 +351,5 @@ QTabBar::tab {
 QTabBar::tab:hover { background-color: #666666; }
 QTabBar::tab:selected { background-color: #333333; }
 /* END QTabBar */
+
 

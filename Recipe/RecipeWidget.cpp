@@ -270,6 +270,9 @@ void RecipeWidget::refreshText(bool modified)
     ui->spnVolume->setValue(_recipe->volume().valueToGallon());
     ui->spnBoilTime->setValue(_recipe->boilTime());
     ui->spnEfficiency->setValue(_recipe->efficiency() * 100);
+
+    ui->tblCalculated->resizeColumnsToContents();
+    ui->tblCalculated->resizeRowsToContents();
 }
 
 void RecipeWidget::on_txtName_editingFinished()
@@ -308,7 +311,6 @@ void RecipeWidget::on_spnEfficiency_editingFinished()
         refreshText();
     }
 }
-
 
 void RecipeWidget::on_btnRaise_clicked()
 {

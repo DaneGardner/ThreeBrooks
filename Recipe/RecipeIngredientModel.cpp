@@ -332,7 +332,9 @@ void RecipeIngredientModel::remove(int row)
 {
     beginRemoveRows(QModelIndex(), row, row);
     disconnect(ingredient(row), SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    RecipeIngredient *recipeIngredient = _recipe->at(row);
     _recipe->removeAt(row);
+    delete recipeIngredient;
     endRemoveRows();
 }
 

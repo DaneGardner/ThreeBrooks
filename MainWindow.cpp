@@ -205,8 +205,9 @@ bool MainWindow::on_actionSaveRecipe_triggered()
             if(recipeWidget) {
                 if(!recipeWidget->windowFilePath().isEmpty()) {
                     recipeWidget->save();
+                    return true;
                 } else {
-                    on_actionSaveAsRecipe_triggered();
+                    return on_actionSaveAsRecipe_triggered();
                 }
             }
         }
@@ -218,7 +219,7 @@ bool MainWindow::on_actionSaveRecipe_triggered()
         return false;
     }
 
-    return true;
+    return false;
 }
 
 bool MainWindow::on_actionSaveAsRecipe_triggered()
@@ -231,6 +232,7 @@ bool MainWindow::on_actionSaveAsRecipe_triggered()
                         QFileDialog::getSaveFileName(this, tr("Save Recipe"), recipeWidget->windowFilePath(), tr("Recipe files(*.recipe)"));
                 if(!filepath.isEmpty()) {
                     recipeWidget->save(filepath);
+                    return true;
                 }
             }
         }
@@ -241,7 +243,7 @@ bool MainWindow::on_actionSaveAsRecipe_triggered()
         showNotification(tr("Could not save recipe."));
         return false;
     }
-    return true;
+    return false;
 }
 
 void MainWindow::on_actionDocumentation_triggered()
@@ -309,12 +311,15 @@ void MainWindow::tabCloseRequested(int index)
     if(recipeWidget->isWindowModified()) {
         QMessageBox msg(QMessageBox::Warning, tr("Save before closing?"),
                         tr("Would you like to save changes to the recipe before closing it?"),
-                        QMessageBox::Yes|QMessageBox::No, this);
+                        QMessageBox::Yes|QMessageBox::No|QMessageBox::Cancel, this);
 
-        if(msg.exec() == QMessageBox::Yes) {
+        int standardButton = msg.exec();
+        if(standardButton == QMessageBox::Yes) {
             if(!on_actionSaveRecipe_triggered()) {
                 return;
             }
+        } else if(standardButton == QMessageBox::Cancel) {
+            return;
         }
     }
 

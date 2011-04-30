@@ -206,7 +206,9 @@ void IngredientModel::remove(int row)
 {
     beginRemoveRows(QModelIndex(), row, row);
     disconnect(ingredient(row), SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
+    Ingredient *ingredient = _ingredients.at(row);
     _ingredients.removeAt(row);
+    delete ingredient;
     endRemoveRows();
 }
 
