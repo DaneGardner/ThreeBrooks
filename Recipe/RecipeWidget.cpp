@@ -103,7 +103,7 @@ void RecipeWidget::dragEnterEvent(QDragEnterEvent *event)
         if(parentElement.isNull())
             return;
 
-        if(parentElement.attribute("applicationPid").toULongLong() != QApplication::applicationPid())
+        if(parentElement.attribute("applicationPid").toLongLong() != QApplication::applicationPid())
             return;
 
         event->setDropAction(Qt::CopyAction);
@@ -182,6 +182,72 @@ void RecipeWidget::save(QString filepath)
     setWindowModified(false);
     refreshText();
     emit changed();
+}
+
+void RecipeWidget::print(QPrinter *printer)
+{
+    QTextDocument document(this);
+    QDomDocument xhtml("PrintRecipe");
+    xhtml.appendChild(xhtml.createElement("html"));
+    xhtml.firstChild().appendChild(xhtml.createElement("head"));
+
+    QDomElement bodyElement = xhtml.createElement("body");
+    xhtml.firstChild().appendChild(bodyElement);
+
+    QDomElement element = xhtml.createElement("h1");
+    element.appendChild(xhtml.createTextNode(recipe()->name()));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Properties"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    element.appendChild(xhtml.createTextNode(QString("Style: %1").arg(recipe()->style())));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Volume: %1").arg(recipe()->volume().toString())));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Boil time: %1 minutes").arg(recipe()->boilTime())));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Efficiency: %1%").arg(recipe()->efficiency() * 100)));
+    element.appendChild(xhtml.createElement("br"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Calculated"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    element.appendChild(xhtml.createTextNode(QString("Original gravity: %1").arg(recipe()->originalGravity(), 0, 'f', 3)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Final Gravity: %1").arg(recipe()->finalGravity(), 0, 'f', 3)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Bitterness: %1 IBU").arg(recipe()->bitterness(), 0, 'f', 0)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Color: %1 SRM").arg(recipe()->color(), 0, 'f', 1)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("ABV: %1%").arg(recipe()->alcoholByVolume() * 100, 0, 'f', 1)));
+    element.appendChild(xhtml.createElement("br"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Ingredients"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    foreach(RecipeIngredient *recipeIngredient, recipe()->ingredients()) {
+
+        QString ingredientText = QString("%1 - %2").arg(recipeIngredient->name()).arg(recipeIngredient->quantity().toString());
+        if(recipeIngredient->minutes() > 0)
+            ingredientText += QString(" @ %1 minutes").arg(recipeIngredient->minutes(), 0, 'f', 0);
+
+        element.appendChild(xhtml.createTextNode(ingredientText));
+        element.appendChild(xhtml.createElement("br"));
+    }
+    bodyElement.appendChild(element);
+
+    document.setHtml(xhtml.toString());
+    document.print(printer);
 }
 
 void RecipeWidget::recipeChanged()
@@ -305,25 +371,31 @@ void RecipeWidget::on_btnRemove_clicked()
         return;
     }
 
-    QMessageBox dlg( QMessageBox::Warning,
-                     tr("Remove Ingredient"),
-                     tr("Are you sure that you want to remove the selected ingredients from the recipe?"),
-                     QMessageBox::Yes|QMessageBox::No,
-                     this);
+    MainWindow::instance()->showNotification(
+                tr("Are you sure that you want to remove the selected ingredients from the recipe?"),
+                QIcon(),
+                true,
+                QDialogButtonBox::Yes,
+                this, SLOT(removeSelectedIngredients(QDialogButtonBox::StandardButton)));
+}
 
+void RecipeWidget::removeSelectedIngredients(QDialogButtonBox::StandardButton standardButton)
+{
+    if(standardButton != QDialogButtonBox::Yes)
+        return;
+
+    QModelIndexList modelIndexes = ui->trvIngredients->selectionModel()->selectedRows();
     RecipeIngredientModel *ingredientModel = qobject_cast<RecipeIngredientModel *>(ui->trvIngredients->model());
-    if(dlg.exec() == QMessageBox::Yes) {
 
-        /* The selection changes as we change the model, so we have to cache it, in the order we need to use it
-           before actually changing anything in the model */
-        QModelIndexList cache;
-        foreach(QModelIndex index, modelIndexes)
-            cache.push_front(index);
+    /* The selection changes as we change the model, so we have to cache it, in the order we need to use it
+       before actually changing anything in the model */
+    QModelIndexList cache;
+    foreach(QModelIndex index, modelIndexes)
+        cache.push_front(index);
 
-        foreach(QModelIndex modelIndex, cache) {
-            ingredientModel->remove(modelIndex.row());
-        }
-
+    foreach(QModelIndex modelIndex, cache) {
+        ingredientModel->remove(modelIndex.row());
     }
 }
+
 

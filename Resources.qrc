@@ -3,6 +3,13 @@
         <file alias="scrollDown.svg">icons/arrow-down-3.svg</file>
         <file alias="scrollUp.svg">icons/arrow-up-3.svg</file>
         <file alias="appExit.svg">icons/application-exit-3.svg</file>
+        <file alias="hideSidebar.svg">icons/view-left-close.svg</file>
+        <file alias="qt.svg">icons/qt-logo.svg</file>
+        <file alias="about.svg">icons/help-about.svg</file>
+        <file alias="documentation.svg">icons/help-browser-3.svg</file>
+        <file alias="notificationClose.svg">icons/window-close.svg</file>
+        <file alias="scrollbar-borderimage-horizontal.png">icons/scrollbar-borderimage-horizontal.png</file>
+        <file alias="scrollbar-borderimage-vertical.png">icons/scrollbar-borderimage-vertical.png</file>
     </qresource>
     <qresource prefix="/ThreeBrooks/Recipe">
         <file alias="remove.svg">icons/edit-delete-2.svg</file>
@@ -14,6 +21,8 @@
         <file alias="save.svg">icons/document-save-4.svg</file>
         <file alias="saveAs.svg">icons/document-save-as-4.svg</file>
         <file alias="print.svg">icons/document-print-4.svg</file>
+        <file alias="left.svg">icons/arrow-left-3.svg</file>
+        <file alias="right.svg">icons/arrow-right-3.svg</file>
     </qresource>
     <qresource prefix="/ThreeBrooks/Ingredients">
         <file alias="remove.svg">icons/edit-delete-2.svg</file>

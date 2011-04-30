@@ -13,27 +13,22 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QSplitter" name="centralWidget">
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="currentIndex">
-     <number>-1</number>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
     </property>
-    <property name="usesScrollButtons">
-     <bool>false</bool>
+    <property name="margin">
+     <number>0</number>
     </property>
-    <property name="documentMode">
-     <bool>true</bool>
-    </property>
-    <property name="tabsClosable">
-     <bool>true</bool>
-    </property>
-    <property name="movable">
-     <bool>true</bool>
-    </property>
-   </widget>
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -56,7 +51,7 @@
     <addaction name="actionSaveRecipe"/>
     <addaction name="actionSaveAsRecipe"/>
     <addaction name="separator"/>
-    <addaction name="actionPrint"/>
+    <addaction name="actionPrintRecipe"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -75,8 +70,18 @@
     <addaction name="actionAboutQt4"/>
     <addaction name="actionAboutThreeBrooks"/>
    </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Window</string>
+    </property>
+    <addaction name="actionHideSidebar"/>
+    <addaction name="separator"/>
+    <addaction name="actionRecipeRight"/>
+    <addaction name="actionRecipeLeft"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuDebug"/>
+   <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionOpenRecipe">
@@ -174,7 +179,10 @@
     <string>F5</string>
    </property>
   </action>
-  <action name="actionPrint">
+  <action name="actionPrintRecipe">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="Resources.qrc">
      <normaloff>:/ThreeBrooks/Recipe/print.svg</normaloff>:/ThreeBrooks/Recipe/print.svg</iconset>
@@ -193,11 +201,19 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/ThreeBrooks/documentation.svg</normaloff>:/ThreeBrooks/documentation.svg</iconset>
+   </property>
    <property name="text">
     <string>Documentation</string>
    </property>
   </action>
   <action name="actionAboutQt4">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/ThreeBrooks/qt.svg</normaloff>:/ThreeBrooks/qt.svg</iconset>
+   </property>
    <property name="text">
     <string>About Qt4...</string>
    </property>
@@ -206,8 +222,57 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/ThreeBrooks/about.svg</normaloff>:/ThreeBrooks/about.svg</iconset>
+   </property>
    <property name="text">
     <string>About Three Brooks...</string>
+   </property>
+  </action>
+  <action name="actionRecipeRight">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/ThreeBrooks/Recipe/right.svg</normaloff>:/ThreeBrooks/Recipe/right.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Next Recipe</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Tab</string>
+   </property>
+  </action>
+  <action name="actionRecipeLeft">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/ThreeBrooks/Recipe/left.svg</normaloff>:/ThreeBrooks/Recipe/left.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Last Recipe</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Backtab</string>
+   </property>
+  </action>
+  <action name="actionHideSidebar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/ThreeBrooks/hideSidebar.svg</normaloff>:/ThreeBrooks/hideSidebar.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Ingredient Picker</string>
+   </property>
+   <property name="toolTip">
+    <string>Hide the ingredient list picker</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+0</string>
    </property>
   </action>
  </widget>

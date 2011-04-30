@@ -77,7 +77,7 @@ void Ingredient::fromXml(QDomElement element)
 
 Ingredient *Ingredient::createIngredient(QDomElement element)
 {
-    Ingredient *ingredient;
+    Ingredient *ingredient = NULL;
     if(!element.attribute("type").compare("Grain", Qt::CaseInsensitive)) {
         ingredient = new GrainIngredient();
     } else if(!element.attribute("type").compare("Hops", Qt::CaseInsensitive)) {
@@ -88,6 +88,8 @@ Ingredient *Ingredient::createIngredient(QDomElement element)
         ingredient = new Ingredient();
     }
 
-    ingredient->fromXml(element);
+    if(ingredient)
+        ingredient->fromXml(element);
+
     return ingredient;
 }

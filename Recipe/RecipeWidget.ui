@@ -288,8 +288,11 @@
         </item>
         <item>
          <widget class="QToolButton" name="btnRaise">
+          <property name="toolTip">
+           <string>Move selected ingredients up [Ctrl+Shift+Up]</string>
+          </property>
           <property name="text">
-           <string>...</string>
+           <string>Move Up</string>
           </property>
           <property name="icon">
            <iconset resource="../Resources.qrc">
@@ -302,8 +305,11 @@
         </item>
         <item>
          <widget class="QToolButton" name="btnLower">
+          <property name="toolTip">
+           <string>Move selected ingredients down [Ctrl+Shift+Down]</string>
+          </property>
           <property name="text">
-           <string>...</string>
+           <string>Move down</string>
           </property>
           <property name="icon">
            <iconset resource="../Resources.qrc">
@@ -316,8 +322,11 @@
         </item>
         <item>
          <widget class="QToolButton" name="btnRemove">
+          <property name="toolTip">
+           <string>Remove selected ingredients [Del]</string>
+          </property>
           <property name="text">
-           <string>...</string>
+           <string>Remove</string>
           </property>
           <property name="icon">
            <iconset resource="../Resources.qrc">

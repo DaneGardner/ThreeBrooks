@@ -27,8 +27,10 @@
 #include "IngredientToolbox.h"
 #include "ui_IngredientToolbox.h"
 
+#include "MainWindow.h"
+
 IngredientToolbox::IngredientToolbox(QString filepath, QWidget *parent) :
-    QWidget(parent),
+    QFrame(parent),
     ui(new Ui::IngredientToolbox)
 {
     _filepath = filepath;
@@ -202,34 +204,44 @@ void IngredientToolbox::on_btnNew_clicked()
 
 void IngredientToolbox::on_btnRemove_clicked()
 {
-    QMessageBox dlg( QMessageBox::Warning,
-                     tr("Delete Ingredient"),
-                     tr("Are you sure that you want to permanently remove the selected ingredients?"),
-                     QMessageBox::Yes|QMessageBox::No,
-                     this);
+    QListView *listView = qobject_cast<QListView *>(ui->ToolBox->currentWidget());
+    QModelIndexList indices = listView->selectionModel()->selectedIndexes();
 
-    if(dlg.exec() == QMessageBox::Yes) {
-        QListView *listView = qobject_cast<QListView *>(ui->ToolBox->currentWidget());
-        QSortFilterProxyModel *model = qobject_cast<QSortFilterProxyModel *>(listView->model());
-        IngredientModel *ingredientModel = qobject_cast<IngredientModel *>(model->sourceModel());
-        QModelIndexList indices = listView->selectionModel()->selectedIndexes();
+    if(indices.count() <= 0)
+        return;
 
-        // The indices list changes as items are removed, so we have to cache the pointers locally first
-        QList<Ingredient *> ingredients;
-        foreach(QModelIndex modelIndex, indices) {
-            ingredients.append(modelIndex.model()->data(modelIndex, Qt::UserRole).value<Ingredient *>());
-        }
+    MainWindow::instance()->showNotification(tr("Are you sure you want to permanently delete the selected ingredients?"),
+                                             QIcon(), true,
+                                             QDialogButtonBox::Yes,
+                                             this, SLOT(removeSelected(QDialogButtonBox::StandardButton)));
+}
 
-        // Now we can remove them
-        for(int i=0; i < ingredients.count(); i++) {
-            ingredientModel->remove(ingredients.at(i));
-            _ingredients.removeOne(ingredients.at(i));
-            ingredientChanged();
+void IngredientToolbox::removeSelected(QDialogButtonBox::StandardButton standardButton)
+{
+    if(standardButton != QDialogButtonBox::Yes)
+        return;
 
-            //TODO: We can't delete the ingredient because it might be used elsewhere. Gotta solve this
-        }
+    QListView *listView = qobject_cast<QListView *>(ui->ToolBox->currentWidget());
+    QSortFilterProxyModel *model = qobject_cast<QSortFilterProxyModel *>(listView->model());
+    IngredientModel *ingredientModel = qobject_cast<IngredientModel *>(model->sourceModel());
+    QModelIndexList indices = listView->selectionModel()->selectedIndexes();
+
+    // The indices list changes as items are removed, so we have to cache the pointers locally first
+    QList<Ingredient *> ingredients;
+    foreach(QModelIndex modelIndex, indices) {
+        ingredients.append(modelIndex.model()->data(modelIndex, Qt::UserRole).value<Ingredient *>());
+    }
+
+    // Now we can remove them
+    for(int i=0; i < ingredients.count(); i++) {
+        ingredientModel->remove(ingredients.at(i));
+        _ingredients.removeOne(ingredients.at(i));
+        ingredientChanged();
+
+        //FIXME: We can't delete the ingredient memory because it might be used elsewhere. Gotta solve this
     }
 }
+
 
 void IngredientToolbox::on_txtFilter_textChanged(QString text)
 {

@@ -37,7 +37,9 @@ SOURCES  += main.cpp\
             Recipe/RecipeIngredientDelegate.cpp \
             Recipe/RecipeModel.cpp \
             Ingredient/IngredientToolbox.cpp \
-            Ingredient/IngredientEditDialog.cpp
+            Ingredient/IngredientEditDialog.cpp \
+    NotificationBar.cpp \
+    PrettyTabWidget.cpp
 
 HEADERS  += MainWindow.h \
             Recipe/Recipe.h \
@@ -53,12 +55,15 @@ HEADERS  += MainWindow.h \
             Recipe/RecipeIngredientDelegate.h \
             Recipe/RecipeModel.h \
             Ingredient/IngredientToolbox.h \
-            Ingredient/IngredientEditDialog.h
+            Ingredient/IngredientEditDialog.h \
+    NotificationBar.h \
+    PrettyTabWidget.h
 
 FORMS    += MainWindow.ui \
             Recipe/RecipeWidget.ui \
             Ingredient/IngredientToolbox.ui \
-            Ingredient/IngredientEditDialog.ui
+            Ingredient/IngredientEditDialog.ui \
+    NotificationBar.ui
 
 RESOURCES += Resources.qrc
 

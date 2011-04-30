@@ -28,13 +28,14 @@
 #define INGREDIENTTOOLBOX_H
 
 #include <QWidget>
+#include <QFrame>
 #include <QList>
 #include <QListView>
 #include <QCompleter>
-#include <QMessageBox>
 #include <QDomDocument>
 #include <QFile>
 #include <QSortFilterProxyModel>
+#include <QDialogButtonBox>
 
 #include "Ingredient.h"
 #include "IngredientModel.h"
@@ -44,7 +45,7 @@ namespace Ui {
     class IngredientToolbox;
 }
 
-class IngredientToolbox : public QWidget
+class IngredientToolbox : public QFrame
 {
     Q_OBJECT
 
@@ -77,6 +78,8 @@ protected slots:
     void on_btnNew_clicked();
     void on_btnRemove_clicked();
     void on_txtFilter_textChanged(QString);
+
+    void removeSelected(QDialogButtonBox::StandardButton standardButton);
 
 private:
     Ui::IngredientToolbox *ui;

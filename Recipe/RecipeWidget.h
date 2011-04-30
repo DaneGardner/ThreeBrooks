@@ -35,12 +35,14 @@
 #include <QFile>
 #include <QSettings>
 #include <QAbstractProxyModel>
-#include <QMessageBox>
+#include <QPrinter>
+#include <QTextDocument>
 
 #include "Recipe.h"
 #include "RecipeModel.h"
 #include "RecipeIngredientModel.h"
 #include "RecipeIngredientDelegate.h"
+#include "MainWindow.h"
 
 namespace Ui {
     class RecipeWidget;
@@ -61,6 +63,7 @@ public:
     void dropEvent(QDropEvent *);
 
     void save(QString filepath = QString());
+    void print(QPrinter *printer);
 
 signals:
     void changed();
@@ -75,6 +78,7 @@ protected slots:
     void on_btnRaise_clicked();
     void on_btnLower_clicked();
     void on_btnRemove_clicked();
+    void removeSelectedIngredients(QDialogButtonBox::StandardButton);
 
 protected:
     void setRecipe(Recipe *recipe);

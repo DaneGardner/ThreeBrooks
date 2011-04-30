@@ -34,8 +34,12 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QTextDocument>
+#include <QDialogButtonBox>
+#include <QMessageBox>
 #include "Ingredient/IngredientToolBox.h"
 #include "Recipe/RecipeWidget.h"
+#include "NotificationBar.h"
+#include "PrettyTabWidget.h"
 
 namespace Ui {
     class MainWindow;
@@ -46,8 +50,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    static MainWindow *instance();
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+public slots:
+    void showNotification(const QString text, const QIcon icon = QIcon(), const bool modality = false,
+                          const QDialogButtonBox::StandardButtons standardButtons = QDialogButtonBox::NoButton,
+                          const QObject *reciever = NULL, const char *member = NULL);
 
 protected slots:
     void on_actionNewRecipe_triggered();
@@ -58,14 +69,24 @@ protected slots:
     void on_actionDocumentation_triggered();
     void on_actionAboutThreeBrooks_triggered();
     void on_actionAboutQt4_triggered();
-    void on_actionPrint_triggered();
-    void on_tabWidget_tabCloseRequested(int);
-    void on_tabWidget_currentChanged(int);
-    void recipeChanged(QWidget *sender = NULL);
-    void closeEvent(QCloseEvent *);
-
+    void on_actionPrintRecipe_triggered();
+    void on_actionRecipeRight_triggered();
+    void on_actionRecipeLeft_triggered();
+    void on_actionHideSidebar_triggered(bool checked);
     void on_actionReloadStyleSheet_triggered();
 
+    void tabCloseRequested(int);
+    void currentChanged(int);
+
+    void recipeChanged(QWidget *sender = NULL);
+    void closeEvent(QCloseEvent *);
+    void notificationBarClosing();
+    void modalNotificationBar(bool modality = false);
+
+protected:
+    QBoxLayout *_recipeLayout;
+    PrettyTabWidget *_recipeTabWidget;
+    IngredientToolbox *_ingredientToolbox;
 
 private:
     Ui::MainWindow *ui;

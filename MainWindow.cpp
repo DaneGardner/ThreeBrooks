@@ -27,23 +27,48 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-#include <QDebug>
+MainWindow *_instance;
+MainWindow *MainWindow::instance()
+{
+    return _instance? _instance: _instance = new MainWindow();
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     this->setWindowTitle(QCoreApplication::applicationName());
     on_actionReloadStyleSheet_triggered();
 
-    IngredientToolbox *ingredientToolbox = new IngredientToolbox("ingredients.xml", this);
-    ui->centralWidget->insertWidget(0, ingredientToolbox);
+#ifndef QT_DEBUG
+    ui->menuBar->removeAction(ui->menuDebug->menuAction());
+#endif
+
+    _ingredientToolbox = new IngredientToolbox("ingredients.xml", ui->splitter);
+
+    QWidget *layoutWidget = new QWidget();
+    _recipeLayout = new QVBoxLayout();
+    _recipeLayout->setSpacing(0);
+    _recipeLayout->setMargin(0);
+    layoutWidget->setLayout(_recipeLayout);
+    ui->splitter->addWidget(layoutWidget);
+
+    _recipeTabWidget = new PrettyTabWidget();
+    connect(_recipeTabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(tabCloseRequested(int)));
+    connect(_recipeTabWidget, SIGNAL(currentChanged(int)), this, SLOT(currentChanged(int)));
+    _recipeLayout->addWidget(_recipeTabWidget);
+
+    /* See issue #9 about incompatibity and user confusion with the menu-based hiding of the ingredient sidebar
+       I've disabled the collapsing of the toolbox until this is resolved */
+    ui->splitter->setCollapsible(0, false);     // Allow the toolbox to collapse
+    ui->splitter->setCollapsible(1, false);     // Don't collapse the recipe tab widget
 
     QSettings settings;
     restoreGeometry(settings.value("MainWindow/geometry", saveGeometry()).toByteArray());
     restoreState(settings.value("MainWindow/state", saveState()).toByteArray());
-    ui->centralWidget->restoreState(settings.value("MainWindow/splitterState", ui->centralWidget->saveState()).toByteArray());
+    ui->splitter->restoreState(settings.value("MainWindow/splitterState", ui->splitter->saveState()).toByteArray());
     resize(settings.value("MainWindow/size", size()).toSize());
     move(settings.value("MainWindow/position", pos()).toPoint());
 }
@@ -53,7 +78,7 @@ MainWindow::~MainWindow()
     QSettings settings;
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/state", saveState());
-    settings.setValue("MainWindow/splitterState", ui->centralWidget->saveState());
+    settings.setValue("MainWindow/splitterState", ui->splitter->saveState());
     settings.setValue("MainWindow/size", size());
     settings.setValue("MainWindow/position", pos());
 
@@ -62,10 +87,59 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    while(ui->tabWidget->count())
+    while(_recipeTabWidget->count())
         this->on_actionCloseRecipe_triggered();
 
     QMainWindow::closeEvent(event);
+}
+
+void MainWindow::showNotification(const QString text, const QIcon icon, const bool modality,
+                                  const QDialogButtonBox::StandardButtons standardButtons,
+                                  const QObject *reciever, const char *member)
+{
+    NotificationBar *notificationBar = new NotificationBar(this);
+
+    notificationBar->setText(text);
+    notificationBar->setIcon(icon);
+    notificationBar->setStandardButtons(standardButtons);
+
+    if(modality) {
+        notificationBar->setModality(true);
+        modalNotificationBar();
+    }
+
+    if(reciever && member) {
+        connect(notificationBar, SIGNAL(buttonClicked(QDialogButtonBox::StandardButton)), reciever, member);
+    }
+    connect(notificationBar, SIGNAL(closing()), this, SLOT(notificationBarClosing()));
+
+    _recipeLayout->insertWidget(0, notificationBar);
+    notificationBar->show();
+}
+
+void MainWindow::notificationBarClosing()
+{
+    NotificationBar *notificationBar = qobject_cast<NotificationBar *>(QObject::sender());
+    _recipeLayout->removeWidget(notificationBar);
+    if(notificationBar->modality()) {
+        modalNotificationBar(true);
+    }
+}
+
+void MainWindow::modalNotificationBar(bool closing)
+{
+    static int modalCount = 0;
+
+    if(!closing) {
+        modalCount++;
+        _recipeTabWidget->setEnabled(false);
+        _ingredientToolbox->setEnabled(false);
+        ui->menuBar->setEnabled(false);
+    } else if(--modalCount <= 0){
+        _recipeTabWidget->setEnabled(true);
+        _ingredientToolbox->setEnabled(true);
+        ui->menuBar->setEnabled(true);
+    }
 }
 
 void MainWindow::on_actionReloadStyleSheet_triggered()
@@ -77,12 +151,11 @@ void MainWindow::on_actionReloadStyleSheet_triggered()
     }
 }
 
-
 void MainWindow::on_actionNewRecipe_triggered()
 {
     RecipeWidget *recipeWidget = new RecipeWidget(this);
-    ui->tabWidget->addTab(recipeWidget, QString());
-    ui->tabWidget->setCurrentWidget(recipeWidget);
+    _recipeTabWidget->addTab(recipeWidget, QString());
+    _recipeTabWidget->setCurrentWidget(recipeWidget);
     connect(recipeWidget, SIGNAL(changed()), this, SLOT(recipeChanged()));
     recipeChanged(recipeWidget);
 }
@@ -96,47 +169,37 @@ void MainWindow::on_actionOpenRecipe_triggered()
         if(!filepath.isEmpty()) {
 
             // Make sure it's not already open
-            for(int i=0; i < ui->tabWidget->count(); i++) {
-                RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(ui->tabWidget->widget(i));
+            for(int i=0; i < _recipeTabWidget->count(); i++) {
+                RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->widget(i));
                 if(recipeWidget && recipeWidget->windowFilePath() == filepath) {
-                    ui->tabWidget->setCurrentIndex(i);
+                    _recipeTabWidget->setCurrentIndex(i);
                     return;
                 }
             }
 
             RecipeWidget *recipeWidget = new RecipeWidget(filepath, this);
-            ui->tabWidget->addTab(recipeWidget, QString());
-            ui->tabWidget->setCurrentWidget(recipeWidget);
+            _recipeTabWidget->addTab(recipeWidget, QString());
+            _recipeTabWidget->setCurrentWidget(recipeWidget);
             connect(recipeWidget, SIGNAL(changed()), this, SLOT(recipeChanged()));
             recipeChanged(recipeWidget);
         }
     } catch(QString err) {
-        QMessageBox msg(QMessageBox::Critical,
-                        tr("Error!"),
-                        tr("Could not open recipe: %1").arg(err),
-                        QMessageBox::Ok,
-                        this);
-        msg.exec();
+        showNotification(tr("Could not open recipe: %1").arg(err));
     } catch(...) {
-        QMessageBox msg(QMessageBox::Critical,
-                        tr("Error!"),
-                        tr("Could not open recipe."),
-                        QMessageBox::Ok,
-                        this);
-        msg.exec();
+        showNotification(tr("Could not open recipe"));
     }
 }
 
 void MainWindow::on_actionCloseRecipe_triggered()
 {
-    on_tabWidget_tabCloseRequested(ui->tabWidget->currentIndex());
+    tabCloseRequested(_recipeTabWidget->currentIndex());
 }
 
 bool MainWindow::on_actionSaveRecipe_triggered()
 {
     try {
-        if(ui->tabWidget->currentWidget()) {
-            RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(ui->tabWidget->currentWidget());
+        if(_recipeTabWidget->currentWidget()) {
+            RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
             if(recipeWidget) {
                 if(!recipeWidget->windowFilePath().isEmpty()) {
                     recipeWidget->save();
@@ -146,20 +209,10 @@ bool MainWindow::on_actionSaveRecipe_triggered()
             }
         }
     } catch(QString err) {
-        QMessageBox msg(QMessageBox::Critical,
-                        tr("Error!"),
-                        tr("Could not save recipe: %1").arg(err),
-                        QMessageBox::Ok,
-                        this);
-        msg.exec();
+        showNotification(tr("Could not save recipe: %1").arg(err));
         return false;
     } catch(...) {
-        QMessageBox msg(QMessageBox::Critical,
-                        tr("Error!"),
-                        tr("Could not save recipe."),
-                        QMessageBox::Ok,
-                        this);
-        msg.exec();
+        showNotification(tr("Could not save recipe."));
         return false;
     }
 
@@ -169,8 +222,8 @@ bool MainWindow::on_actionSaveRecipe_triggered()
 bool MainWindow::on_actionSaveAsRecipe_triggered()
 {
     try {
-        if(ui->tabWidget->currentWidget()) {
-            RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(ui->tabWidget->currentWidget());
+        if(_recipeTabWidget->currentWidget()) {
+            RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
             if(recipeWidget) {
                 QString filepath =
                         QFileDialog::getSaveFileName(this, tr("Save Recipe"), recipeWidget->windowFilePath(), tr("Recipe files(*.recipe)"));
@@ -180,20 +233,10 @@ bool MainWindow::on_actionSaveAsRecipe_triggered()
             }
         }
     } catch(QString err) {
-        QMessageBox msg(QMessageBox::Critical,
-                        tr("Error!"),
-                        tr("Could not save recipe: %1").arg(err),
-                        QMessageBox::Ok,
-                        this);
-        msg.exec();
+        showNotification(tr("Could not save recipe: %1").arg(err));
         return false;
     } catch(...) {
-        QMessageBox msg(QMessageBox::Critical,
-                        tr("Error!"),
-                        tr("Could not save recipe."),
-                        QMessageBox::Ok,
-                        this);
-        msg.exec();
+        showNotification(tr("Could not save recipe."));
         return false;
     }
     return true;
@@ -214,88 +257,53 @@ void MainWindow::on_actionAboutQt4_triggered()
     QApplication::aboutQt();
 }
 
-void MainWindow::on_actionPrint_triggered()
+void MainWindow::on_actionPrintRecipe_triggered()
 {
-
     QPrinter printer;
     QPrintDialog *dialog = new QPrintDialog(&printer, this);
     dialog->setWindowTitle(tr("Print Recipe"));
     if(dialog->exec() != QDialog::Accepted)
         return;
 
-    Recipe *recipe = qobject_cast<RecipeWidget *>(ui->tabWidget->currentWidget())->recipe();
-
-    QTextDocument document(this);
-    QDomDocument xhtml("PrintRecipe");
-    xhtml.appendChild(xhtml.createElement("html"));
-    xhtml.firstChild().appendChild(xhtml.createElement("head"));
-
-    QDomElement bodyElement = xhtml.createElement("body");
-    xhtml.firstChild().appendChild(bodyElement);
-
-    QDomElement element = xhtml.createElement("h1");
-    element.appendChild(xhtml.createTextNode(recipe->name()));
-    bodyElement.appendChild(element);
-
-    element = xhtml.createElement("h3");
-    element.appendChild(xhtml.createTextNode("Properties"));
-    bodyElement.appendChild(element);
-
-    element = xhtml.createElement("p");
-    element.appendChild(xhtml.createTextNode(QString("Style: %1").arg(recipe->style())));
-    element.appendChild(xhtml.createElement("br"));
-    element.appendChild(xhtml.createTextNode(QString("Volume: %1").arg(recipe->volume().toString())));
-    element.appendChild(xhtml.createElement("br"));
-    element.appendChild(xhtml.createTextNode(QString("Boil time: %1 minutes").arg(recipe->boilTime())));
-    element.appendChild(xhtml.createElement("br"));
-    element.appendChild(xhtml.createTextNode(QString("Efficiency: %1%").arg(recipe->efficiency() * 100)));
-    element.appendChild(xhtml.createElement("br"));
-    bodyElement.appendChild(element);
-
-    element = xhtml.createElement("h3");
-    element.appendChild(xhtml.createTextNode("Calculated"));
-    bodyElement.appendChild(element);
-
-    element = xhtml.createElement("p");
-    element.appendChild(xhtml.createTextNode(QString("Original gravity: %1").arg(recipe->originalGravity(), 0, 'f', 3)));
-    element.appendChild(xhtml.createElement("br"));
-    element.appendChild(xhtml.createTextNode(QString("Final Gravity: %1").arg(recipe->finalGravity(), 0, 'f', 3)));
-    element.appendChild(xhtml.createElement("br"));
-    element.appendChild(xhtml.createTextNode(QString("Bitterness: %1 IBU").arg(recipe->bitterness(), 0, 'f', 0)));
-    element.appendChild(xhtml.createElement("br"));
-    element.appendChild(xhtml.createTextNode(QString("Color: %1 SRM").arg(recipe->color(), 0, 'f', 1)));
-    element.appendChild(xhtml.createElement("br"));
-    element.appendChild(xhtml.createTextNode(QString("ABV: %1%").arg(recipe->alcoholByVolume() * 100, 0, 'f', 1)));
-    element.appendChild(xhtml.createElement("br"));
-    bodyElement.appendChild(element);
-
-    element = xhtml.createElement("h3");
-    element.appendChild(xhtml.createTextNode("Ingredients"));
-    bodyElement.appendChild(element);
-
-    element = xhtml.createElement("p");
-    foreach(RecipeIngredient *recipeIngredient, recipe->ingredients()) {
-
-        QString ingredientText = QString("%1 - %2").arg(recipeIngredient->name()).arg(recipeIngredient->quantity().toString());
-        if(recipeIngredient->minutes() > 0)
-            ingredientText += QString(" @ %1 minutes").arg(recipeIngredient->minutes(), 0, 'f', 0);
-
-        element.appendChild(xhtml.createTextNode(ingredientText));
-        element.appendChild(xhtml.createElement("br"));
-    }
-    bodyElement.appendChild(element);
-
-    document.setHtml(xhtml.toString());
-    document.print(&printer);
+    RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
+    recipeWidget->print(&printer);
 }
 
-
-void MainWindow::on_tabWidget_tabCloseRequested(int index)
+void MainWindow::on_actionRecipeRight_triggered()
 {
-    QWidget *oldWidget = ui->tabWidget->currentWidget();
-    ui->tabWidget->setCurrentIndex(index);
+    int index = _recipeTabWidget->currentIndex();
+    index++;
 
-    QWidget *recipeWidget = ui->tabWidget->widget(index);
+    if(index == _recipeTabWidget->count())
+        index = 0;
+
+    _recipeTabWidget->setCurrentIndex(index);
+}
+
+void MainWindow::on_actionRecipeLeft_triggered()
+{
+    int index = _recipeTabWidget->currentIndex();
+    index--;
+
+    if(index < 0)
+        index = _recipeTabWidget->count() -1;
+
+    _recipeTabWidget->setCurrentIndex(index);
+}
+
+void MainWindow::on_actionHideSidebar_triggered(bool checked)
+{
+    //TODO: This isn't really compatible with the collapsing splitter, need to fix this
+
+    ui->splitter->widget(0)->setVisible(checked);
+}
+
+void MainWindow::tabCloseRequested(int index)
+{
+    QWidget *oldWidget = _recipeTabWidget->currentWidget();
+    _recipeTabWidget->setCurrentIndex(index);
+
+    QWidget *recipeWidget = _recipeTabWidget->widget(index);
     if(recipeWidget->isWindowModified()) {
         QMessageBox msg(QMessageBox::Warning, tr("Save before closing?"),
                         tr("Would you like to save changes to the recipe before closing it?"),
@@ -308,34 +316,35 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
         }
     }
 
-    ui->tabWidget->removeTab(index);
+    _recipeTabWidget->removeTab(index);
     if(oldWidget != recipeWidget) {
-        ui->tabWidget->setCurrentWidget(oldWidget);
+        _recipeTabWidget->setCurrentWidget(oldWidget);
     }
 
     recipeWidget->close();
     delete recipeWidget;
 }
 
-void MainWindow::on_tabWidget_currentChanged(int index)
+void MainWindow::currentChanged(int index)
 {
     Q_UNUSED(index)
 
-    if(ui->tabWidget->count() > 0) {
+    if(_recipeTabWidget->count() > 0) {
         ui->actionSaveRecipe->setEnabled(true);
         ui->actionSaveAsRecipe->setEnabled(true);
         ui->actionCloseRecipe->setEnabled(true);
+        ui->actionPrintRecipe->setEnabled(true);
 
-        QString title = ui->tabWidget->currentWidget()->windowTitle().replace(" [*]", "*");
+        QString title = _recipeTabWidget->currentWidget()->windowTitle().replace(" [*]", "*");
         this->setWindowTitle(QCoreApplication::applicationName().append(" - %1").arg(title));
 
     } else {
         ui->actionSaveRecipe->setEnabled(false);
         ui->actionSaveAsRecipe->setEnabled(false);
         ui->actionCloseRecipe->setEnabled(false);
+        ui->actionPrintRecipe->setEnabled(false);
         this->setWindowTitle(QCoreApplication::applicationName());
     }
-
 }
 
 void MainWindow::recipeChanged(QWidget *sender)
@@ -345,12 +354,11 @@ void MainWindow::recipeChanged(QWidget *sender)
     }
 
     if(sender) {
-        int index = ui->tabWidget->indexOf(sender);
+        int index = _recipeTabWidget->indexOf(sender);
         QString title = sender->windowTitle().replace(" [*]", "*");
-        ui->tabWidget->setTabText(index, title);
+        _recipeTabWidget->setTabText(index, title);
         this->setWindowTitle(QCoreApplication::applicationName().append(" - %1").arg(title));
-        ui->tabWidget->setTabToolTip(index, sender->windowFilePath());
+        _recipeTabWidget->setTabToolTip(index, sender->windowFilePath());
     }
 }
-
 

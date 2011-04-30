@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("threebrooks.com");
     QCoreApplication::setApplicationName("Three Brooks");
 
-    MainWindow w;
-    w.show();
+
+    MainWindow *w = MainWindow::instance();
+    w->show();
     return a.exec();
 }
