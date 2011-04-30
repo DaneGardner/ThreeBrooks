@@ -12,9 +12,9 @@ NotificationBar::NotificationBar(QWidget *parent) :
     palette.setColor(QPalette::Window, QColor(255,255,225));
     setPalette(palette);
 
-    this->setVisible(false);
-
     setModality(false);
+    setVisible(false);
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 NotificationBar::~NotificationBar()
@@ -79,3 +79,50 @@ void NotificationBar::on_btnClose_clicked()
     emit closing();
     this->close();
 }
+
+void NotificationBar::keyReleaseEvent(QKeyEvent *event)
+{
+    /* Why I can't just send the freakin' key event to the QDialogButtonBox is beyond me.  I Googled the crap out of the
+       subject and it seems that there really isn't a good solution to the problem.  The only thing I could do was the
+       following hack.  o_O
+     */
+
+    if(event->count() != 1) {
+        QFrame::keyReleaseEvent(event);
+        return;
+    }
+
+    QDialogButtonBox::ButtonRole keyRole;
+    switch(event->key()) {
+    case Qt::Key_Escape:
+        keyRole = QDialogButtonBox::RejectRole;
+        break;
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
+        keyRole = QDialogButtonBox::AcceptRole;
+        break;
+    default:
+        QFrame::keyReleaseEvent(event);
+        return;
+    }
+
+    foreach(QAbstractButton *button, ui->btnBox->buttons()) {
+        QDialogButtonBox::ButtonRole buttonRole = ui->btnBox->buttonRole(button);
+        if(keyRole == QDialogButtonBox::AcceptRole) {
+            if(buttonRole == QDialogButtonBox::AcceptRole || buttonRole == QDialogButtonBox::YesRole ||
+                    buttonRole == QDialogButtonBox::ApplyRole) {
+                button->click();
+                return;
+            }
+        } else if(keyRole == QDialogButtonBox::RejectRole) {
+            if(buttonRole == QDialogButtonBox::RejectRole || buttonRole == QDialogButtonBox::NoRole) {
+                button->click();
+                return;
+            }
+        }
+    }
+
+    on_btnClose_clicked();
+}
+
+

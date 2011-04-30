@@ -1,13 +1,13 @@
 #include "PrettyTabWidget.h"
-#include <QDebug>
 
 PrettyTabWidget::PrettyTabWidget(QWidget *parent) :
     QTabWidget(parent)
 {
-    this->setDocumentMode(true);
-    this->setTabsClosable(true);
-    this->setMovable(true);
-    this->setElideMode(Qt::ElideRight);
+    setDocumentMode(true);
+    setTabsClosable(true);
+    setMovable(true);
+    setElideMode(Qt::ElideRight);
+
 }
 
 void PrettyTabWidget::tabInserted(int index)
@@ -31,3 +31,4 @@ void PrettyTabWidget::tabRemoved(int index)
         this->tabBar()->show();
     }
 }
+

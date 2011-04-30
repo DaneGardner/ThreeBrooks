@@ -10,7 +10,8 @@ class PrettyTabWidget : public QTabWidget
 public:
     explicit PrettyTabWidget(QWidget *parent = 0);
 
-protected :
+
+protected:
     void tabInserted(int index);
     void tabRemoved(int index);
 

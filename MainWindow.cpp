@@ -115,6 +115,7 @@ void MainWindow::showNotification(const QString text, const QIcon icon, const bo
 
     _recipeLayout->insertWidget(0, notificationBar);
     notificationBar->show();
+    notificationBar->setFocus();
 }
 
 void MainWindow::notificationBarClosing()

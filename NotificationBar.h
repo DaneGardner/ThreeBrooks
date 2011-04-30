@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QFrame>
 #include <QDialogButtonBox>
+#include <QPushButton>
+#include <QKeyEvent>
 
 namespace Ui {
     class NotificationBar;
@@ -39,6 +41,7 @@ protected slots:
 
 protected:
     bool _modality;
+    void keyReleaseEvent(QKeyEvent *event);
 
 private:
     Ui::NotificationBar *ui;
