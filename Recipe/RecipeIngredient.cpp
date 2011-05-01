@@ -144,3 +144,17 @@ void RecipeIngredient::setMinutes(double minutes)
     _minutes = minutes;
     emit dataChanged();
 }
+
+/*! \fn RecipeIngredient::setQuantityAndMinutes()
+    \brief Just a helper function that allows both quantity and minutes to be set without the model being updated between
+           setting either.
+    I was having problems with the RecipeIngredientDelegate setting one and being updated before setting the next.  The value
+    for minutes would keep being reset as the model was updated!  This allows both to be set at the same time.
+ */
+void RecipeIngredient::setQuantityAndMinutes(Quantity quantity, double minutes)
+{
+    _quantity = quantity;
+    _minutes = minutes;
+    emit dataChanged();
+}
+

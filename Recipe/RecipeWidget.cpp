@@ -35,7 +35,7 @@ RecipeWidget::RecipeWidget(QWidget *parent) :
 
     setRecipe(new Recipe(this));
 
-    QSettings settings;
+    QSettings settings("settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("RecipeWidget/geometry", saveGeometry()).toByteArray());
     ui->trvIngredients->header()->restoreState(
                 settings.value("RecipeWidget/ingredientsState", ui->trvIngredients->header()->saveState()).toByteArray() );
@@ -53,7 +53,7 @@ RecipeWidget::RecipeWidget(QString filepath, QWidget *parent) :
 
     load(filepath);
 
-    QSettings settings;
+    QSettings settings("settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("RecipeWidget/geometry", saveGeometry()).toByteArray());
     ui->trvIngredients->header()->restoreState(
                 settings.value("RecipeWidget/ingredientsState", ui->trvIngredients->header()->saveState()).toByteArray() );
@@ -65,7 +65,7 @@ RecipeWidget::RecipeWidget(QString filepath, QWidget *parent) :
 
 RecipeWidget::~RecipeWidget()
 {
-    QSettings settings;
+    QSettings settings("settings.ini", QSettings::IniFormat);
     settings.setValue("RecipeWidget/geometry", saveGeometry());
     settings.setValue("RecipeWidget/ingredientsState",  ui->trvIngredients->header()->saveState());
     settings.setValue("RecipeWidget/calculatedHorizontalState",  ui->tblCalculated->horizontalHeader()->saveState());
@@ -85,7 +85,7 @@ void RecipeWidget::setRecipe(Recipe *recipe)
     RecipeIngredientModel *ingredientModel = new RecipeIngredientModel(this);
     ingredientModel->setRecipe(recipe);
     ui->trvIngredients->setModel(ingredientModel);
-    ui->trvIngredients->setItemDelegateForColumn(2, new RecipeIngredientDelegate(this));
+    ui->trvIngredients->setItemDelegateForColumn(1, new RecipeIngredientDelegate(this));
 
     connect(_recipe, SIGNAL(dataChanged()), this, SLOT(recipeChanged()));
     refreshText();

@@ -94,7 +94,7 @@
         <x>0</x>
         <y>0</y>
         <width>280</width>
-        <height>214</height>
+        <height>202</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -103,6 +103,10 @@
       <property name="selectionMode">
        <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
+      <attribute name="icon">
+       <iconset resource="../Resources.qrc">
+        <normaloff>:/ThreeBrooks/Ingredients/grain.svg</normaloff>:/ThreeBrooks/Ingredients/grain.svg</iconset>
+      </attribute>
       <attribute name="label">
        <string>Grains</string>
       </attribute>
@@ -113,7 +117,7 @@
         <x>0</x>
         <y>0</y>
         <width>280</width>
-        <height>214</height>
+        <height>205</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -122,6 +126,10 @@
       <property name="selectionMode">
        <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
+      <attribute name="icon">
+       <iconset resource="../Resources.qrc">
+        <normaloff>:/ThreeBrooks/Ingredients/hops.svg</normaloff>:/ThreeBrooks/Ingredients/hops.svg</iconset>
+      </attribute>
       <attribute name="label">
        <string>Hops</string>
       </attribute>
@@ -132,7 +140,7 @@
         <x>0</x>
         <y>0</y>
         <width>280</width>
-        <height>214</height>
+        <height>202</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -141,6 +149,10 @@
       <property name="selectionMode">
        <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
+      <attribute name="icon">
+       <iconset resource="../Resources.qrc">
+        <normaloff>:/ThreeBrooks/Ingredients/yeast.svg</normaloff>:/ThreeBrooks/Ingredients/yeast.svg</iconset>
+      </attribute>
       <attribute name="label">
        <string>Yeast</string>
       </attribute>
@@ -151,7 +163,7 @@
         <x>0</x>
         <y>0</y>
         <width>280</width>
-        <height>214</height>
+        <height>205</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -160,6 +172,10 @@
       <property name="selectionMode">
        <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
+      <attribute name="icon">
+       <iconset resource="../Resources.qrc">
+        <normaloff>:/ThreeBrooks/Ingredients/other.svg</normaloff>:/ThreeBrooks/Ingredients/other.svg</iconset>
+      </attribute>
       <attribute name="label">
        <string>Other</string>
       </attribute>

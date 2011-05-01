@@ -55,6 +55,8 @@ public:
     virtual double minutes() const;
     virtual void setMinutes(double minutes);
 
+    virtual void setQuantityAndMinutes(Quantity quantity, double minutes);
+
     QDomElement toXml(QDomDocument document);
     void fromXml(QDomElement element);
 

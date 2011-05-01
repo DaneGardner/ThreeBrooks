@@ -125,7 +125,9 @@ QHeaderView::section:selected, QHeaderView::section:checked { background-color: 
 #tblCalculated { margin: 0px; padding: 0px; border: 0px; background-color: rgba(0, 0, 0, 0%); }
 #tblCalculated::item { background-color: #ffffff; }
 
-QTreeView, QTableView, QListView {
+QTreeView,
+QTableView,
+QListView {
     margin: 0px;
     border: 1px solid #666666;
     border-radius: 5px;
@@ -200,10 +202,6 @@ QToolBox QFrame {
     border-bottom-right-radius: 5px;
 }
 
-#IngredientToolbox QScrollBar {
-  border: none;
-}
-
 #IngredientToolbox QListView {
   border: none;
   border-radius: 1px;
@@ -230,7 +228,8 @@ QFrame#NotificationBar {
     padding-left: 4px;
     padding-right: 4px;
 }
-#NotificationBar QToolButton, #NotificationBar QLabel {
+#NotificationBar QToolButton,
+#NotificationBar QLabel {
     padding: 0px;
 }
 /* END NotificationBar */
@@ -252,8 +251,8 @@ QScrollBar::handle:vertical {
                                     stop: 0.20 #888888,
                                     stop: 0.23 #656565,
                                     stop: 0.85 #393939);
-    margin-top: -5;
-    margin-bottom: -5;
+    margin-top: -3;
+    margin-bottom: -3;
     min-height: 18px;
     width: 8px;
     border: 1px solid #313131;
@@ -276,13 +275,15 @@ QScrollBar::sub-line:vertical {
     subcontrol-position: top;
     subcontrol-origin: margin;
 }
-QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+QScrollBar::up-arrow:vertical,
+QScrollBar::down-arrow:vertical {
     border: none;
     width: 0px;
     height: 0px;
 }
 
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
     background: none;
 }
 
@@ -302,8 +303,8 @@ QScrollBar::handle:horizontal {
                                      stop: 0.20 #888888,
                                      stop: 0.23 #656565,
                                      stop: 0.85 #393939);
-   margin-left: -5;
-   margin-right: -5;
+   margin-left: -3;
+   margin-right: -3;
    min-width: 18px;
    height: 8px;
    border: 1px solid #313131;
@@ -327,13 +328,21 @@ QScrollBar::sub-line:horizontal {
     subcontrol-origin: margin;
 }
 
-QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
+QScrollBar::left-arrow:horizontal,
+QScrollBar::right-arrow:horizontal {
     border: 0px solid;
     width: 0px;
     height: 0px;
 }
 
-QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal { background: none; }
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal
+{ background: none; }
+
+/* I don't quite understand why this has to be done, but it won't 
+   render properly without specifying the widget name. */
+#MainWindow QScrollBar { border: none; }
+
 /* END QScrollBar */
 
 
@@ -350,6 +359,5 @@ QTabBar::tab {
 }
 QTabBar::tab:hover { background-color: #666666; }
 QTabBar::tab:selected { background-color: #333333; }
+
 /* END QTabBar */
-
-

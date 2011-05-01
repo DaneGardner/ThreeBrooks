@@ -69,4 +69,5 @@ RESOURCES += Resources.qrc
 
 OTHER_FILES += \
     stylesheet.css \
-    ingredients.xml
+    ingredients.xml \
+    settings.ini

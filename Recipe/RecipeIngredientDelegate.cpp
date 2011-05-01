@@ -26,6 +26,7 @@
 
 #include "RecipeIngredientDelegate.h"
 
+#include <QDebug>
 
 RecipeIngredientDelegate::RecipeIngredientDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
@@ -94,11 +95,11 @@ QWidget *RecipeIngredientDelegate::createEditor(QWidget *parent,
 
 void RecipeIngredientDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    QLineEdit *txtQuantity = editor->findChild<QLineEdit *>("txtQuantity");
-    QComboBox *cmbQuantityType = editor->findChild<QComboBox *>("cmbQuantityType");
-    QLineEdit *txtMinutes = editor->findChild<QLineEdit *>("txtMinutes");
+    QLineEdit *txtQuantity      = editor->findChild<QLineEdit *>("txtQuantity");
+    QComboBox *cmbQuantityType  = editor->findChild<QComboBox *>("cmbQuantityType");
+    QLineEdit *txtMinutes       = editor->findChild<QLineEdit *>("txtMinutes");
 
-    RecipeIngredient *ingredient = static_cast<RecipeIngredient *>(index.internalPointer());
+    RecipeIngredient *ingredient = index.model()->data(index, Qt::UserRole).value<RecipeIngredient *>();
     txtQuantity->setText(QString().setNum(ingredient->quantity().value(), 'f', 2));
     int type = cmbQuantityType->findText(ingredient->quantity().typeName());
     cmbQuantityType->setCurrentIndex(type);
@@ -109,16 +110,13 @@ void RecipeIngredientDelegate::setModelData(QWidget *editor,
                                             QAbstractItemModel *model,
                                             const QModelIndex &index) const
 {
-    QLineEdit *txtQuantity = editor->findChild<QLineEdit *>("txtQuantity");
-    QComboBox *cmbQuantityType = editor->findChild<QComboBox *>("cmbQuantityType");
-    QLineEdit *txtMinutes = editor->findChild<QLineEdit *>("txtMinutes");
+    QLineEdit *txtQuantity      = editor->findChild<QLineEdit *>("txtQuantity");
+    QComboBox *cmbQuantityType  = editor->findChild<QComboBox *>("cmbQuantityType");
+    QLineEdit *txtMinutes       = editor->findChild<QLineEdit *>("txtMinutes");
 
-    RecipeIngredient *ingredient = static_cast<RecipeIngredient *>(index.internalPointer());
+    RecipeIngredient *ingredient = index.model()->data(index, Qt::UserRole).value<RecipeIngredient *>();
     Quantity quantity(txtQuantity->text().toDouble(), Quantity::type(cmbQuantityType->currentText()), ingredient);
-    ingredient->setQuantity(quantity);
-    ingredient->setMinutes(txtMinutes->text().toDouble());
-
-    model->setData(index, QVariant());
+    ingredient->setQuantityAndMinutes(quantity, txtMinutes->text().toDouble());
 }
 
 void RecipeIngredientDelegate::updateEditorGeometry(QWidget *editor,

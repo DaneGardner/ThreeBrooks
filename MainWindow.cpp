@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter->setCollapsible(0, false);     // Allow the toolbox to collapse
     ui->splitter->setCollapsible(1, false);     // Don't collapse the recipe tab widget
 
-    QSettings settings;
+    QSettings settings("settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("MainWindow/geometry", saveGeometry()).toByteArray());
     restoreState(settings.value("MainWindow/state", saveState()).toByteArray());
     ui->splitter->restoreState(settings.value("MainWindow/splitterState", ui->splitter->saveState()).toByteArray());
@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    QSettings settings;
+    QSettings settings("settings.ini", QSettings::IniFormat);
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/state", saveState());
     settings.setValue("MainWindow/splitterState", ui->splitter->saveState());
@@ -364,8 +364,16 @@ void MainWindow::recipeChanged(QWidget *sender)
         int index = _recipeTabWidget->indexOf(sender);
         QString title = sender->windowTitle().replace(" [*]", "*");
         _recipeTabWidget->setTabText(index, title);
-        this->setWindowTitle(QCoreApplication::applicationName().append(" - %1").arg(title));
         _recipeTabWidget->setTabToolTip(index, sender->windowFilePath());
+
+        //FIXME: Need a better "recipe" icon for the tabs
+        //_recipeTabWidget->setTabIcon(index, sender->windowIcon());
+
+        if(_recipeTabWidget->currentIndex() == index) {
+            this->setWindowTitle(QCoreApplication::applicationName().append(" - %1").arg(title));
+        }
     }
 }
+
+
 

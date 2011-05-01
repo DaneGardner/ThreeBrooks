@@ -76,34 +76,34 @@ QVariant RecipeModel::data(const QModelIndex &index, int role) const
         if(index.column() == 0) {
             switch(index.row()) {
             case 0:
-                return QVariant(QString().setNum(recipe()->originalGravity(), 'f', 3));
+                return QVariant(QString("%1").arg(recipe()->originalGravity(), 1, 'f', 3));
             case 1:
-                return QVariant(QString().setNum(recipe()->finalGravity(), 'f', 3));
+                return QVariant(QString("%1").arg(recipe()->finalGravity(), 1, 'f', 3));
             case 2:
-                return QVariant(QString().setNum(recipe()->bitterness(), 'f', 0));
+                return QVariant(QString("%1").arg(recipe()->bitterness(), 1, 'f', 0));
             case 3:
-                return QVariant(QString().setNum(recipe()->color(), 'f', 1));
+                return QVariant(QString("%1").arg(recipe()->color(), 1, 'f', 1));
             case 4:
-                return QVariant(QString().setNum(recipe()->alcoholByVolume() * 100, 'f', 1));
+                return QVariant(QString("%1").arg(recipe()->alcoholByVolume() * 100, 1, 'f', 1));
             }
         } else {
             //TODO: Style high and low
             switch(index.row()) {
             case 0:
-                if(index.column() == 1) return QVariant(QString().setNum(1.000, 'f', 3));
-                if(index.column() == 2) return QVariant(QString().setNum(1.100, 'f', 3));
+                if(index.column() == 1) return QVariant(QString("%1").arg(1.000, 1, 'f', 3));
+                if(index.column() == 2) return QVariant(QString("%1").arg(1.100, 1, 'f', 3));
             case 1:
-                if(index.column() == 1) return QVariant(QString().setNum(1.000, 'f', 3));
-                if(index.column() == 2) return QVariant(QString().setNum(1.100, 'f', 3));
+                if(index.column() == 1) return QVariant(QString("%1").arg(1.000, 1, 'f', 3));
+                if(index.column() == 2) return QVariant(QString("%1").arg(1.100, 1, 'f', 3));
             case 2:
-                if(index.column() == 1) return QVariant(QString().setNum(0.0, 'f', 0));
-                if(index.column() == 2) return QVariant(QString().setNum(200.0, 'f', 0));
+                if(index.column() == 1) return QVariant(QString("%1").arg(0.0, 1, 'f', 0));
+                if(index.column() == 2) return QVariant(QString("%1").arg(200.0, 1, 'f', 0));
             case 3:
-                if(index.column() == 1) return QVariant(QString().setNum(0.1, 'f', 1));
-                if(index.column() == 2) return QVariant(QString().setNum(100.0, 'f', 1));
+                if(index.column() == 1) return QVariant(QString("%1").arg(0.1, 1, 'f', 1));
+                if(index.column() == 2) return QVariant(QString("%1").arg(100.0, 1, 'f', 1));
             case 4:
-                if(index.column() == 1) return QVariant(QString().setNum(0.0, 'f', 1));
-                if(index.column() == 2) return QVariant(QString().setNum(15.0, 'f', 1));
+                if(index.column() == 1) return QVariant(QString("%1").arg(0.0, 1, 'f', 1));
+                if(index.column() == 2) return QVariant(QString("%1").arg(15.0, 1, 'f', 1));
             }
         }
     }
@@ -441,7 +441,7 @@ QVariant RecipeModel::headerData(int section, Qt::Orientation orientation, int r
         case 3:
             return QVariant(tr("Color (SRM)"));
         case 4:
-            return QVariant(tr("Alcohol by Volume"));
+            return QVariant(tr("Alcohol by Volume (%)"));
         }
     }
 

@@ -27,6 +27,8 @@
 #include "IngredientEditDialog.h"
 #include "ui_IngredientEditDialog.h"
 
+#include "MainWindow.h"
+
 IngredientEditDialog::IngredientEditDialog(Ingredient *ingredient, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::IngredientEditDialog)
@@ -45,18 +47,22 @@ IngredientEditDialog::IngredientEditDialog(Ingredient *ingredient, QWidget *pare
     if(!(_ingredient = ingredient)) {
         ui->cmbType->setEnabled(true);
         ui->cmbType->setCurrentIndex(3);
+        ui->txtId->setVisible(false);
+        ui->lblId->setVisible(false);
     } else {
         initialize();
     }
 
-    QSettings settings;
+    QSettings settings("settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("IngredientEditDialog/geometry", saveGeometry()).toByteArray());
+    move(MainWindow::instance()->pos() + settings.value("IngredientEditDialog/position", QPoint(50,50)).toPoint());
 }
 
 IngredientEditDialog::~IngredientEditDialog()
 {
-    QSettings settings;
+    QSettings settings("settings.ini", QSettings::IniFormat);
     settings.setValue("IngredientEditDialog/geometry", saveGeometry());
+    settings.setValue("IngredientEditDialog/position", pos() - MainWindow::instance()->pos());
 
     delete ui;
 }

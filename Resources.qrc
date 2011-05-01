@@ -10,6 +10,7 @@
         <file alias="notificationClose.svg">icons/window-close.svg</file>
         <file alias="scrollbar-borderimage-horizontal.png">icons/scrollbar-borderimage-horizontal.png</file>
         <file alias="scrollbar-borderimage-vertical.png">icons/scrollbar-borderimage-vertical.png</file>
+        <file alias="app.svg">icons/hop-cone-3.svg</file>
     </qresource>
     <qresource prefix="/ThreeBrooks/Recipe">
         <file alias="remove.svg">icons/edit-delete-2.svg</file>
@@ -23,9 +24,14 @@
         <file alias="print.svg">icons/document-print-4.svg</file>
         <file alias="left.svg">icons/arrow-left-3.svg</file>
         <file alias="right.svg">icons/arrow-right-3.svg</file>
+        <file alias="recipe.svg">icons/document-4.svg</file>
     </qresource>
     <qresource prefix="/ThreeBrooks/Ingredients">
         <file alias="remove.svg">icons/edit-delete-2.svg</file>
         <file alias="create.svg">icons/document-new-6.svg</file>
+        <file alias="grain.svg">icons/grain.svg</file>
+        <file alias="hops.svg">icons/hop-cone.svg</file>
+        <file alias="other.svg">icons/barrel.svg</file>
+        <file alias="yeast.svg">icons/flask.svg</file>
     </qresource>
 </RCC>

@@ -67,7 +67,7 @@ int RecipeIngredientModel::rowCount(const QModelIndex &parent) const
 int RecipeIngredientModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    return 3;
+    return 2;
 }
 
 QVariant RecipeIngredientModel::data(const QModelIndex &index, int role) const
@@ -85,10 +85,8 @@ QVariant RecipeIngredientModel::data(const QModelIndex &index, int role) const
         if(ingredient) {
             switch(index.column()) {
             case 0:
-                return QVariant(ingredient->type());
-            case 1:
                 return QVariant(ingredient->name());
-            case 2:
+            case 1:
                 if(ingredient->minutes() > 0)
                     return QVariant(ingredient->quantity().toString().append(QString(" @ %1 mins").arg(ingredient->minutes())));
                 return QVariant(ingredient->quantity().toString());
@@ -101,16 +99,14 @@ QVariant RecipeIngredientModel::data(const QModelIndex &index, int role) const
     if(role == Qt::DecorationRole) {
         if(index.column() == 0) {
             QString type = ingredient->type().toLower();
-            if(type == "sugar") {
-                return QVariant(QIcon(""));
-            } else if(type == "extract") {
-                    return QVariant(QIcon(""));
-            } else if(type == "grain") {
-                    return QVariant(QIcon(""));
+            if(type == "grain") {
+                return QVariant(QIcon(":/ThreeBrooks/Ingredients/grain.svg"));
             } else if(type == "hops") {
-                    return QVariant(QIcon(""));
+                    return QVariant(QIcon(":/ThreeBrooks/Ingredients/hops.svg"));
             } else if(type == "yeast") {
-                    return QVariant(QIcon(""));
+                    return QVariant(QIcon(":/ThreeBrooks/Ingredients/yeast.svg"));
+            } else if(type == "ingredient") {
+                    return QVariant(QIcon(":/ThreeBrooks/Ingredients/other.svg"));
             } else {
                 return QVariant(QIcon());
             }
@@ -126,13 +122,9 @@ QVariant RecipeIngredientModel::headerData(int section, Qt::Orientation orientat
 {
     if(orientation == Qt::Horizontal && role == Qt::DisplayRole) {
         if(section == 0)
-            return QVariant(tr("Type"));
-        else if(section == 1)
             return QVariant(tr("Name"));
-        else if(section == 2)
+        else if(section == 1)
             return QVariant(tr("Quantity"));
-        else if(section == 3)
-            return QVariant(tr("Time"));
     }
 
     return QVariant();
@@ -143,17 +135,17 @@ bool RecipeIngredientModel::setData(const QModelIndex &index, const QVariant &va
     if(role != Qt::EditRole)
         return false;
 
-    RecipeIngredient *ingredient = static_cast<RecipeIngredient *>(index.internalPointer());
-
-    if(index.column() == 2) {
-        ingredient->quantity().setValue(value.toDouble());
-        emit dataChanged(index, index);
-        return true;
-    } else if(index.column() == 3) {
-        ingredient->setMinutes(value.toDouble());
-        emit dataChanged(index, index);
-        return true;
-    }
+//    RecipeIngredient *ingredient = static_cast<RecipeIngredient *>(index.internalPointer());
+//
+//    if(index.column() == 1) {
+//        ingredient->quantity().setValue(value.toDouble());
+//        emit dataChanged(index, index);
+//        return true;
+//    } else if(index.column() == 2) {
+//        ingredient->setMinutes(value.toDouble());
+//        emit dataChanged(index, index);
+//        return true;
+//    }
 
     return false;
 }
@@ -165,7 +157,7 @@ Qt::ItemFlags RecipeIngredientModel::flags(const QModelIndex &index) const
 
     Qt::ItemFlags flags = QAbstractItemModel::flags(index);
 
-    if(index.column() >= 2 && index.column() <= 3)
+    if(index.column() >= 1 && index.column() <= 2)
         flags |= Qt::ItemIsEditable;
 
     flags |= Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;

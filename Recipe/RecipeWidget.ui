@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Recipe</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../Resources.qrc">
+    <normaloff>:/ThreeBrooks/Recipe/recipe.svg</normaloff>:/ThreeBrooks/Recipe/recipe.svg</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,15">
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,1">
