@@ -72,7 +72,7 @@ QVariant RecipeModel::data(const QModelIndex &index, int role) const
     if(!index.isValid())
         return QVariant();
 
-    if(role == Qt::DisplayRole && index.internalId() < 5) {
+    if(role == Qt::DisplayRole) {
         if(index.column() == 0) {
             switch(index.row()) {
             case 0:

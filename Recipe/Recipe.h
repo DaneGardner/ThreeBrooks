@@ -72,6 +72,8 @@ public:
     double alcoholByVolume() const;
     double calories() const;
 
+    double pitchRate() const;
+
     double boilTime() const;
     Quantity preBoilVolume() const;
     double preBoilGravity() const;

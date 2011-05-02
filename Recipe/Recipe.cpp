@@ -224,6 +224,19 @@ double Recipe::calories() const
     return 851 * (originalGravity() - 1) * (originalGravity() + 3);
 }
 
+double Recipe::pitchRate() const
+{
+    // Points to Brix ([POINTS]*294.01373844122)/([POINTS]+1136.9440774989)
+    // Brix to Points ([BRIX]*(-1136.9440774989))/([BRIX]-294.01373844122)
+
+    double points = (originalGravity() - 1) * 1000;
+    double brix = (points * 294.01373844122) / (points + 1136.9440774989);
+    double pitchRate = 0.75 * volume().valueToLiter() * brix;
+
+    return pitchRate;
+}
+
+
 double Recipe::boilTime() const
 {
     double maximumBoilTime = 0;
