@@ -275,8 +275,8 @@ void RecipeWidget::refreshText(bool modified)
     ui->spnBoilTime->setValue(_recipe->boilTime());
     ui->spnEfficiency->setValue(_recipe->efficiency() * 100);
 
-    if(_recipe->notes() != ui->txtNotes->toHtml()) {
-        ui->txtNotes->setHtml(_recipe->notes());
+    if(_recipe->notes() != ui->txtNotes->toPlainText()) {
+        ui->txtNotes->setPlainText(_recipe->notes());
     }
 
     ui->tblCalculated->resizeColumnsToContents();
@@ -322,11 +322,8 @@ void RecipeWidget::on_spnEfficiency_editingFinished()
 
 void RecipeWidget::on_txtNotes_textChanged()
 {
-    if(_recipe->notes().isEmpty() && ui->txtNotes->toPlainText().isEmpty())
-        return;
-
-    if(_recipe->notes() != ui->txtNotes->toHtml()) {
-        _recipe->setNotes(ui->txtNotes->toHtml());
+    if(_recipe->notes() != ui->txtNotes->toPlainText()) {
+        _recipe->setNotes(ui->txtNotes->toPlainText());
     }
 }
 
