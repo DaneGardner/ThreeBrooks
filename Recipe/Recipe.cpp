@@ -95,6 +95,18 @@ void Recipe::setEfficiency(double efficiency)
     emit dataChanged();
 }
 
+QString Recipe::notes() const
+{
+    return _notes;
+}
+
+void Recipe::setNotes(QString notes)
+{
+    _notes = notes;
+    emit dataChanged();
+}
+
+
 QUuid Recipe::id() const
 {
     return _id;
@@ -274,6 +286,7 @@ QDomElement Recipe::toXml(QDomDocument document)
 
     element.setAttribute("name", name());
     element.setAttribute("efficiency", efficiency());
+    element.setAttribute("notes", notes());
     element.setAttribute("id", id().toString());
 
     QDomElement elementVolume = document.createElement("Volume");
@@ -291,6 +304,7 @@ void Recipe::fromXml(QDomElement element)
 {
     setName(element.attribute("name", name()));
     setEfficiency(element.attribute("efficiency", QString().setNum(efficiency())).toDouble());
+    setNotes(element.attribute("notes", QString()));
     setId(QUuid(element.attribute("id", id().toString())));
 
     QDomNodeList nodes = element.elementsByTagName("RecipeIngredient");

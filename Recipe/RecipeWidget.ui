@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>823</width>
-    <height>503</height>
+    <width>598</width>
+    <height>438</height>
    </rect>
   </property>
   <property name="acceptDrops">
@@ -20,8 +20,14 @@
    <iconset resource="../Resources.qrc">
     <normaloff>:/ThreeBrooks/Recipe/recipe.svg</normaloff>:/ThreeBrooks/Recipe/recipe.svg</iconset>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,15">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,10000">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,1">
      <property name="spacing">
       <number>10</number>
@@ -228,103 +234,137 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QGroupBox" name="grpIngredients">
-     <property name="title">
-      <string>Ingredients</string>
+   <item>
+    <widget class="Line" name="line">
+     <property name="lineWidth">
+      <number>1</number>
      </property>
-     <property name="flat">
-      <bool>true</bool>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <property name="margin">
-       <number>0</number>
-      </property>
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <item row="0" column="1">
-       <widget class="QTreeView" name="trvIngredients">
-        <property name="selectionMode">
-         <enum>QAbstractItemView::ExtendedSelection</enum>
-        </property>
-        <property name="rootIsDecorated">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btnRaise">
-          <property name="toolTip">
-           <string>Move selected ingredients up [Ctrl+Shift+Up]</string>
-          </property>
-          <property name="text">
-           <string>Move Up</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../Resources.qrc">
-            <normaloff>:/ThreeBrooks/Recipe/up.svg</normaloff>:/ThreeBrooks/Recipe/up.svg</iconset>
-          </property>
-          <property name="shortcut">
-           <string>Ctrl+Shift+Up</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btnLower">
-          <property name="toolTip">
-           <string>Move selected ingredients down [Ctrl+Shift+Down]</string>
-          </property>
-          <property name="text">
-           <string>Move down</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../Resources.qrc">
-            <normaloff>:/ThreeBrooks/Recipe/down.svg</normaloff>:/ThreeBrooks/Recipe/down.svg</iconset>
-          </property>
-          <property name="shortcut">
-           <string>Ctrl+Shift+Down</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btnRemove">
-          <property name="toolTip">
-           <string>Remove selected ingredients [Del]</string>
-          </property>
-          <property name="text">
-           <string>Remove</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../Resources.qrc">
-            <normaloff>:/ThreeBrooks/Recipe/remove.svg</normaloff>:/ThreeBrooks/Recipe/remove.svg</iconset>
-          </property>
-          <property name="shortcut">
-           <string>Del</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="tabPosition">
+      <enum>QTabWidget::East</enum>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <property name="documentMode">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="tabIngredients">
+      <attribute name="title">
+       <string>Ingredients</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btnRaise">
+           <property name="toolTip">
+            <string>Move selected ingredients up [Ctrl+Shift+Up]</string>
+           </property>
+           <property name="text">
+            <string>Move Up</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../Resources.qrc">
+             <normaloff>:/ThreeBrooks/Recipe/up.svg</normaloff>:/ThreeBrooks/Recipe/up.svg</iconset>
+           </property>
+           <property name="shortcut">
+            <string>Ctrl+Shift+Up</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btnLower">
+           <property name="toolTip">
+            <string>Move selected ingredients down [Ctrl+Shift+Down]</string>
+           </property>
+           <property name="text">
+            <string>Move down</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../Resources.qrc">
+             <normaloff>:/ThreeBrooks/Recipe/down.svg</normaloff>:/ThreeBrooks/Recipe/down.svg</iconset>
+           </property>
+           <property name="shortcut">
+            <string>Ctrl+Shift+Down</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btnRemove">
+           <property name="toolTip">
+            <string>Remove selected ingredients [Del]</string>
+           </property>
+           <property name="text">
+            <string>Remove</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../Resources.qrc">
+             <normaloff>:/ThreeBrooks/Recipe/remove.svg</normaloff>:/ThreeBrooks/Recipe/remove.svg</iconset>
+           </property>
+           <property name="shortcut">
+            <string>Del</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTreeView" name="trvIngredients">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabNotes">
+      <attribute name="title">
+       <string>Notes</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTextEdit" name="txtNotes"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>

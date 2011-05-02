@@ -61,6 +61,9 @@ public:
     double efficiency() const;
     void setEfficiency(double efficiency);
 
+    QString notes() const;
+    void setNotes(QString notes);
+
     virtual QUuid id() const;
     virtual void setId(QUuid id);
 
@@ -101,6 +104,7 @@ protected:
     QString _style;
     Quantity _volume;
     double _efficiency;
+    QString _notes;
     QUuid _id;
 
     QList<RecipeIngredient *> _ingredients;

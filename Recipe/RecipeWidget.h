@@ -75,6 +75,7 @@ protected slots:
     void on_cmbStyle_currentIndexChanged(QString style);
     void on_spnVolume_editingFinished();
     void on_spnEfficiency_editingFinished();
+    void on_txtNotes_textChanged();
     void on_btnRaise_clicked();
     void on_btnLower_clicked();
     void on_btnRemove_clicked();

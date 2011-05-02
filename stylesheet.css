@@ -28,15 +28,19 @@
     background-color: #F4F4F4;
 }
 
-QLineEdit, QAbstractSpinBox, QComboBox {
+QLineEdit, QTextEdit, QAbstractSpinBox, QComboBox {
     border: 1px solid #999999;
     border-radius: 3px;
     padding: 0px;
     padding-bottom: 2px;
     margin: 0px;
 }
+QTextEdit {
+    border-radius: 5px;
+    padding: 1px;
+}
 
-QLineEdit:focus, QAbstractSpinBox:focus, QComboBox:focus {
+QLineEdit:focus, QTextEdit:focus, QAbstractSpinBox:focus, QComboBox:focus {
     border: 1px solid #333333;
 }
 
@@ -91,6 +95,7 @@ QComboBox::drop-down {
 }
 
 QLineEdit[readOnly="true"], QLineEdit[enabled="false"],
+QTextEdit[readOnly="true"], QTextEdit[enabled="false"],
 QAbstractSpinBox[readOnly="true"], QAbstractSpinBox[enabled="false"],
 QComboBox[readOnly="true"], QComboBox[enabled="false"] {
     background-color: #dddddd;
@@ -347,17 +352,46 @@ QScrollBar::sub-page:horizontal
 
 
 /* QTabBar */
+QTabWidget::tab-bar:top {
+    left: 2px;
+}
+QTabWidget::tab-bar:left {
+    top: 4px;
+}
+
 QTabBar::tab {
+    color: #FFFFFF;
+    background-color: #999999;
+}
+QTabBar::tab:left:first {
+    border-top: 1px solid #000000;
+}
+QTabBar::tab:left {
+    border-bottom: 1px solid #000000;
+    width: 1.5em;
+    margin-right: -4px;
+    margin-left: 0px;
+    padding-top: 2px;
+    padding-right: 2px;
+}
+QTabBar::tab:top:first {
+    border-left: 1px solid #000000;
+}
+QTabBar::tab:top {
     border-right: 1px solid #000000;
-    height: 2em;
+    height: 1.5em;
     margin-top: -2px;
     margin-bottom: 0px;
     padding-left: 2px;
     padding-right: 2px;
-    color: #FFFFFF;
-    background-color: #999999;
 }
 QTabBar::tab:hover { background-color: #666666; }
 QTabBar::tab:selected { background-color: #333333; }
-
 /* END QTabBar */
+
+
+#RecipeWidget #tabWidget::pane {
+    border: 0;
+}
+
+

@@ -43,6 +43,8 @@ RecipeWidget::RecipeWidget(QWidget *parent) :
                 settings.value("RecipeWidget/calculatedHorizontalState", ui->tblCalculated->horizontalHeader()->saveState()).toByteArray() );
     ui->tblCalculated->verticalHeader()->restoreState(
                 settings.value("RecipeWidget/calculatedVerticalState", ui->tblCalculated->verticalHeader()->saveState()).toByteArray() );
+
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 RecipeWidget::RecipeWidget(QString filepath, QWidget *parent) :
@@ -61,6 +63,8 @@ RecipeWidget::RecipeWidget(QString filepath, QWidget *parent) :
                 settings.value("RecipeWidget/calculatedHorizontalState", ui->tblCalculated->horizontalHeader()->saveState()).toByteArray() );
     ui->tblCalculated->verticalHeader()->restoreState(
                 settings.value("RecipeWidget/calculatedVerticalState", ui->tblCalculated->verticalHeader()->saveState()).toByteArray() );
+
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 RecipeWidget::~RecipeWidget()
@@ -271,6 +275,10 @@ void RecipeWidget::refreshText(bool modified)
     ui->spnBoilTime->setValue(_recipe->boilTime());
     ui->spnEfficiency->setValue(_recipe->efficiency() * 100);
 
+    if(_recipe->notes() != ui->txtNotes->toHtml()) {
+        ui->txtNotes->setHtml(_recipe->notes());
+    }
+
     ui->tblCalculated->resizeColumnsToContents();
     ui->tblCalculated->resizeRowsToContents();
 }
@@ -309,6 +317,16 @@ void RecipeWidget::on_spnEfficiency_editingFinished()
         _recipe->setEfficiency(efficiency);
     } else {
         refreshText();
+    }
+}
+
+void RecipeWidget::on_txtNotes_textChanged()
+{
+    if(_recipe->notes().isEmpty() && ui->txtNotes->toPlainText().isEmpty())
+        return;
+
+    if(_recipe->notes() != ui->txtNotes->toHtml()) {
+        _recipe->setNotes(ui->txtNotes->toHtml());
     }
 }
 
