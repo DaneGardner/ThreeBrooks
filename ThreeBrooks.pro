@@ -70,4 +70,7 @@ RESOURCES += Resources.qrc
 OTHER_FILES += \
     stylesheet.css \
     ingredients.xml \
-    settings.ini
+    settings.ini \
+    ThreeBrooks.rc
+
+RC_FILE = ThreeBrooks.rc

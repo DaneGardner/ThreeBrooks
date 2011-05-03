@@ -70,8 +70,8 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(settings.value("MainWindow/geometry", saveGeometry()).toByteArray());
     restoreState(settings.value("MainWindow/state", saveState()).toByteArray());
     ui->splitter->restoreState(settings.value("MainWindow/splitterState", ui->splitter->saveState()).toByteArray());
-    resize(settings.value("MainWindow/size", size()).toSize());
-    move(settings.value("MainWindow/position", pos()).toPoint());
+    resize(settings.value("MainWindow/size", QSize(640,360)).toSize());
+    move(settings.value("MainWindow/position", QPoint(0,0)).toPoint());
 }
 
 MainWindow::~MainWindow()
