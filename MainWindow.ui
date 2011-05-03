@@ -223,9 +223,6 @@
    </property>
   </action>
   <action name="actionAboutThreeBrooks">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="icon">
     <iconset resource="Resources.qrc">
      <normaloff>:/ThreeBrooks/about.svg</normaloff>:/ThreeBrooks/about.svg</iconset>

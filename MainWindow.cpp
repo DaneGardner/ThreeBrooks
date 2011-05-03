@@ -253,7 +253,21 @@ void MainWindow::on_actionDocumentation_triggered()
 
 void MainWindow::on_actionAboutThreeBrooks_triggered()
 {
-    //TODO:
+
+    QString title = tr("About %1").arg(QApplication::applicationName());
+
+    QString text;
+    text.append(tr("<h2>%1 %2</h2>").arg(QApplication::applicationName(), QApplication::applicationVersion()));
+    text.append(tr("Based on Qt %1 (%2-bit)<br/>").arg(QT_VERSION_STR, QString().setNum(QSysInfo::WordSize)));
+    text.append(tr("<br/>"));
+    text.append(tr("Built on %1 at %2<br/>").arg(__DATE__, __TIME__));
+    text.append(tr("<br/><br/>"));
+    text.append(QApplication::instance()->property("Copyright").toString());
+    text.append(tr("<br/><br/>"));
+    text.append(QApplication::instance()->property("License").toString());
+
+    QMessageBox msg;
+    msg.about(this, title, text);
 }
 
 void MainWindow::on_actionAboutQt4_triggered()
