@@ -53,14 +53,14 @@ IngredientEditDialog::IngredientEditDialog(Ingredient *ingredient, QWidget *pare
         initialize();
     }
 
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("IngredientEditDialog/geometry", saveGeometry()).toByteArray());
     move(MainWindow::instance()->pos() + settings.value("IngredientEditDialog/position", QPoint(50,50)).toPoint());
 }
 
 IngredientEditDialog::~IngredientEditDialog()
 {
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     settings.setValue("IngredientEditDialog/geometry", saveGeometry());
     settings.setValue("IngredientEditDialog/position", pos() - MainWindow::instance()->pos());
 

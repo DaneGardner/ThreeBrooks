@@ -35,7 +35,7 @@ RecipeWidget::RecipeWidget(QWidget *parent) :
 
     setRecipe(new Recipe(this));
 
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("RecipeWidget/geometry", saveGeometry()).toByteArray());
     ui->trvIngredients->header()->restoreState(
                 settings.value("RecipeWidget/ingredientsState", ui->trvIngredients->header()->saveState()).toByteArray() );
@@ -55,7 +55,7 @@ RecipeWidget::RecipeWidget(QString filepath, QWidget *parent) :
 
     load(filepath);
 
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("RecipeWidget/geometry", saveGeometry()).toByteArray());
     ui->trvIngredients->header()->restoreState(
                 settings.value("RecipeWidget/ingredientsState", ui->trvIngredients->header()->saveState()).toByteArray() );
@@ -69,7 +69,7 @@ RecipeWidget::RecipeWidget(QString filepath, QWidget *parent) :
 
 RecipeWidget::~RecipeWidget()
 {
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     settings.setValue("RecipeWidget/geometry", saveGeometry());
     settings.setValue("RecipeWidget/ingredientsState",  ui->trvIngredients->header()->saveState());
     settings.setValue("RecipeWidget/calculatedHorizontalState",  ui->tblCalculated->horizontalHeader()->saveState());

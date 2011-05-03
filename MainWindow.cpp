@@ -47,7 +47,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuBar->removeAction(ui->menuDebug->menuAction());
 #endif
 
-    _ingredientToolbox = new IngredientToolbox("ingredients.xml", ui->splitter);
+#ifdef QT_DEBUG
+    QFileInfo ingredientsFilePath("ingredients.xml");
+#else
+    QFileInfo ingredientsFilePath(QApplication::applicationDirPath() + "/ingredients.xml");
+#endif
+    _ingredientToolbox = new IngredientToolbox(ingredientsFilePath.absoluteFilePath(), ui->splitter);
 
     QWidget *layoutWidget = new QWidget();
     _recipeLayout = new QVBoxLayout();
@@ -66,22 +71,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter->setCollapsible(0, false);     // Allow the toolbox to collapse
     ui->splitter->setCollapsible(1, false);     // Don't collapse the recipe tab widget
 
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("MainWindow/geometry", saveGeometry()).toByteArray());
     restoreState(settings.value("MainWindow/state", saveState()).toByteArray());
     ui->splitter->restoreState(settings.value("MainWindow/splitterState", ui->splitter->saveState()).toByteArray());
     resize(settings.value("MainWindow/size", QSize(640,360)).toSize());
     move(settings.value("MainWindow/position", QPoint(0,0)).toPoint());
+
+    QDir::setCurrent(settings.value("MainWindow/currentPath", QDir::homePath()).toString());
 }
 
 MainWindow::~MainWindow()
 {
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/state", saveState());
     settings.setValue("MainWindow/splitterState", ui->splitter->saveState());
     settings.setValue("MainWindow/size", size());
     settings.setValue("MainWindow/position", pos());
+    settings.setValue("MainWindow/currentPath", QDir::currentPath());
 
     delete ui;
 }
@@ -171,8 +179,10 @@ void MainWindow::on_actionNewRecipe_triggered()
 void MainWindow::on_actionOpenRecipe_triggered()
 {
     try {
-        QString filepath =
-                QFileDialog::getOpenFileName(this, tr("Open Recipe"), QString(), tr("Recipe files (*.recipe)"));
+        QString filepath = QFileDialog::getOpenFileName(this,
+                                                        tr("Open Recipe"),
+                                                        QDir::currentPath(),
+                                                        tr("Recipe files (*.recipe)"));
 
         if(!filepath.isEmpty()) {
 
@@ -190,6 +200,8 @@ void MainWindow::on_actionOpenRecipe_triggered()
             _recipeTabWidget->setCurrentWidget(recipeWidget);
             connect(recipeWidget, SIGNAL(changed()), this, SLOT(recipeChanged()));
             recipeChanged(recipeWidget);
+
+            QDir::setCurrent(QFileInfo(filepath).absolutePath());
         }
     } catch(QString err) {
         showNotification(tr("Could not open recipe: %1").arg(err));
@@ -235,9 +247,13 @@ bool MainWindow::on_actionSaveAsRecipe_triggered()
             RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
             if(recipeWidget) {
                 QString filepath =
-                        QFileDialog::getSaveFileName(this, tr("Save Recipe"), recipeWidget->windowFilePath(), tr("Recipe files(*.recipe)"));
+                        QFileDialog::getSaveFileName(this,
+                                                     tr("Save Recipe"),
+                                                     recipeWidget->windowFilePath().isEmpty()? QDir::currentPath(): recipeWidget->windowFilePath(),
+                                                     tr("Recipe files(*.recipe)"));
                 if(!filepath.isEmpty()) {
                     recipeWidget->save(filepath);
+                    QDir::setCurrent(QFileInfo(filepath).absolutePath());
                     return true;
                 }
             }
