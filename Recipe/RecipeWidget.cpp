@@ -270,10 +270,17 @@ void RecipeWidget::refreshText(bool modified)
     }
 
     ui->txtName->setText(_recipe->name());
-    ui->cmbStyle->setCurrentIndex(ui->cmbStyle->findText(_recipe->style()));
     ui->spnVolume->setValue(_recipe->volume().valueToGallon());
     ui->spnBoilTime->setValue(_recipe->boilTime());
     ui->spnEfficiency->setValue(_recipe->efficiency() * 100);
+
+    int index = ui->cmbStyle->findText(_recipe->style());
+    if(index >= 0) {
+        ui->cmbStyle->setCurrentIndex(index);
+    } else {
+        ui->cmbStyle->insertItem(0, _recipe->style());
+        ui->cmbStyle->setCurrentIndex(0);
+    }
 
     if(_recipe->notes() != ui->txtNotes->toPlainText()) {
         ui->txtNotes->setPlainText(_recipe->notes());

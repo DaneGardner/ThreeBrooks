@@ -62,6 +62,9 @@
         <iconset resource="../Resources.qrc">
          <normaloff>:/ThreeBrooks/Ingredients/create.svg</normaloff>:/ThreeBrooks/Ingredients/create.svg</iconset>
        </property>
+       <property name="autoRaise">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -75,6 +78,9 @@
        <property name="icon">
         <iconset resource="../Resources.qrc">
          <normaloff>:/ThreeBrooks/Ingredients/remove.svg</normaloff>:/ThreeBrooks/Ingredients/remove.svg</iconset>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -116,8 +122,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>280</width>
-        <height>205</height>
+        <width>96</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -139,8 +145,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>280</width>
-        <height>202</height>
+        <width>96</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -162,8 +168,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>280</width>
-        <height>205</height>
+        <width>96</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="dragDropMode">

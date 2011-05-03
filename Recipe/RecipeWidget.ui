@@ -299,6 +299,9 @@
            <property name="shortcut">
             <string>Ctrl+Shift+Up</string>
            </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -316,6 +319,9 @@
            <property name="shortcut">
             <string>Ctrl+Shift+Down</string>
            </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -332,6 +338,9 @@
            </property>
            <property name="shortcut">
             <string>Del</string>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

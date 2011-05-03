@@ -33,6 +33,7 @@ Recipe::Recipe(QObject *parent) :
     _volume = Quantity(5.5, Quantity::QuantityType_gallon);
     _efficiency = 0.75;
     _id = QUuid::createUuid();
+    _style = tr("Beer");
 }
 
 Recipe::Recipe(QDomElement element, QObject *parent) :
@@ -64,7 +65,8 @@ QString Recipe::style() const
 
 void Recipe::setStyle(QString style)
 {
-    _style = style; emit dataChanged();
+    _style = style;
+    emit dataChanged();
 }
 
 Quantity Recipe::volume() const
@@ -74,7 +76,8 @@ Quantity Recipe::volume() const
 
 void Recipe::setVolume(Quantity volume)
 {
-    _volume = volume; emit dataChanged();
+    _volume = volume;
+    emit dataChanged();
 }
 
 void Recipe::setVolume(double volume)
