@@ -53,7 +53,6 @@ int main(int argc, char *argv[])
                        "You should have received a copy of the GNU General Public License "
                        "along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.");
 
-
     MainWindow *w = MainWindow::instance();
     w->show();
     return a.exec();

@@ -122,8 +122,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>61</height>
+        <width>280</width>
+        <height>202</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -145,8 +145,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>61</height>
+        <width>280</width>
+        <height>202</height>
        </rect>
       </property>
       <property name="dragDropMode">
@@ -168,8 +168,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>61</height>
+        <width>280</width>
+        <height>202</height>
        </rect>
       </property>
       <property name="dragDropMode">

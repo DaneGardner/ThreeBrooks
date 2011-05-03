@@ -9,9 +9,12 @@ PrettyTabWidget::PrettyTabWidget(QWidget *parent) :
     setElideMode(Qt::ElideRight);
 
     _stylesheet = QString("QStackedWidget { "
-                  "background-image: url(\":/ThreeBrooks/background.svg\"); "
+                  "background-color: rgba(0,0,0,5%);"
+                  "background-image: url(\":/ThreeBrooks/background.svg\");"
                   "background-repeat: none;"
-                  "background-position: center center;}");
+                  "background-position: center center;"
+                  "border-radius: 5px;"
+                  "margin: 4 3 2 0; }");
     setStyleSheet(_stylesheet);
 
 }
