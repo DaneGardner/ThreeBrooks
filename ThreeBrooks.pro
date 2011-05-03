@@ -38,8 +38,8 @@ SOURCES  += main.cpp\
             Recipe/RecipeModel.cpp \
             Ingredient/IngredientToolbox.cpp \
             Ingredient/IngredientEditDialog.cpp \
-    NotificationBar.cpp \
-    PrettyTabWidget.cpp
+            NotificationBar.cpp \
+            PrettyTabWidget.cpp
 
 HEADERS  += MainWindow.h \
             Recipe/Recipe.h \
@@ -56,21 +56,21 @@ HEADERS  += MainWindow.h \
             Recipe/RecipeModel.h \
             Ingredient/IngredientToolbox.h \
             Ingredient/IngredientEditDialog.h \
-    NotificationBar.h \
-    PrettyTabWidget.h
+            NotificationBar.h \
+            PrettyTabWidget.h
 
 FORMS    += MainWindow.ui \
             Recipe/RecipeWidget.ui \
             Ingredient/IngredientToolbox.ui \
             Ingredient/IngredientEditDialog.ui \
-    NotificationBar.ui
+            NotificationBar.ui
 
 RESOURCES += Resources.qrc
 
-OTHER_FILES += \
-    stylesheet.css \
-    ingredients.xml \
-    settings.ini \
-    ThreeBrooks.rc
+OTHER_FILES += stylesheet.css \
+               ingredients.xml \
+               settings.ini \
+               ThreeBrooks.rc
 
-RC_FILE = ThreeBrooks.rc
+win32: RC_FILE = ThreeBrooks.rc
+macx: RC_FILE = icons/hop-cone-3.icns
