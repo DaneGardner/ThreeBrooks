@@ -7,3 +7,5 @@ qrc_*
 ui_*
 Makefile*
 object_script*
+.tmp/
+.directory
