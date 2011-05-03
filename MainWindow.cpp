@@ -153,6 +153,12 @@ void MainWindow::on_actionReloadStyleSheet_triggered()
     }
 }
 
+void MainWindow::on_actionExit_triggered()
+{
+    close();
+}
+
+
 void MainWindow::on_actionNewRecipe_triggered()
 {
     RecipeWidget *recipeWidget = new RecipeWidget(this);

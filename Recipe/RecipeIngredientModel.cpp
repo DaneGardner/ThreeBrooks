@@ -132,6 +132,9 @@ QVariant RecipeIngredientModel::headerData(int section, Qt::Orientation orientat
 
 bool RecipeIngredientModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
+    Q_UNUSED(index)
+    Q_UNUSED(value)
+
     if(role != Qt::EditRole)
         return false;
 
@@ -167,6 +170,8 @@ Qt::ItemFlags RecipeIngredientModel::flags(const QModelIndex &index) const
 
 bool RecipeIngredientModel::removeRows(int row, int count, const QModelIndex &parent)
 {
+    Q_UNUSED(parent)
+
     for(int i=0; i < count; i++) {
         remove(row);
     }

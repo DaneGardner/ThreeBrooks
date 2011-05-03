@@ -37,6 +37,9 @@ QWidget *RecipeIngredientDelegate::createEditor(QWidget *parent,
                                                 const QStyleOptionViewItem &option,
                                                 const QModelIndex &index) const
 {
+    Q_UNUSED(option)
+    Q_UNUSED(index)
+
     QWidget *widget = new QWidget(parent);
     QHBoxLayout *layout = new QHBoxLayout(widget);
     widget->setLayout(layout);
@@ -110,6 +113,8 @@ void RecipeIngredientDelegate::setModelData(QWidget *editor,
                                             QAbstractItemModel *model,
                                             const QModelIndex &index) const
 {
+    Q_UNUSED(model)
+
     QLineEdit *txtQuantity      = editor->findChild<QLineEdit *>("txtQuantity");
     QComboBox *cmbQuantityType  = editor->findChild<QComboBox *>("cmbQuantityType");
     QLineEdit *txtMinutes       = editor->findChild<QLineEdit *>("txtMinutes");
@@ -123,5 +128,7 @@ void RecipeIngredientDelegate::updateEditorGeometry(QWidget *editor,
                                                     const QStyleOptionViewItem &option,
                                                     const QModelIndex &index) const
 {
+    Q_UNUSED(index)
+
     editor->setGeometry(option.rect);
 }

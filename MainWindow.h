@@ -36,7 +36,7 @@
 #include <QTextDocument>
 #include <QDialogButtonBox>
 #include <QMessageBox>
-#include "Ingredient/IngredientToolBox.h"
+#include "Ingredient/IngredientToolbox.h"
 #include "Recipe/RecipeWidget.h"
 #include "NotificationBar.h"
 #include "PrettyTabWidget.h"
@@ -74,6 +74,7 @@ protected slots:
     void on_actionRecipeLeft_triggered();
     void on_actionHideSidebar_triggered(bool checked);
     void on_actionReloadStyleSheet_triggered();
+    void on_actionExit_triggered();
 
     void tabCloseRequested(int);
     void currentChanged(int);
