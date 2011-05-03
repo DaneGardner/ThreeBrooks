@@ -15,6 +15,8 @@ protected:
     void tabInserted(int index);
     void tabRemoved(int index);
 
+    QString _stylesheet;
+
 };
 
 #endif // PRETTYTABWIDGET_H

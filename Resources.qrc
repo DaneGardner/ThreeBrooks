@@ -11,6 +11,7 @@
         <file alias="scrollbar-borderimage-horizontal.png">icons/scrollbar-borderimage-horizontal.png</file>
         <file alias="scrollbar-borderimage-vertical.png">icons/scrollbar-borderimage-vertical.png</file>
         <file alias="app.svg">icons/hop-cone-3.svg</file>
+        <file alias="background.svg">icons/hops-and-barley.svg</file>
     </qresource>
     <qresource prefix="/ThreeBrooks/Recipe">
         <file alias="remove.svg">icons/edit-delete-2.svg</file>

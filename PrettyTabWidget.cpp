@@ -8,6 +8,12 @@ PrettyTabWidget::PrettyTabWidget(QWidget *parent) :
     setMovable(true);
     setElideMode(Qt::ElideRight);
 
+    _stylesheet = QString("QStackedWidget { "
+                  "background-image: url(\":/ThreeBrooks/background.svg\"); "
+                  "background-repeat: none;"
+                  "background-position: center center;}");
+    setStyleSheet(_stylesheet);
+
 }
 
 void PrettyTabWidget::tabInserted(int index)
@@ -18,6 +24,12 @@ void PrettyTabWidget::tabInserted(int index)
         this->tabBar()->hide();
     } else {
         this->tabBar()->show();
+    }
+
+    if(count() <= 0) {
+        setStyleSheet(_stylesheet);
+    } else {
+        setStyleSheet(QString());
     }
 }
 
@@ -30,5 +42,12 @@ void PrettyTabWidget::tabRemoved(int index)
     } else {
         this->tabBar()->show();
     }
+
+    if(count() <= 0) {
+        setStyleSheet(_stylesheet);
+    } else {
+        setStyleSheet(QString());
+    }
+
 }
 
