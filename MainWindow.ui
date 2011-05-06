@@ -205,9 +205,6 @@
    </property>
   </action>
   <action name="actionDocumentation">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="icon">
     <iconset resource="Resources.qrc">
      <normaloff>:/ThreeBrooks/documentation.svg</normaloff>:/ThreeBrooks/documentation.svg</iconset>

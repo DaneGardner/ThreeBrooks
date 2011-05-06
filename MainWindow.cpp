@@ -27,6 +27,9 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+#include <QUrl>
+#include <QDesktopServices>
+
 MainWindow *_instance;
 MainWindow *MainWindow::instance()
 {
@@ -46,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent) :
 #ifndef QT_DEBUG
     ui->menuBar->removeAction(ui->menuDebug->menuAction());
 #endif
+
+
 
 #ifdef QT_DEBUG
     QFileInfo ingredientsFilePath("ingredients.xml");
@@ -272,7 +277,8 @@ bool MainWindow::on_actionSaveAsRecipe_triggered()
 
 void MainWindow::on_actionDocumentation_triggered()
 {
-    //TODO:
+    QUrl helpUrl(QApplication::instance()->property("helpUrl").toString());
+    QDesktopServices::openUrl(helpUrl);
 }
 
 void MainWindow::on_actionAboutThreeBrooks_triggered()

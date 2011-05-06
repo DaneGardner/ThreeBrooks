@@ -37,8 +37,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("Three Brooks");
     QCoreApplication::setApplicationVersion("0.1 Beta 1");
 
-    QApplication::instance()->setProperty("Copyright",
-                       "Copyright © 2011 Dane Gardner. All rights reserved.");
+    QApplication::instance()->setProperty("helpUrl", "https://github.com/DaneGardner/ThreeBrooks/wiki");
+
+    QApplication::instance()->setProperty("Copyright", "Copyright © 2011 Dane Gardner. All rights reserved.");
+
     QApplication::instance()->setProperty("License",
                        "This program is free software: you can redistribute it and/or modify "
                        "it under the terms of the GNU General Public License as published by "
