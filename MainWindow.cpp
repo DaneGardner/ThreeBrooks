@@ -71,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter->setCollapsible(0, false);     // Allow the toolbox to collapse
     ui->splitter->setCollapsible(1, false);     // Don't collapse the recipe tab widget
 
+
     QSettings settings(QApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("MainWindow/geometry", saveGeometry()).toByteArray());
     restoreState(settings.value("MainWindow/state", saveState()).toByteArray());
@@ -79,6 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
     move(settings.value("MainWindow/position", QPoint(0,0)).toPoint());
 
     QDir::setCurrent(settings.value("MainWindow/currentPath", QDir::homePath()).toString());
+
 }
 
 MainWindow::~MainWindow()

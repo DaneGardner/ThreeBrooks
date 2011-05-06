@@ -16,61 +16,73 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-QT       += core gui xml
+QT          += core gui xml
 
-TARGET = ThreeBrooks
-TEMPLATE = app
+TARGET       = ThreeBrooks
+TEMPLATE     = app
 
+SOURCES     += main.cpp\
+               MainWindow.cpp \
+               Recipe/Recipe.cpp \
+               Ingredient/Ingredient.cpp \
+               Ingredient/GrainIngredient.cpp \
+               Ingredient/HopsIngredient.cpp \
+               Ingredient/YeastIngredient.cpp \
+               Recipe/RecipeIngredient.cpp \
+               Recipe/RecipeIngredientModel.cpp \
+               Ingredient/IngredientModel.cpp \
+               Quantity.cpp \
+               Recipe/RecipeWidget.cpp \
+               Recipe/RecipeIngredientDelegate.cpp \
+               Recipe/RecipeModel.cpp \
+               Ingredient/IngredientToolbox.cpp \
+               Ingredient/IngredientEditDialog.cpp \
+               NotificationBar.cpp \
+               PrettyTabWidget.cpp
 
-SOURCES  += main.cpp\
-            MainWindow.cpp \
-            Recipe/Recipe.cpp \
-            Ingredient/Ingredient.cpp \
-            Ingredient/GrainIngredient.cpp \
-            Ingredient/HopsIngredient.cpp \
-            Ingredient/YeastIngredient.cpp \
-            Recipe/RecipeIngredient.cpp \
-            Recipe/RecipeIngredientModel.cpp \
-            Ingredient/IngredientModel.cpp \
-            Quantity.cpp \
-            Recipe/RecipeWidget.cpp \
-            Recipe/RecipeIngredientDelegate.cpp \
-            Recipe/RecipeModel.cpp \
-            Ingredient/IngredientToolbox.cpp \
-            Ingredient/IngredientEditDialog.cpp \
-            NotificationBar.cpp \
-            PrettyTabWidget.cpp
+HEADERS     += MainWindow.h \
+               Recipe/Recipe.h \
+               Ingredient/Ingredient.h \
+               Ingredient/GrainIngredient.h \
+               Ingredient/HopsIngredient.h \
+               Ingredient/YeastIngredient.h \
+               Recipe/RecipeIngredient.h \
+               Recipe/RecipeIngredientModel.h \
+               Ingredient/IngredientModel.h \
+               Quantity.h \
+               Recipe/RecipeWidget.h \
+               Recipe/RecipeIngredientDelegate.h \
+               Recipe/RecipeModel.h \
+               Ingredient/IngredientToolbox.h \
+               Ingredient/IngredientEditDialog.h \
+               NotificationBar.h \
+               PrettyTabWidget.h
 
-HEADERS  += MainWindow.h \
-            Recipe/Recipe.h \
-            Ingredient/Ingredient.h \
-            Ingredient/GrainIngredient.h \
-            Ingredient/HopsIngredient.h \
-            Ingredient/YeastIngredient.h \
-            Recipe/RecipeIngredient.h \
-            Recipe/RecipeIngredientModel.h \
-            Ingredient/IngredientModel.h \
-            Quantity.h \
-            Recipe/RecipeWidget.h \
-            Recipe/RecipeIngredientDelegate.h \
-            Recipe/RecipeModel.h \
-            Ingredient/IngredientToolbox.h \
-            Ingredient/IngredientEditDialog.h \
-            NotificationBar.h \
-            PrettyTabWidget.h
+FORMS       += MainWindow.ui \
+               Recipe/RecipeWidget.ui \
+               Ingredient/IngredientToolbox.ui \
+               Ingredient/IngredientEditDialog.ui \
+               NotificationBar.ui
 
-FORMS    += MainWindow.ui \
-            Recipe/RecipeWidget.ui \
-            Ingredient/IngredientToolbox.ui \
-            Ingredient/IngredientEditDialog.ui \
-            NotificationBar.ui
-
-RESOURCES += Resources.qrc
+RESOURCES   += Resources.qrc
 
 OTHER_FILES += stylesheet.css \
                ingredients.xml \
                settings.ini \
-               ThreeBrooks.rc
+               ThreeBrooks.rc \
+               README \
+               LICENSE
 
-win32: RC_FILE = ThreeBrooks.rc
-macx: RC_FILE = icons/hop-cone-3.icns
+win32: RC_FILE               = ThreeBrooks.rc
+macx: RC_FILE                = icons/hop-cone-3.icns
+
+target.path                  = /
+INSTALLS                    += target
+
+ingredients.path             = /
+ingredients.files            = ingredients.xml
+INSTALLS                    += ingredients
+
+stylesheet.path              = /
+stylesheet.files             = stylesheet.css
+INSTALLS                    += stylesheet

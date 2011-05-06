@@ -35,6 +35,9 @@ Drag and Drop - the de-facto applications in this field do not do drag and drop.
 horribly unnatural feeling, and makes life more difficult than it should be.  Every ingredient
 in this application can be moved around in an intuitive way.
 
+Portable - this application attempts to store all of its files in easily accesible locations.  On
+Windows machines, it stores nothing in the Windows Registry.
+
 
 -=] EQUATIONS [=-
 Debates have raged over which equation to use for calculating the bitterness that hops add to a
@@ -54,7 +57,7 @@ easier.  For example, it doesn't matter if you use Celcius or Fahrenheit, as lon
 try to compare the two --100°C is not the same as 100°F-- but they both effectively describe the
 same phenomenon.
 
-Here are some links for thos that would like to read more on the various aspects of each method.
+Here are some links for those that would like to read more on the various aspects of each method.
 
  * http://users.rcn.com/thor.dnai/dboard/dbnewsl/t9510d.htm
 
