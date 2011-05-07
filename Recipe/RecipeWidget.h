@@ -86,6 +86,8 @@ protected:
     void load(QString filepath);
     Recipe *_recipe;
 
+    static bool timeDescending(RecipeIngredient *left, RecipeIngredient *right);
+
 private:
     Ui::RecipeWidget *ui;
 };

@@ -253,11 +253,15 @@ bool MainWindow::on_actionSaveAsRecipe_triggered()
         if(_recipeTabWidget->currentWidget()) {
             RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
             if(recipeWidget) {
-                QString filepath =
-                        QFileDialog::getSaveFileName(this,
-                                                     tr("Save Recipe"),
-                                                     recipeWidget->windowFilePath().isEmpty()? QDir::currentPath(): recipeWidget->windowFilePath(),
-                                                     tr("Recipe files(*.recipe)"));
+                QString filepath = recipeWidget->windowFilePath().isEmpty()?
+                                   QDir::currentPath().append("/" + recipeWidget->recipe()->name()):
+                                   recipeWidget->windowFilePath();
+
+                filepath = QFileDialog::getSaveFileName(this,
+                                                        tr("Save Recipe"),
+                                                        filepath,
+                                                        tr("Recipe files(*.recipe)"));
+
                 if(!filepath.isEmpty()) {
                     recipeWidget->save(filepath);
                     QDir::setCurrent(QFileInfo(filepath).absolutePath());
@@ -314,6 +318,7 @@ void MainWindow::on_actionPrintRecipe_triggered()
         return;
 
     RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
+    printer.setDocName(recipeWidget->recipe()->name());
     recipeWidget->print(&printer);
 }
 

@@ -389,6 +389,6 @@ QSplitter::handle:horizontal {
     padding: 0;
     margin: 0;
     width: 1px;
-    border: 1px solid black;
+    border: 1px solid #666666;
 }
 

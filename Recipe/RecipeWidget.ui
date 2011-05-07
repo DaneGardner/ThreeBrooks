@@ -209,12 +209,6 @@
         </property>
         <item row="0" column="0">
          <widget class="QTableView" name="tblCalculated">
-          <property name="minimumSize">
-           <size>
-            <width>360</width>
-            <height>140</height>
-           </size>
-          </property>
           <property name="focusPolicy">
            <enum>Qt::NoFocus</enum>
           </property>

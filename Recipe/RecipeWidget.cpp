@@ -190,6 +190,8 @@ void RecipeWidget::save(QString filepath)
 
 void RecipeWidget::print(QPrinter *printer)
 {
+    //FIXME: This is obviously clunky code. Clean this up and modularize it.  A stylesheet would also be nice.
+
     QTextDocument document(this);
     QDomDocument xhtml("PrintRecipe");
     xhtml.appendChild(xhtml.createElement("html"));
@@ -202,6 +204,7 @@ void RecipeWidget::print(QPrinter *printer)
     element.appendChild(xhtml.createTextNode(recipe()->name()));
     bodyElement.appendChild(element);
 
+    /* BEGIN Properties */
     element = xhtml.createElement("h3");
     element.appendChild(xhtml.createTextNode("Properties"));
     bodyElement.appendChild(element);
@@ -216,7 +219,9 @@ void RecipeWidget::print(QPrinter *printer)
     element.appendChild(xhtml.createTextNode(QString("Efficiency: %1%").arg(recipe()->efficiency() * 100)));
     element.appendChild(xhtml.createElement("br"));
     bodyElement.appendChild(element);
+    /* END Properties */
 
+    /* BEGIN Calculated */
     element = xhtml.createElement("h3");
     element.appendChild(xhtml.createTextNode("Calculated"));
     bodyElement.appendChild(element);
@@ -233,7 +238,9 @@ void RecipeWidget::print(QPrinter *printer)
     element.appendChild(xhtml.createTextNode(QString("ABV: %1%").arg(recipe()->alcoholByVolume() * 100, 0, 'f', 1)));
     element.appendChild(xhtml.createElement("br"));
     bodyElement.appendChild(element);
+    /* END Calculated */
 
+    /* BEGIN Ingredients */
     element = xhtml.createElement("h3");
     element.appendChild(xhtml.createTextNode("Ingredients"));
     bodyElement.appendChild(element);
@@ -249,9 +256,218 @@ void RecipeWidget::print(QPrinter *printer)
         element.appendChild(xhtml.createElement("br"));
     }
     bodyElement.appendChild(element);
+    /* END Ingredients */
+
+    /* BEGIN Notes */
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Notes"));
+    bodyElement.appendChild(element);
+    element = xhtml.createElement("p");
+    foreach(QString note, recipe()->notes().split('\n')) {
+        element.appendChild(xhtml.createTextNode(note));
+        element.appendChild(xhtml.createElement("br"));
+    }
+    bodyElement.appendChild(element);
+    /* END Notes */
+
+
+    /*** BEGIN Process ***/
+    element = xhtml.createElement("h2");
+    element.appendChild(xhtml.createTextNode("Process"));
+    element.setAttribute("style", "page-break-before: always;");
+    bodyElement.appendChild(element);
+
+    /* BEGIN Process - Mash */
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Mash"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("table");
+    element.setAttribute("style", "border-width:1px;");
+    QDomElement row = xhtml.createElement("tr");
+
+    QDomElement cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Done"));
+    row.appendChild(cell);
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Quantity"));
+    row.appendChild(cell);
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Description"));
+    row.appendChild(cell);
+    element.appendChild(row);
+
+    foreach(RecipeIngredient *recipeIngredient, recipe()->ingredients()) {
+        GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(recipeIngredient->ingredient());
+        if(!grainIngredient || grainIngredient->extract()) continue;
+
+        row = xhtml.createElement("tr");
+        element.appendChild(row);
+
+        row.appendChild(xhtml.createElement("td"));
+
+        cell = xhtml.createElement("td");
+        cell.appendChild(xhtml.createTextNode(recipeIngredient->quantity().toString()));
+        row.appendChild(cell);
+
+
+        QString ingredientText = QString("%1 [%2 SRM]")
+                .arg(recipeIngredient->name())
+                .arg(grainIngredient->color(), 0, 'f', 1);
+
+        cell = xhtml.createElement("td");
+        cell.appendChild(xhtml.createTextNode(ingredientText));
+        row.appendChild(cell);
+    }
+    bodyElement.appendChild(element);
+    /* END Process - Mash */
+
+
+
+    /* BEGIN Process - Boil */
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Boil"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    element.appendChild(xhtml.createTextNode(QString("Pre-boil gravity: %1").arg(recipe()->preBoilGravity(), 0, 'f', 3)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Pre-boil Volume: %1").arg(recipe()->boilVolume(recipe()->boilTime()).toString())));
+    element.appendChild(xhtml.createElement("br"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("table");
+    element.setAttribute("style", "border-width:1px;");
+    row = xhtml.createElement("tr");
+
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Done"));
+    row.appendChild(cell);
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Minutes"));
+    row.appendChild(cell);
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Quantity"));
+    row.appendChild(cell);
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Description"));
+    row.appendChild(cell);
+    element.appendChild(row);
+
+    QList<RecipeIngredient *> boilIngredients;
+    foreach(RecipeIngredient *recipeIngredient, recipe()->ingredients()) {
+        if(recipeIngredient->minutes()) {
+            boilIngredients.append(recipeIngredient);
+        } else {
+            GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(recipeIngredient->ingredient());
+            if(grainIngredient && grainIngredient->extract()) {
+                boilIngredients.append(recipeIngredient);
+            }
+        }
+    }
+    qSort(boilIngredients.begin(), boilIngredients.end(), timeDescending);
+    foreach(RecipeIngredient *recipeIngredient, boilIngredients) {
+        row = xhtml.createElement("tr");
+        element.appendChild(row);
+
+        row.appendChild(xhtml.createElement("td"));
+
+        cell = xhtml.createElement("td");
+        cell.appendChild(xhtml.createTextNode(QString("%1 minutes").arg(recipeIngredient->minutes())));
+        row.appendChild(cell);
+
+        cell = xhtml.createElement("td");
+        cell.appendChild(xhtml.createTextNode(recipeIngredient->quantity().toString()));
+        row.appendChild(cell);
+
+        cell = xhtml.createElement("td");
+        cell.appendChild(xhtml.createTextNode(recipeIngredient->name()));
+        row.appendChild(cell);
+    }
+    bodyElement.appendChild(element);
+    /* END Process - Boil */
+
+    /* BEGIN Process - Fermenting */
+    element = xhtml.createElement("h3");
+    element.appendChild(xhtml.createTextNode("Fermentation"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("p");
+    element.appendChild(xhtml.createTextNode(QString("Original gravity: %1").arg(recipe()->originalGravity(), 0, 'f', 3)));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Volume: %1").arg(recipe()->volume().toString())));
+    element.appendChild(xhtml.createElement("br"));
+    element.appendChild(xhtml.createTextNode(QString("Pitch rate: %1 billion cells").arg(recipe()->pitchRate(), 0, 'f', 0)));
+    element.appendChild(xhtml.createElement("br"));
+    bodyElement.appendChild(element);
+
+    element = xhtml.createElement("table");
+    element.setAttribute("style", "border-width:1px;");
+    row = xhtml.createElement("tr");
+
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Done"));
+    row.appendChild(cell);
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Quantity"));
+    row.appendChild(cell);
+    cell = xhtml.createElement("th");
+    cell.appendChild(xhtml.createTextNode("Description"));
+    row.appendChild(cell);
+    element.appendChild(row);
+
+    foreach(RecipeIngredient *recipeIngredient, recipe()->ingredients()) {
+        YeastIngredient *yeastIngredient = qobject_cast<YeastIngredient *>(recipeIngredient->ingredient());
+        if(!yeastIngredient) continue;
+
+        row = xhtml.createElement("tr");
+        element.appendChild(row);
+
+        row.appendChild(xhtml.createElement("td"));
+
+        cell = xhtml.createElement("td");
+        cell.appendChild(xhtml.createTextNode(recipeIngredient->quantity().toString()));
+        row.appendChild(cell);
+
+
+        QString ingredientText = QString("%1 [%2%]")
+                .arg(recipeIngredient->name())
+                .arg(yeastIngredient->attenuation() * 100, 0, 'f', 1);
+
+        cell = xhtml.createElement("td");
+        cell.appendChild(xhtml.createTextNode(ingredientText));
+        row.appendChild(cell);
+    }
+    bodyElement.appendChild(element);
+    /* End Process - Fermenting */
+
+    /*** END Process ***/
+
 
     document.setHtml(xhtml.toString());
     document.print(printer);
+}
+
+bool RecipeWidget::timeDescending(RecipeIngredient *left, RecipeIngredient *right)
+{
+    double leftMinutes = left->minutes();
+    double rightMinutes = right->minutes();
+
+    if(!leftMinutes) {
+        GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(left->ingredient());
+        if(grainIngredient && grainIngredient->extract()) {
+            leftMinutes = 1440;             // Hopefully, nobody will boil this long!
+        }
+    }
+
+    if(!rightMinutes) {
+        GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(right->ingredient());
+        if(grainIngredient && grainIngredient->extract()) {
+            rightMinutes = 1440;            // Hopefully, nobody will boil this long!
+        }
+    }
+
+    return leftMinutes > rightMinutes;
 }
 
 void RecipeWidget::recipeChanged()
