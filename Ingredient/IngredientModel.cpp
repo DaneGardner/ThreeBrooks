@@ -83,8 +83,8 @@ QVariant IngredientModel::data(const QModelIndex &index, int role) const
         if(index.column() == 0) {
             GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(ingredient);
             if(grainIngredient) {
-                return QVariant(QString("%1 [%2][%3 SRM]").arg(grainIngredient->name())
-                                         .arg(grainIngredient->specificGravity())
+                return QVariant(QString("%1%2 [%3 SRM]").arg(grainIngredient->name())
+                                         .arg(grainIngredient->extract() ? "*" : "")
                                          .arg(grainIngredient->color()));
             }
             HopsIngredient *hopsIngredient = qobject_cast<HopsIngredient *>(ingredient);
@@ -100,9 +100,48 @@ QVariant IngredientModel::data(const QModelIndex &index, int role) const
         }
     }
 
+    if(role == Qt::ToolTipRole) {
+        if(index.column() == 0) {
+            GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(ingredient);
+            if(grainIngredient) {
+                QString toolTip = QString("Potential Gravity: %1; Color: %2 SRM")
+                        .arg(grainIngredient->specificGravity(), 3, 'f', 3)
+                        .arg(grainIngredient->color(), 0, 'f', 1);
+
+                if(grainIngredient->extract()) {
+                    toolTip.prepend("Extract; ");
+                }
+
+                return QVariant(toolTip);
+            }
+
+            HopsIngredient *hopsIngredient = qobject_cast<HopsIngredient *>(ingredient);
+            if(hopsIngredient) {
+                QString toolTip = QString("Alpha Acid: %1%")
+                        .arg(hopsIngredient->alphaAcid() * 100, 1, 'f', 2);
+                return QVariant(toolTip);
+            }
+
+            YeastIngredient *yeastIngredient = qobject_cast<YeastIngredient *>(ingredient);
+            if(yeastIngredient) {
+                QString toolTip = QString("Attenuation: %1%")
+                        .arg(yeastIngredient->attenuation() * 100, 1, 'f', 0);
+                return QVariant(toolTip);
+            }
+        }
+        return QVariant(QString());
+    }
+
     // For auto-completer
     if(role == Qt::EditRole) {
         if(index.column() == 0) {
+            GrainIngredient *grainIngredient = qobject_cast<GrainIngredient *>(ingredient);
+            if(grainIngredient) {
+                QString searchTerms = QString("%1 %2")
+                                      .arg(ingredient->name())
+                                      .arg(grainIngredient->extract() ? "extract" : "");
+                return QVariant(searchTerms);
+            }
             return QVariant(ingredient->name());
         }
     }

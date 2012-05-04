@@ -38,7 +38,11 @@ SOURCES     += main.cpp\
                Ingredient/IngredientToolbox.cpp \
                Ingredient/IngredientEditDialog.cpp \
                NotificationBar.cpp \
-               PrettyTabWidget.cpp
+               PrettyTabWidget.cpp \
+               Types/Volume.cpp \
+               Types/Mass.cpp \
+               Types/Time.cpp \
+               Types/Base.cpp
 
 HEADERS     += MainWindow.h \
                Recipe/Recipe.h \
@@ -56,7 +60,11 @@ HEADERS     += MainWindow.h \
                Ingredient/IngredientToolbox.h \
                Ingredient/IngredientEditDialog.h \
                NotificationBar.h \
-               PrettyTabWidget.h
+               PrettyTabWidget.h \
+               Types/Volume.h \
+               Types/Mass.h \
+               Types/Time.h \
+               Types/Base.h
 
 FORMS       += MainWindow.ui \
                Recipe/RecipeWidget.ui \
