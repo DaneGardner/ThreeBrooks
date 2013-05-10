@@ -24,7 +24,7 @@
 
  */
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QCoreApplication>
 #include "MainWindow.h"
 

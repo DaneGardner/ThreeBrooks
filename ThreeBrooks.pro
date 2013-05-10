@@ -16,7 +16,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-QT          += core gui xml
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT      += core gui xml widgets printsupport
+} else {
+    QT      += core gui xml
+}
 
 TARGET       = ThreeBrooks
 TEMPLATE     = app
