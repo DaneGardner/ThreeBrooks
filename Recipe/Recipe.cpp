@@ -275,7 +275,7 @@ Quantity Recipe::boilVolume(double minutes) const
 }
 double Recipe::boilGravity(double minutes) const
 {
-    return ((originalGravity() - 1) * (boilVolume(minutes).valueToGallon() / volume().valueToGallon())) + 1;
+    return ((volume().valueToGallon() * (originalGravity() - 1) ) / boilVolume(minutes).valueToGallon() )+ 1;
 }
 
 void Recipe::ingredientChanged()
