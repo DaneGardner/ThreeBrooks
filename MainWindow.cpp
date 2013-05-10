@@ -317,9 +317,13 @@ void MainWindow::on_actionPrintRecipe_triggered()
     if(dialog->exec() != QDialog::Accepted)
         return;
 
-    RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
-    printer.setDocName(recipeWidget->recipe()->name());
-    recipeWidget->print(&printer);
+    try {
+        RecipeWidget *recipeWidget = qobject_cast<RecipeWidget *>(_recipeTabWidget->currentWidget());
+        printer.setDocName(recipeWidget->recipe()->name());
+        recipeWidget->print(&printer);
+    } catch(...) {
+        showNotification(tr("Caught error while printing"));
+    }
 }
 
 void MainWindow::on_actionRecipeRight_triggered()
