@@ -237,8 +237,9 @@ void IngredientModel::insert(int row, Ingredient *ingredient)
 
 void IngredientModel::remove(Ingredient *ingredient)
 {
-    if(_ingredients.contains(ingredient));
-    remove(row(ingredient));
+    if(_ingredients.contains(ingredient)) {
+        remove(row(ingredient));
+    }
 }
 
 void IngredientModel::remove(int row)
