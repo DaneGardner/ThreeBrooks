@@ -5,7 +5,7 @@
 
    \section LICENSE
     This file is part of the ThreeBrooks homebrew recipe application
-    Copyright (C) 2011 Dane Gardner
+    Copyright (C) 2011-2013 Dane Gardner
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
