@@ -188,6 +188,8 @@ void IngredientToolbox::on_ToolBox_currentChanged(int page)
 
 void IngredientToolbox::insert(Ingredient *ingredient, bool sort)
 {
+    Q_UNUSED(sort);
+
     connect(ingredient, SIGNAL(dataChanged()), this, SLOT(ingredientChanged()));
     _ingredients.append(ingredient);
     if(qobject_cast<GrainIngredient *>(ingredient)) {

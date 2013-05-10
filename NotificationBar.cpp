@@ -40,6 +40,8 @@ QIcon NotificationBar::icon() const
 
 void NotificationBar::setIcon(const QIcon icon)
 {
+    Q_UNUSED(icon);
+
     //TODO:
 }
 
