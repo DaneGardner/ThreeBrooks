@@ -53,8 +53,8 @@ public:
         QuantityType_item
     };
 
-    explicit Quantity(double value = 0, QuantityTypes = QuantityType_item, QObject *parent = 0);
-    explicit Quantity(QDomElement element, QObject *parent = 0);
+    explicit Quantity(double value = 0, QuantityTypes = QuantityType_item);
+    explicit Quantity(QDomElement element);
 
     Quantity(const Quantity &other);
 

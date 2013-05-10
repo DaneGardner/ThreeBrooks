@@ -26,15 +26,15 @@
 
 #include "Quantity.h"
 
-Quantity::Quantity(double value, QuantityTypes type, QObject *parent) :
-    QObject(parent)
+Quantity::Quantity(double value, QuantityTypes type) :
+    QObject(NULL)
 {
     _value = value;
     _type = type;
 }
 
-Quantity::Quantity(QDomElement element, QObject *parent) :
-    QObject(parent)
+Quantity::Quantity(QDomElement element) :
+    QObject(NULL)
 {
     _value = 0;
     _type = QuantityType_item;
@@ -43,7 +43,8 @@ Quantity::Quantity(QDomElement element, QObject *parent) :
 }
 
 
-Quantity::Quantity(const Quantity &other)
+Quantity::Quantity(const Quantity &other) :
+    QObject(NULL)
 {
     _value = other._value;
     _type = other._type;
@@ -339,57 +340,57 @@ double Quantity::valueToGallon()
 
 Quantity Quantity::toMilligram()
 {
-    return Quantity(valueToMilligram(), QuantityType_milligram, parent());
+    return Quantity(valueToMilligram(), QuantityType_milligram);
 }
 
 Quantity Quantity::toGram()
 {
-    return Quantity(valueToGram(), QuantityType_gram, parent());
+    return Quantity(valueToGram(), QuantityType_gram);
 }
 
 Quantity Quantity::toKilogram()
 {
-    return Quantity(valueToKilogram(), QuantityType_kilogram, parent());
+    return Quantity(valueToKilogram(), QuantityType_kilogram);
 }
 
 Quantity Quantity::toOunce()
 {
-    return Quantity(valueToOunce(), QuantityType_ounce, parent());
+    return Quantity(valueToOunce(), QuantityType_ounce);
 }
 
 Quantity Quantity::toPound()
 {
-    return Quantity(valueToPound(), QuantityType_pound, parent());
+    return Quantity(valueToPound(), QuantityType_pound);
 }
 
 Quantity Quantity::toMilliliter()
 {
-    return Quantity(valueToMilliliter(), QuantityType_milliliter, parent());
+    return Quantity(valueToMilliliter(), QuantityType_milliliter);
 }
 
 Quantity Quantity::toLiter()
 {
-    return Quantity(valueToLiter(), QuantityType_liter, parent());
+    return Quantity(valueToLiter(), QuantityType_liter);
 }
 
 Quantity Quantity::toDecaliter()
 {
-    return Quantity(valueToDecaliter(), QuantityType_decaliter, parent());
+    return Quantity(valueToDecaliter(), QuantityType_decaliter);
 }
 
 Quantity Quantity::toFluidOunce()
 {
-    return Quantity(valueToFluidOunce(), QuantityType_fluidOunce, parent());
+    return Quantity(valueToFluidOunce(), QuantityType_fluidOunce);
 }
 
 Quantity Quantity::toQuart()
 {
-    return Quantity(valueToQuart(), QuantityType_quart, parent());
+    return Quantity(valueToQuart(), QuantityType_quart);
 }
 
 Quantity Quantity::toGallon()
 {
-    return Quantity(valueToGallon(), QuantityType_gallon, parent());
+    return Quantity(valueToGallon(), QuantityType_gallon);
 }
 
 

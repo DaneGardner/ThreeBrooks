@@ -120,7 +120,7 @@ void RecipeIngredientDelegate::setModelData(QWidget *editor,
     QLineEdit *txtMinutes       = editor->findChild<QLineEdit *>("txtMinutes");
 
     RecipeIngredient *ingredient = index.model()->data(index, Qt::UserRole).value<RecipeIngredient *>();
-    Quantity quantity(txtQuantity->text().toDouble(), Quantity::type(cmbQuantityType->currentText()), ingredient);
+    Quantity quantity(txtQuantity->text().toDouble(), Quantity::type(cmbQuantityType->currentText()));
     ingredient->setQuantityAndMinutes(quantity, txtMinutes->text().toDouble());
 }
 

@@ -82,7 +82,7 @@ void Recipe::setVolume(Quantity volume)
 
 void Recipe::setVolume(double volume)
 {
-    _volume = Quantity(volume, Quantity::QuantityType_gallon, this);
+    _volume = Quantity(volume, Quantity::QuantityType_gallon);
     emit dataChanged();
 }
 
