@@ -16,6 +16,8 @@ for my work.
 
 
 -=] FEATURES [=-
+Officially works with both Qt4 and Qt5.  Qt 4.6.0 and higher to be exact.
+
 Ingredient Filtering - the biggest feature that I wanted to see in my application was a method
 for searching the ingredient list.  All too often it would take me several minutes to find an
 ingredient in an alphabetized list, which started with the maltster's name for some reason.
